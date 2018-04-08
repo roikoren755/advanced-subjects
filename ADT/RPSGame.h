@@ -4,10 +4,6 @@
  *  Created on: 8 באפר 2018
  *      Author: user
  */
-
-#ifndef RPSGAME_H_
-#define RPSGAME_H_
-
 #include "RPSPiece.h"
 #include "RPSCommand.h"
 
@@ -18,7 +14,7 @@ enum RPS_Massage{Success,Invalid_Argument,Bad_Position,Index_Out_Of_Range};
 
 class Game{
 	Piece board[N][M];
-	Player currentPlayer;
+	int currentPlayer;
 
 	int player1rocks;
 	int player1Papers;
@@ -38,8 +34,11 @@ public:
 	RPS_Massage RPSSetPosition(Command command,int player);
 
 	RPS_Massage RPSSetMove(Command command);
+
+	Piece RPSPerformBattle(Piece piece1,Piece piece2);
+
+	void Game::RPSExcludePiece();
 };
 
 
 
-#endif /* RPSGAME_H_ */
