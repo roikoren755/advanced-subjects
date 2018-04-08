@@ -19,4 +19,4 @@ RPSCommandFactory.o: RPSCommandFactory.cpp RPSCommandFactory.h RPSCommand.h RPSP
 main.o: main.cpp #put dependencies here!
 	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
 clean:
-	rm -f $(OBJS) $(EXEC)
+	rm -f $(OBJS) $(EXEC) *Test *.o
