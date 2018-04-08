@@ -20,7 +20,7 @@ int main(){
 	command->toX = 5;
 	command->toY = 6;
 	command->player = 1;
-	cout<<game<<endl;
+	cout<<*game<<endl;
 
 }
 
