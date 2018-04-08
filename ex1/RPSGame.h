@@ -10,7 +10,7 @@
 #define N 10
 #define M 10
 
-enum RPS_Message{Success, Invalid_Argument, Bad_Position, Index_Out_Of_Range};
+enum RPS_Message{Success, Invalid_Argument, Bad_Position, Index_Out_Of_Range, Illegal_Move};
 
 class Game{
 	Piece board[N][M];
@@ -43,3 +43,6 @@ public:
 	friend ostream& operator<<(ostream& out,Game game);
 
 };
+
+
+
