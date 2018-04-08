@@ -2,7 +2,7 @@
 #include <cstring>
 using namespace std;
 
-enum PieceType{Rock, Paper, Scissors, Bomb, Flag };
+enum PieceType{None,Rock, Paper, Scissors, Bomb, Flag };
 
 class Piece{
 	const bool isJoker;

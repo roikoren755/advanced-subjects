@@ -9,7 +9,7 @@
 #include "RPSPiece.h"
 
 Piece::Piece():
-	isJoker(NULL),type(NULL),player(NULL){}
+	isJoker(false),type(None),player(NULL){}
 
 Piece::Piece(PieceType type,bool isJoker,int player):isJoker(isJoker),type(type),player(player){}
 
