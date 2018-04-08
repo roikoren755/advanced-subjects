@@ -2,18 +2,24 @@
 #include <cstring>
 using namespace std;
 
-enum PieceType{Rock, Paper, Scissors, Bomb, Flag };
+enum PieceType {None, Rock, Paper, Scissors, Bomb, Flag, InvalidPiece};
 
-class Piece{
+class Piece {
 	const bool isJoker;
 	PieceType type;
 	int player;
-
+public:
+	Piece();
 	Piece(PieceType type,bool isJoker,int player);
 
-    friend ostream& operator<<(ostream& out,Piece piece);
+	friend ostream& operator<<(ostream& out,Piece piece);
 
+	int getPlayer();
+	PieceType getPieceType();
+	bool isJoker();
 };
+
+
 
 
 
