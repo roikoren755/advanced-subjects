@@ -10,7 +10,8 @@
 #define N 10
 #define M 10
 
-enum RPS_Massage{Success,Invalid_Argument,Bad_Position,Index_Out_Of_Range};
+enum RPS_Massage{Success,Invalid_Argument,Bad_Position,Index_Out_Of_Range,
+	Ilegel_Move};
 
 class Game{
 	Piece board[N][M];
