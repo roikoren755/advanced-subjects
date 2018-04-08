@@ -1,7 +1,7 @@
 /*
  * RPSGame.cpp
  *
- *  Created on: 8 April 2018
+ *  Created on: 8 ���� 2018
  *      Author: user
  */
 
@@ -9,7 +9,7 @@
 #include "RPSGame.h"
 
 
-RPS_Message Game::RPSSetPosition(Command command,int player){
+RPS_Massage Game::RPSSetPosition(Command command,int player){
 	if(command.getType() == Move ){
 		return Invalid_Argument;
 	}
@@ -44,7 +44,7 @@ RPS_Message Game::RPSSetPosition(Command command,int player){
 
 
 
-RPS_Message Game::RPSSetMove(Command command){
+RPS_Massage Game::RPSSetMove(Command command){
 	if(command.getType() == Position ){
 		return Invalid_Argument;
 	}
@@ -55,7 +55,15 @@ RPS_Message Game::RPSSetMove(Command command){
 	int toX = command.getToX();
 	int toY = command.getToY();
 
-	Piece attacker = this->board[fromX][fromY];
+	if(toX<1 || toX>M || toY<1 || toY>N
+	   ||fromX<1 || fromX>M || fromY<1 || fromY>N){
+		return Index_Out_Of_Range;
+	}
+	if(abs(toX-fromX)!=1 || abs(toY-fromY)!=1){
+		return Illegal_Move;
+	}
+	if(this->board[toX][toY])
+		Piece attacker = this->board[fromX][fromY];
 	Piece target = this->board[toX][toY];
 
 
@@ -171,3 +179,6 @@ ostream& operator<<(ostream& out,Game game){
 	}
 	return out;
 }
+
+
+
