@@ -16,6 +16,9 @@ public:
     friend ostream& operator<<(ostream& out,Piece piece);
 
     int getPlayer();
+    PieceType getPieceType();
+	bool isJoker();
+
 
 };
 

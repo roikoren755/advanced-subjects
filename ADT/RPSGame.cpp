@@ -63,14 +63,15 @@
 	}
 
 	Piece Game::RPSPerformBattle(Piece piece1,Piece piece2){
-		if(piece1.type == piece2.type || piece1.type==Bomb || piece2.type==Bomb){
+		if(piece1.getPieceType() == piece2.getPieceType() ||
+				piece1.getPieceType()==Bomb || piece2.getPieceType()==Bomb){
 			RPSExcludePiece(piece1);
 			RPSExcludePiece(piece2);
 			return NULL; //both are removed
 		}
 
-		else if(piece1.type == Rock){
-			if(piece2.type == Paper){
+		else if(piece1.getPieceType() == Rock){
+			if(piece2.getPieceType() == Paper){
 				RPSExcludePiece(piece1);
 				return piece2;
 			}
@@ -80,8 +81,8 @@
 			}
 		}
 
-		else if(piece1.type == Paper){
-			if(piece2.type == Scissors){
+		else if(piece1.getPieceType() == Paper){
+			if(piece2.getPieceType() == Scissors){
 				RPSExcludePiece(piece1);
 				return piece2;
 			}
@@ -91,8 +92,8 @@
 			}
 		}
 
-		else if(piece1.type == Scissors){
-			if(piece2.type == Rock){
+		else if(piece1.getPieceType() == Scissors){
+			if(piece2.getPieceType() == Rock){
 				RPSExcludePiece(piece1);
 				return piece2;
 			}
@@ -102,7 +103,7 @@
 			}
 		}
 
-		else if(piece1.type == Flag){ //the case where piece2==Flag was covered
+		else if(piece1.getPieceType() == Flag){ //the case where piece2==Flag was covered
 			RPSExcludePiece(piece1);
 			return piece2;
 		}
@@ -112,7 +113,7 @@
 	}
 
 	void Game::RPSExcludePiece(Piece piece){
-		switch(piece.type){
+		switch(piece.getPieceType()){
 			case(Rock):
 					if(piece.player==1){
 						this->player1Rocks--;
