@@ -1,7 +1,7 @@
 /*
  * RPSCommand.h
  *
- *  Created on: 5 April 2018
+ *  Created on: 5 באפר 2018
  *      Author: user
  */
 
@@ -10,32 +10,40 @@
 
 #include "RPSPiece.h"
 
-#define N 10
-#define M 10
+enum CommandType{Position,Move};
 
-enum CommandType {Position, Move, Invalid};
+class Command{
+	CommandType type;
+	bool JokerInvolved;
 
-class RPSCommand {
-    CommandType type;
-    PieceType pieceType;
-    int toX;
-    int toY;
-    int fromX;
-    int fromY;
-    int jokerX;
-    int jokerY;
+	int toX = NULL;
+	int toY = NULL;
+
+	int FromX;
+	int FromY;
+
+	PieceType pieceType;
+	int player;
+
+	int jokerX;
+	int jokerY;
+
+	int line;
 
 public:
-    RPSCommand(std::string const& command);
-    CommandType getType();
-    PieceType getPieceType();
-    int getFromX();
-    int getFromY();
-    int getToX();
-    int getToY();
-    int getJokerX();
-    int getJokerY();
-    int getLine;
+	CommandType getType();
+	int getPlayer();
+	PieceType getPieceType();
+	int getfromX();
+	int getfromY();
+	int getToX();
+	int getToY();
+	int getJokerX();
+	int getJokerY();
+	int getLine();
+	bool isJokerInvolved();
 };
+
+
 
 #endif /* RPSCOMMAND_H_ */
