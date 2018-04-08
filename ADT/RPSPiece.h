@@ -8,12 +8,16 @@ class Piece{
 	const bool isJoker;
 	PieceType type;
 	int player;
+public:
 
+	Piece();
 	Piece(PieceType type,bool isJoker,int player);
 
     friend ostream& operator<<(ostream& out,Piece piece);
 
 };
+
+
 
 
 

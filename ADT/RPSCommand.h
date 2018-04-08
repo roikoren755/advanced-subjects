@@ -13,11 +13,13 @@
 enum CommandType{Position,Move};
 
 class Command{
+public:
+
 	CommandType type;
 	bool JokerInvolved;
 
-	int toX = NULL;
-	int toY = NULL;
+	int toX;
+	int toY;
 
 	int FromX;
 	int FromY;
@@ -27,8 +29,6 @@ class Command{
 
 	int jokerX;
 	int jokerY;
-
-	int line;
 
 public:
 	CommandType getType();
@@ -40,7 +40,6 @@ public:
 	int getToY();
 	int getJokerX();
 	int getJokerY();
-	int getLine();
 	bool isJokerInvolved();
 };
 

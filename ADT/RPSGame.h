@@ -16,14 +16,14 @@ class Game{
 	Piece board[N][M];
 	int currentPlayer;
 
-	int player1rocks;
+	int player1Rocks;
 	int player1Papers;
 	int player1Scissors;
 	int player1Bombs;
 	int player1Jokers;
 	int player1Flags;
 
-	int player2rocks;
+	int player2Rocks;
 	int player2Papers;
 	int player2Scissors;
 	int player2Bombs;
@@ -31,13 +31,17 @@ class Game{
 	int player2Flags;
 
 public:
+
 	RPS_Massage RPSSetPosition(Command command,int player);
 
 	RPS_Massage RPSSetMove(Command command);
 
 	Piece RPSPerformBattle(Piece piece1,Piece piece2);
 
-	void Game::RPSExcludePiece();
+	void RPSExcludePiece(Piece piece);
+
+    friend ostream& operator<<(ostream& out,Game game);
+
 };
 
 
