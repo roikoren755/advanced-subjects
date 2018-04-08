@@ -1,7 +1,7 @@
 /*
  * RPSGame.h
  *
- *  Created on: 8 áàôø 2018
+ *  Created on: 8 ï¿½ï¿½ï¿½ï¿½ 2018
  *      Author: user
  */
 #include "RPSPiece.h"
@@ -39,6 +39,3 @@ public:
 
 	void Game::RPSExcludePiece();
 };
-
-
-
