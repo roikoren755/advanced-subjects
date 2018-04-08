@@ -55,6 +55,14 @@
 		int toX = command.getToX();
 		int toY = command.getToY();
 
+		if(toX<1 || toX>M || toY<1 || toY>N
+				||fromX<1 || fromX>M || fromY<1 || fromY>N){
+			return Index_Out_Of_Range;
+		}
+		if(abs(toX-fromX)!=1 || abs(toY-fromY)!=1){
+			return Ilegel_Move;
+		}
+		if(this->board[toX][toY])
 		Piece attacker = this->board[fromX][fromY];
 		Piece target = this->board[toX][toY];
 
