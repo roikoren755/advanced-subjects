@@ -1,7 +1,7 @@
 /*
  * RPSCommand.h
  *
- *  Created on: 5 áàôø 2018
+ *  Created on: 5 ï¿½ï¿½ï¿½ï¿½ 2018
  *      Author: user
  */
 
@@ -10,40 +10,35 @@
 
 #include "RPSPiece.h"
 
-enum CommandType{Position,Move};
+#define MAXIMUM_COMMAND_LENGTH 1024
 
-class Command{
-	CommandType type;
-	bool JokerInvolved;
+enum CommandType {Position, Move, InvalidCommand};
 
-	int toX = NULL;
-	int toY = NULL;
-
-	int FromX;
-	int FromY;
-
+class RPSCommand {
+	CommandType commandType;
 	PieceType pieceType;
-	int player;
-
+	int fromX;
+	int fromY;
+	int toX;
+	int toY;
+	bool jokerInvolved;
 	int jokerX;
 	int jokerY;
 
-	int line;
-
 public:
-	CommandType getType();
-	int getPlayer();
-	PieceType getPieceType();
-	int getfromX();
-	int getfromY();
-	int getToX();
-	int getToY();
-	int getJokerX();
-	int getJokerY();
-	int getLine();
-	bool isJokerInvolved();
+	RPSCommand(CommandType commandType, PieceType pieceType, int fromX, int fromY, int toX, int toY, bool jokerInvolved,
+			   int jokerX, int jokerY): commandType(commandType), pieceType(pieceType), fromX(fromX),
+										fromY(fromY), toX(toX), toY(toY), jokerInvolved(jokerInvolved), jokerX(jokerX),
+										jokerY(jokerY) {};
+	CommandType getCommandType() { return this->commandType; };
+	PieceType getPieceType() { return this->pieceType; };
+	int getfromX() { return this->fromX; };
+	int getfromY() { return this->fromY; };
+	int getToX() { return this->toX; };
+	int getToY() { return this->toY; };
+	bool isJokerInvolved() { return this->jokerInvolved; };
+	int getJokerX() { return this->jokerX; };
+	int getJokerY() { return this->jokerY; };
 };
-
-
 
 #endif /* RPSCOMMAND_H_ */
