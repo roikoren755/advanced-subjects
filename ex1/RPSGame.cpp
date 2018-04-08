@@ -1,5 +1,10 @@
-//
-// Created by Roi Koren on 06/04/2018.
-//
+/*
+ * RPSGame.cpp
+ *
+ *  Created on: 8 באפר 2018
+ *      Author: user
+ */
 
-#include "RPSGame.h"
+
+
+

@@ -1,7 +1,7 @@
 /*
  * main.cpp
  *
- *  Created on: 5 April 2018
+ *  Created on: 5 באפר 2018
  *      Author: user
  */
 #include <iostream>
@@ -12,7 +12,7 @@
 using namespace std;
 
 int main(){
-    cout<<"hello world!\n"<<endl;
-    puts("lala");
+	cout<<"hello world!\n"<<endl;
+
 }
 
