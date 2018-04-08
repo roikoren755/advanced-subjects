@@ -15,8 +15,7 @@ Piece::Piece(PieceType type,bool isJoker,int player):isJoker(isJoker),type(type)
 
 
 ostream& operator<<(ostream& out,Piece piece){
- char c = 'S';
-
+int player = piece.getPlayer();
  switch(piece.type){
      case(Rock):
         out<<'R'<<endl;
@@ -36,5 +35,10 @@ ostream& operator<<(ostream& out,Piece piece){
  }
  return out;
 }
+
+int Piece::getPlayer(){
+	return this->player;
+}
+
 
 

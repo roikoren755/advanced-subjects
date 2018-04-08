@@ -15,6 +15,8 @@ public:
 
     friend ostream& operator<<(ostream& out,Piece piece);
 
+    int getPlayer();
+
 };
 
 
