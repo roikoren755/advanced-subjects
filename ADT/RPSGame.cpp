@@ -21,7 +21,7 @@ RPS_Massage Game::RPSSetPosition(Command command,int player){
 		return Index_Out_Of_Range;
 	}
 
-	Piece newPiece = new Piece(command.getPieceType(), command.isJokerInvolved(),command.getPlayer()));
+	Piece newPiece = new Piece(command.getPieceType(), command.isJokerInvolved(),command.getPlayer());
 
 	if(this->board[toX-1][toY-1] != NULL){
 		if(this->board[toX][toY].player == command.getPlayer){
