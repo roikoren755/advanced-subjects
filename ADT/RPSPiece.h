@@ -16,7 +16,9 @@ public:
 
 	int getPlayer();
 	PieceType getPieceType();
-	bool isJoker();
+	bool isPieceJoker();
+
+	void setPieceType(PieceType type);
 };
 
 
