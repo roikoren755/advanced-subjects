@@ -3,7 +3,6 @@
 	<name>ADT</name>
 	<comment></comment>
 	<projects>
-		<project>ADT</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

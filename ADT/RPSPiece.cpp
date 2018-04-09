@@ -40,5 +40,11 @@ int Piece::getPlayer(){
 	return this->player;
 }
 
+void Piece::setPieceType(PieceType type){
+	if(this->isJoker){ //saftey
+		this->type = type;
+	}
+}
+
 
 
