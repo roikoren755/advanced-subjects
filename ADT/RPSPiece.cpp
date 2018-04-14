@@ -1,50 +1,34 @@
 /*
  * RPSPiece.cpp
  *
- *  Created on: 4 ���� 2018
+ *  Created on: 4 April 2018
  *      Author: user
  */
-#include <iostream>
-#include <cstring>
 #include "RPSPiece.h"
+#define CAPITAL_TO_LOW(c) (c - 'A' + 'a')
 
-Piece::Piece():
-        isJoker(false),type(None),player(NULL){}
-
-Piece::Piece(PieceType type,bool isJoker,int player):isJoker(isJoker),type(type),player(player){}
-
-
-ostream& operator<<(ostream& out,Piece piece){
-    int player = piece.getPlayer();
-    switch(piece.type){
-        case(Rock):
-            out<<'R'<<endl;
+ostream& operator<<(ostream &out, RPSPiece &rpsPiece) {
+    int player = rpsPiece.getPlayer();
+    char piece;
+    switch (rpsPiece.getPieceType()) {
+        case Rock:
+            piece = 'R';
             break;
-        case(Paper):
-            out<<'P'<<endl;
+        case Paper:
+            piece = 'P';
             break;
-        case(Scissors):
-            out<<c;
+        case Scissors:
+            piece = 'S';
             break;
-        case(Bomb):
-            out<<'B'<<endl;
+        case Bomb:
+            piece = 'B';
             break;
-        case(Flag):
-            out<<'F'<<endl;
+        case Flag:
+            piece = 'F';
             break;
+        default:
+            piece = '_';
     }
-    return out;
+
+    return out << player == 1 ? piece : CAPITAL_TO_LOW(piece);
 }
-
-int Piece::getPlayer(){
-    return this->player;
-}
-
-void Piece::setPieceType(PieceType type){
-	if(this->isJoker){ //saftey
-		this->type = type;
-	}
-}
-
-
-

@@ -35,10 +35,11 @@ int getPositiveInt(char* integer) {
 	return result;
 }
 
-RPSCommand* RPSCommandFactory::getRPSCommand(char const* command) {
+RPSCommand& RPSCommandFactory::getRPSCommand(const std::string& command, RPSCommand &rpsCommand) {
 	char buffer[MAXIMUM_COMMAND_LENGTH + 1];
-	if (!strcpy(buffer, command)) {
-		return NULL;
+	if (!strcpy(buffer, command.c_str())) {
+		rpsCommand.setCommandType(InvalidCommand);
+		return rpsCommand;
 	}
 
 	CommandType commandType = InvalidCommand;
@@ -53,7 +54,8 @@ RPSCommand* RPSCommandFactory::getRPSCommand(char const* command) {
 
 	char* argument = strtok(buffer, DELIMITERS);
 	if (!argument) {
-		return NULL;
+		rpsCommand.setCommandType(InvalidCommand);
+		return rpsCommand;
 	}
 
 	if (argument[0] > 'A' && argument[0] < 'Z' && !argument[1]) {
@@ -131,5 +133,15 @@ RPSCommand* RPSCommandFactory::getRPSCommand(char const* command) {
 		commandType = InvalidCommand;
 	}
 
-	return new RPSCommand(commandType, pieceType, fromX, fromY, toX, toY, jokerInvolved, jokerX, jokerY);
+	rpsCommand.setCommandType(commandType);
+	rpsCommand.setPieceType(pieceType);
+	rpsCommand.setFromX(fromX);
+	rpsCommand.setFromY(fromY);
+	rpsCommand.setToX(toX);
+	rpsCommand.setToY(toY);
+	rpsCommand.setJokerInvolved(jokerInvolved);
+	rpsCommand.setJokerX(jokerX);
+	rpsCommand.setJokerY(jokerY);
+
+	return rpsCommand;
 }
