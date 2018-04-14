@@ -1,7 +1,7 @@
 /*
  * RPSGame.h
  *
- *  Created on: 8 ���� 2018
+ *  Created on: 8 April 2018
  *      Author: user
  */
 #include "RPSPiece.h"
