@@ -151,10 +151,14 @@ int MainAux::rpsPlayTwoPlayerMoves(RPSGame &rpsGame, std::string &player1MoveFil
 						player1Line++;
 						break;
 					case All_Moving_Pieces_Captured:
+						player1Finished = true;
+						player2Finished = true;
+						finished = ALL_MOVING_PIECES_CAPTURED;
+						break;
 					case All_Flags_Captured:
 						player1Finished = true;
 						player2Finished = true;
-						finished = -2;
+						finished = ALL_FLAGS_CAPTURED;
 						break;
 					default:
 						rpsGame.rpsSetWinner(2);
@@ -177,10 +181,14 @@ int MainAux::rpsPlayTwoPlayerMoves(RPSGame &rpsGame, std::string &player1MoveFil
 						player2Line++;
 						break;
 					case All_Moving_Pieces_Captured:
+						player1Finished = true;
+						player2Finished = true;
+						finished = ALL_MOVING_PIECES_CAPTURED;
+						break;
 					case All_Flags_Captured:
 						player1Finished = true;
 						player2Finished = true;
-						finished = -3;
+						finished = ALL_FLAGS_CAPTURED;
 						break;
 					default:
 						rpsGame.rpsSetWinner(1);
@@ -198,6 +206,9 @@ int MainAux::rpsPlayTwoPlayerMoves(RPSGame &rpsGame, std::string &player1MoveFil
 	else {
 		finished = -1;
 	}
+
+	player1File.close();
+	player2File.close();
 
 	return finished;
 }
@@ -227,11 +238,43 @@ int MainAux::rpsPrintGamePositionErrorResult(RPSGame &rpsGame,int player1lineErr
 	fout<<std::endl;
 	fout<<rpsGame;
 
+	fout.close();
 	return 1;
 }
 
+int MainAux::rpsPrintGameResult(RPSGame &game,int reason){
+	std::ofstream fout("rps.output");
+	int winner = game.rpsGetWinner();
+	fout<<"Winner: "<<game.rpsGetWinner()<<std::endl;
+	fout<<"Reason: ";
+	if(reason>0){
+		int loser = winner == 1? 2 : 1; //if reason > 0 there is no tie TODO error??
+		fout<<"Bad Moves input file for player "<<loser<< "- line "<<reason<<std::endl;
+	}
+	switch(reason){
+			case ALL_FLAGS_CAPTURED:
+				if(winner){
+					fout<<"All flags of the opponent are captured"<<std::endl;
+				}
+				else{
+					fout<<"A tie - all flags are eaten by both players in the position files"<<std::endl;
+				}
+				break;
+			case ALL_MOVING_PIECES_CAPTURED:
+				fout<<"All moving PIECEs of the opponent are eaten"<<std::endl;
+				break;
+			case LEGAL_TIE:
+				fout<<"A tie - both Moves input files done without a winner"<<std::endl;
+				break;
 
+	}
 
+	fout<<std::endl;
+	fout<<game;
+
+	fout.close();
+	return 1;
+}
 
 
 

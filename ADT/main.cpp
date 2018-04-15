@@ -11,6 +11,9 @@
 #include "RPSGame.h"
 #include "MainAux.h"
 
+#define PLAYER1_MOVES_FILE "player1.rps_moves"
+#define PLAYER2_MOVES_FILE "player2.rps_moves"
+
 int main() {
 	RPSGame game = RPSGame();
 	int winner = 0;
@@ -31,16 +34,16 @@ int main() {
 		return 1;
 	}
 
-	std::cout<<player1Positioning<<player2Positioning<<std::endl;
-
 
 	if (player1Positioning > 0 || player2Positioning > 0) {
 		return MainAux::rpsPrintGamePositionErrorResult(game,player1Positioning,player2Positioning);
 	}
 
-	if (!winner) {
+	std::string player1MovesFile = PLAYER1_MOVES_FILE;
+	std::string player2MovesFile = PLAYER2_MOVES_FILE;
 
-	}
+	int reason = MainAux::rpsPlayTwoPlayerMoves(game,player1MovesFile,player2MovesFile);
 
-	std::cout<<game<<std::endl;
+	return MainAux::rpsPrintGameResult(game,reason);
+
 }

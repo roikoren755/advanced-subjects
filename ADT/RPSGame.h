@@ -38,18 +38,19 @@ enum RPS_Message {
 class RPSGame{
 	RPSPiece boards[NUM_PLAYERS][N][M];
 	int winner = 0;
+	RPS_Message winnerReason;
 
 	int player1Rocks = 0;
-	int player1Papers;
-	int player1Scissors;
-	int player1Bombs;
-	int player1Jokers;
-	int player1Flags;
+	int player1Papers = 0;
+	int player1Scissors = 0;
+	int player1Bombs = 0;
+	int player1Jokers = 0;
+	int player1Flags = 0;
 
-	int player2Rocks;
-	int player2Papers;
+	int player2Rocks = 0;
+	int player2Papers = 0;
 	int player2Scissors = 0;
-	int player2Bombs;
+	int player2Bombs = 0;
 	int player2Jokers;
 	int player2Flags;
 
@@ -65,6 +66,9 @@ public:
 	friend std::ostream& operator<<(std::ostream& out, RPSGame &game);
 	int rpsGetWinner() { return this->winner; }
 	void rpsSetWinner(int winner) { this->winner = winner; }
+	void rpsSetWinnerReason(RPS_Message message) { this->winnerReason = message; }
+	RPS_Message rpsGetWinnerReason(RPS_Message message) { return this->winnerReason; }
+
 	void rpsFinishPositioningStage();
 };
 
