@@ -32,7 +32,7 @@ bool RPSGame::rpsValidateNumbersOfPieces(int player) {
 	return false;
 }
 
-bool RPSGame::rpsValidateNumberOfJokers(int player) {
+bool RPSGame::rpsValidateNumberOfFlags(int player) {
 	return (player == 1 ? this->player1Flags : this->player2Flags) == FLAGS;
 }
 
@@ -44,10 +44,12 @@ RPS_Message RPSGame::rpsSetPosition(RPSCommand &command, int player) {
 	int toX = command.getToX();
 	int toY = command.getToY();
 
+	//checks the range
 	if (toX < 1 || toX > M || toY < 1 || toY > N) {
 		return Destination_Out_Of_Range;
 	}
 
+	//increment the counter
 	PieceType pieceType = command.getPieceType();
 	if (command.isJokerInvolved()) {
 		player == 1 ? this->player1Jokers++ : this->player2Jokers++;
@@ -74,10 +76,12 @@ RPS_Message RPSGame::rpsSetPosition(RPSCommand &command, int player) {
 		}
 	}
 
+	//check if valid
 	if (!rpsValidateNumbersOfPieces(player)) {
 		return Too_Many_Pieces;
 	}
 
+	//check if there is a piece
 	if (this->boards[player - 1][toY - 1][toX - 1].getPieceType() != None) {
 			return Bad_Position;
 	}
@@ -152,6 +156,7 @@ void RPSGame::rpsPerformBattle(int fromX, int fromY, int toX, int toY, int playe
 	RPSPiece defender = this->boards[opponent - 1][toY - 1][toX - 1];
 	PieceType attackerType = attacker.getPieceType();
 	PieceType defenderType = defender.getPieceType();
+
 	if (attackerType == defenderType || defenderType == Bomb || attackerType == Bomb) {
 		this->rpsExcludePiece(fromX, fromY, player);
 		this->rpsExcludePiece(toX, toY, opponent);
@@ -200,7 +205,7 @@ void RPSGame::rpsExcludePiece(int x, int y, int player) {
 	if (piece.isPieceJoker()) {
 		player == 1 ? this->player1Jokers-- : this->player2Jokers--;
 	}
-	else {
+	else {   //check the piece type and decrease counter
 		switch (piece.getPieceType()) {
 			case Rock:
 				player == 1 ? this->player1Rocks-- : this->player2Rocks--;
@@ -223,6 +228,7 @@ void RPSGame::rpsExcludePiece(int x, int y, int player) {
 }
 
 RPS_Message RPSGame::rpsCheckWinner() {
+	//check if out of flags
 	if (!this->player1Flags) {
 		this->winner = 2;
 		return All_Flags_Captured;
@@ -232,6 +238,7 @@ RPS_Message RPSGame::rpsCheckWinner() {
 		return All_Flags_Captured;
 	}
 
+	//check if moving pieces re gone
 	if (!this->player2Rocks && !this->player2Scissors && !this->player2Bombs && !this->player2Jokers) {
 		this->winner = 1;
 		return All_Moving_Pieces_Captured;

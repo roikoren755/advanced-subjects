@@ -16,6 +16,16 @@
 #define M 10
 #define NUM_PLAYERS 2
 
+
+/**
+ * represent a game, contains data:
+ * - 2 NxM game boards, 1 for each player(2 are needed for initialization stage.
+ *   if there is a spot with a piece in both boards we notify an error)
+ * - the winner
+ * - The amounts of pieces of any type for both users
+*/
+
+
 enum RPS_Message {
 	Success,
 	Invalid_Argument,
@@ -37,41 +47,65 @@ enum RPS_Message {
 
 class RPSGame{
 	RPSPiece boards[NUM_PLAYERS][N][M];
-	int winner = 0;
+	int winner ;
 //	RPS_Message winnerReason;
 public:
-	int player1Rocks = 0;
-	int player1Papers = 0;
-	int player1Scissors = 0;
-	int player1Bombs = 0;
-	int player1Jokers = 0;
-	int player1Flags = 0;
+	int player1Rocks ;
+	int player1Papers ;
+	int player1Scissors ;
+	int player1Bombs ;
+	int player1Jokers ;
+	int player1Flags ;
 
-	int player2Rocks = 0;
-	int player2Papers = 0;
-	int player2Scissors = 0;
-	int player2Bombs = 0;
-	int player2Jokers = 0;
-	int player2Flags = 0;
+	int player2Rocks ;
+	int player2Papers ;
+	int player2Scissors ;
+	int player2Bombs ;
+	int player2Jokers ;
+	int player2Flags ;
 
 public:
+	//empty cons', makes sure all parameters are initialized to 0
 	RPSGame():winner(0),player1Rocks(0),player1Papers(0),player1Scissors(0),player1Bombs(0),
 			  player1Jokers(0),player1Flags(0),player2Rocks(0),player2Papers(0),player2Scissors(0),
 			  player2Bombs(0),player2Jokers(0),player2Flags(0){}
+
+	//checks if the number of pieces of one player did not exceeded
 	bool rpsValidateNumbersOfPieces(int player);
-	bool rpsValidateNumberOfJokers(int player);
+
+	//checks if the number of flags for one player is as it should be when initialized
+	bool rpsValidateNumberOfFlags(int player);
+
+	//sets a position in the game, given a command and the player.
+	//returns An appropriate message with the information -
+	//whether there was an error and if so what it is
 	RPS_Message rpsSetPosition(RPSCommand &command, int player);
+
+	//sets a position in the game, given a command and the player
 	RPS_Message rpsSetMove(RPSCommand &command, int player);
+
+	//performs a battle between 2 pieces and sets the winner(if there is) at his spot
 	void rpsPerformBattle(int fromX, int fromY, int toX, int toY, int player, int opponent);
+
+	//moves a piece from the board and subtract the counter for that piece by 1
 	void rpsExcludePiece(int x, int y, int player);
+
+	//checks the winner, if game is over returns a message with the reason
 	RPS_Message rpsCheckWinner();
+
+	//after all pieces are set performs battles between every 2 pieces at the same spot,
+	//returns 0 if the game isnt over, or an int representing a massage for the reason why the
+	//game is over
+	int rpsFinishPositioningStage();
+
 	friend std::ostream& operator<<(std::ostream& out, RPSGame &game);
+
+	//getters and setters
+
 	int rpsGetWinner() { return this->winner; }
 	void rpsSetWinner(int winner) { this->winner = winner; }
-//	void rpsSetWinnerReason(RPS_Message message) { this->winnerReason = message; }
-//	RPS_Message rpsGetWinnerReason() { return this->winnerReason; }
 
-	int rpsFinishPositioningStage();
+
 };
 
 #endif

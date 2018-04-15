@@ -139,7 +139,7 @@ int MainAux::rpsLoadPositionFile(RPSGame &rpsGame, std::string &positionFile, in
 
 		file.close();
 
-		if(valid && !rpsGame.rpsValidateNumberOfJokers(player)){
+		if(valid && !rpsGame.rpsValidateNumberOfFlags(player)){
 			std::cout << "ERROR: Player "<<player<<" hadn't placed all of his flags." << std::endl;
 			ret = i;
 			valid = false;
