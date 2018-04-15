@@ -36,20 +36,25 @@ int main() {
 	}
 
 	if (player1Positioning > 0 || player2Positioning > 0) {
-		return MainAux::rpsPrintGamePositionErrorResult(game,player1Positioning,player2Positioning);
+		MainAux::rpsPrintGamePositionErrorResult(game,player1Positioning,player2Positioning);
+	}
+	else{
+		int reason = game.rpsFinishPositioningStage();
+		if (reason) {  //game is done
+				 MainAux::rpsPrintGameResult(game,reason);
+		}
+		else{
+			std::string player1MovesFile = PLAYER1_MOVES_FILE;
+				std::string player2MovesFile = PLAYER2_MOVES_FILE;
+
+				reason = MainAux::rpsPlayTwoPlayerMoves(game,player1MovesFile,player2MovesFile);
+
+				 MainAux::rpsPrintGameResult(game,reason);
+		}
 	}
 
-	int reason = game.rpsFinishPositioningStage();
-	if (reason) {  //game is done
-		return MainAux::rpsPrintGameResult(game,reason);
-	}
+	delete &game;
 
-	std::string player1MovesFile = PLAYER1_MOVES_FILE;
-	std::string player2MovesFile = PLAYER2_MOVES_FILE;
-
-	reason = MainAux::rpsPlayTwoPlayerMoves(game,player1MovesFile,player2MovesFile);
-
-	return MainAux::rpsPrintGameResult(game,reason);
 
 }
 
