@@ -10,8 +10,8 @@
 #include "RPSCommand.h"
 #include "RPSGame.h"
 #include "MainAux.h"
-#define PLAYER1_POSITION_FILE "player1.rps_moves"
-#define PLAYER2_POSITION_FILE "player2.rps_moves"
+#define PLAYER1_POSITION_FILE "player1.rps_board"
+#define PLAYER2_POSITION_FILE "player2.rps_board"
 #define PLAYER1_MOVES_FILE "player1.rps_moves"
 #define PLAYER2_MOVES_FILE "player2.rps_moves"
 

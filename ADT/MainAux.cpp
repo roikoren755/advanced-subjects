@@ -96,7 +96,7 @@ int MainAux::rpsLoadPositionFile(RPSGame &rpsGame, std::string &positionFile, in
 		while (!ret && std::getline(file, command)) {
 			RPSCommand rpsCommand;
 			rpsCommand = RPSCommandFactory::getRPSCommand(command, rpsCommand);
-		//	std::cout<<rpsCommand.getPieceType()<<":"<<rpsCommand.getToX()<<","<<rpsCommand.getToY()<<std::endl;
+			std::cout<<rpsCommand.getPieceType()<<":"<<rpsCommand.getToX()<<","<<rpsCommand.getToY()<<std::endl;
 			if (rpsCommand.getCommandType() == Position) {
 				message = rpsGame.rpsSetPosition(rpsCommand, player);
 				//std::cout<<message<<std::endl;
@@ -130,7 +130,7 @@ int MainAux::rpsLoadPositionFile(RPSGame &rpsGame, std::string &positionFile, in
 				}
 			}
 			else if (rpsCommand.getCommandType() != NoLine) {
-				std::cout << "ERROR: " << player << "'s position file, line " << i
+				std::cout << "ERROR: player " << player << "'s position file, line " << i
 						  << ": Line isn't a legal positioning command." << std::endl;
 			}
 
