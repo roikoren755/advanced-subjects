@@ -14,6 +14,10 @@
 #define JOKERS 2
 #define FLAGS 1
 
+#define ALL_FLAGS_CAPTURED -2
+#define ALL_MOVING_PIECES_CAPTURED -3
+#define LEGAL_TIE 0
+
 bool RPSGame::rpsValidateNumbersOfPieces(int player) {
 	if (player == 1 && this->player1Rocks <= ROCKS && this->player1Papers <= PAPERS && this->player1Scissors <= SCISSORS
 			&& this->player1Bombs <= BOMBS && this->player1Jokers <= JOKERS && this->player1Flags <= FLAGS) {
@@ -264,7 +268,7 @@ std::ostream& operator<<(std::ostream& out, RPSGame &game) {
 	return out;
 }
 
-void RPSGame::rpsFinishPositioningStage() {
+int RPSGame::rpsFinishPositioningStage() {
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < M; j++) {
 			if (this->boards[0][i][j].getPieceType() != None && this->boards[1][i][j].getPieceType() != None) {
@@ -272,4 +276,38 @@ void RPSGame::rpsFinishPositioningStage() {
 			}
 		}
 	}
+
+	int ret;
+	if (!this->player1Flags) {
+		ret = ALL_FLAGS_CAPTURED;
+		if (!this->player2Flags) {
+			this->rpsSetWinner(0);
+		}
+		else {
+			this->rpsSetWinner(2);
+		}
+	}
+	else if (!this->player2Flags) {
+		this->rpsSetWinner(1);
+		ret = ALL_FLAGS_CAPTURED;
+	}
+	else if (!this->player1Rocks && !this->player1Scissors && !this->player1Bombs && !this->player1Jokers) {
+		ret = ALL_MOVING_PIECES_CAPTURED;
+		if (!this->player2Rocks && !this->player2Scissors && !this->player2Bombs && !this->player2Jokers) {
+			this->rpsSetWinner(0);
+		}
+		else {
+			this->rpsSetWinner(2);
+		}
+	}
+	else if (!this->player2Rocks && !this->player2Scissors && !this->player2Bombs && !this->player2Jokers) {
+		ret = ALL_MOVING_PIECES_CAPTURED;
+		this->rpsSetWinner(1);
+	}
+	else {
+		this->rpsSetWinner(0);
+		ret = LEGAL_TIE;
+	}
+
+	return ret;
 }

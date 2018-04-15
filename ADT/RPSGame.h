@@ -71,7 +71,7 @@ public:
 //	void rpsSetWinnerReason(RPS_Message message) { this->winnerReason = message; }
 //	RPS_Message rpsGetWinnerReason() { return this->winnerReason; }
 
-	void rpsFinishPositioningStage();
+	int rpsFinishPositioningStage();
 };
 
 #endif
