@@ -17,7 +17,7 @@ enum CommandType {Position, Move, InvalidCommand, NoLine};
 
 
 /**
- * data structure for command, with all the necessary information
+ * data structure for command, with all necessary information
 */
 
 class RPSCommand {
