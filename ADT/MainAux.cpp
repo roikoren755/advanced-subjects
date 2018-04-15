@@ -14,34 +14,34 @@ RPS_Message rpsSetMoveFromFile(RPSGame &rpsGame, RPSCommand &rpsCommand, int pla
 		message = rpsGame.rpsSetMove(rpsCommand, player);
 		switch (message) {
 			case Invalid_Argument:
-				std::cout << "ERROR: player" << player << "'s move file, line " << line << ": Badly formatted move." << std::endl;
+				std::cout << "ERROR: player " << player << "'s move file, line " << line << ": Badly formatted move." << std::endl;
 				break;
 			case Destination_Out_Of_Range:
-				std::cout << "ERROR: player" << player << "'s move file, line " << line << ": Destination is out of range."
+				std::cout << "ERROR: player " << player << "'s move file, line " << line << ": Destination is out of range."
 						  << std::endl;
 				break;
 			case Source_Out_Of_Range:
-				std::cout << "ERROR: player" << player << "'s position file, line " << line
+				std::cout << "ERROR: player " << player << "'s move file, line " << line
 						  << ": Starting position is out of range." << std::endl;
 				break;
 			case Illegal_Move:
-				std::cout << "ERROR: player" << player << "'s position file, line " << line
+				std::cout << "ERROR: player " << player << "'s move file, line " << line
 						  << ": Piece cannot move to a non-adjacent position." << std::endl;
 				break;
 			case No_Piece_In_Position:
-				std::cout << "ERROR: player" << player << "'s position file, line " << line
+				std::cout << "ERROR: player " << player << "'s move file, line " << line
 						  << ": Position does not contain a piece." << std::endl;
 				break;
 			case Immovable_Piece_In_Position:
-				std::cout << "ERROR: player" << player << "'s position file, line " << line
+				std::cout << "ERROR: player " << player << "'s move file, line " << line
 						  << ": Piece at given position is an immovable one." << std::endl;
 				break;
 			case No_Joker_in_position:
-				std::cout << "ERROR: player" << player << "'s position file, line " << line
+				std::cout << "ERROR: player " << player << "'s move file, line " << line
 						  << ": Position does not contain a joker piece." << std::endl;
 				break;
 			case Invalid_Joker_Assigning:
-				std::cout << "ERROR: player" << player << "'s position file, line " << line
+				std::cout << "ERROR: player " << player << "'s move file, line " << line
 						  << ": Joker can not become that piece!." << std::endl;
 				break;
 			case No_Winner:
@@ -49,14 +49,14 @@ RPS_Message rpsSetMoveFromFile(RPSGame &rpsGame, RPSCommand &rpsCommand, int pla
 			case All_Moving_Pieces_Captured:
 				break;
 			default:
-				std::cout << "ERROR: " << player << "'s position file, line " << line
+				std::cout << "ERROR: player " << player << "'s move file, line " << line
 						  << ": An unknown error has occurred." << std::endl;
 				break;
 		}
 	}
 	else if (rpsCommand.getCommandType() != NoLine) {
 		message = Invalid_Argument;
-		std::cout << "ERROR: " << player << "'s position file, line " << line
+		std::cout << "ERROR: " << player << "'s move file, line " << line
 				  << ": Command isn't a Move command." << std::endl;
 	}
 
