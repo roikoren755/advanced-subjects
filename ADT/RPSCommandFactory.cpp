@@ -54,7 +54,7 @@ RPSCommand& RPSCommandFactory::getRPSCommand(const std::string& command, RPSComm
 
 	char* argument = strtok(buffer, DELIMITERS);
 	if (!argument) {
-		rpsCommand.setCommandType(InvalidCommand);
+		rpsCommand.setCommandType(NoLine);
 		return rpsCommand;
 	}
 
