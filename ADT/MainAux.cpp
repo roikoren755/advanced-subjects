@@ -44,36 +44,12 @@ RPS_Message rpsSetMoveFromFile(RPSGame &rpsGame, RPSCommand &rpsCommand, int pla
 				std::cout << "ERROR: player " << player << "'s move file, line " << line
 						  << ": Starting position is out of range." << std::endl;
 				break;
-			case Illegal_Move:
-				std::cout << "ERROR: player" << player << "'s move file, line " << line
-						  << ": Piece cannot move to a non-adjacent position." << std::endl;
-				break;
-			case No_Piece_In_Position:
-				std::cout << "ERROR: player" << player << "'s move file, line " << line
-						  << ": Position does not contain a piece." << std::endl;
-				break;
-			case Immovable_Piece_In_Position:
-				std::cout << "ERROR: player" << player << "'s move file, line " << line
-						  << ": Piece at given position is an immovable one." << std::endl;
-				break;
-			case No_Joker_in_position:
-				std::cout << "ERROR: player" << player << "'s move file, line " << line
-						  << ": Position does not contain a joker piece." << std::endl;
-				break;
-			case Invalid_Joker_Assigning:
-				std::cout << "ERROR: player" << player << "'s move file, line " << line
-						  << ": Joker can not become that piece!." << std::endl;
-				break;
 			case No_Winner:
 			case All_Flags_Captured:
 			case All_Moving_Pieces_Captured:
 				break;
 			default:
-<<<<<<< HEAD
 				std::cout << "ERROR: player " << player << "'s move file, line " << line
-=======
-				std::cout << "ERROR: " << player << "'s move file, line " << line
->>>>>>> 47f8f18a38df6ceedff20c3d2643bc43bc909745
 						  << ": An unknown error has occurred." << std::endl;
 				break;
 		}
