@@ -7,8 +7,8 @@
 #include "MainAux.h"
 #include "RPSCommandFactory.h"
 
-RPS_Message rpsSetMoveFromFile(RPSGame &rpsGame, RPSCommand &rpsCommand, int player, int line) {
-	RPS_Message message = rpsGame.rpsSetMove(rpsCommand, player);
+RPS_Message setMoveFromFile(RPSGame &rpsGame, RPSCommand &rpsCommand, int player, int line) {
+	RPS_Message message = rpsGame.setMove(rpsCommand, player);
 	switch (message) {
 		case Invalid_Argument:
 			std::cout << "ERROR: " << player << "'s move file, line " << line << ": Badly formatted move." << std::endl;
@@ -69,7 +69,7 @@ int MainAux::rpsLoadPositionFile(RPSGame &rpsGame, std::string &positionFile, in
 			rpsCommand = RPSCommandFactory::getRPSCommand(command, rpsCommand);
 		//	std::cout<<rpsCommand.getPieceType()<<":"<<rpsCommand.getToX()<<","<<rpsCommand.getToY()<<std::endl;
 			if (rpsCommand.getCommandType() == Position) {
-				message = rpsGame.rpsSetPosition(rpsCommand, player);
+				message = rpsGame.setPosition(rpsCommand, player);
 				//std::cout<<message<<std::endl;
 				switch (message) {
 					case Destination_Out_Of_Range:
@@ -145,7 +145,7 @@ int MainAux::rpsPlayTwoPlayerMoves(RPSGame &rpsGame, std::string &player1MoveFil
 			if (!player1Finished && std::getline(player1File, command)) {
 				RPSCommand rpsCommand;
 				rpsCommand = RPSCommandFactory::getRPSCommand(command, rpsCommand);
-				message = rpsSetMoveFromFile(rpsGame, rpsCommand, 1, player1Line);
+				message = setMoveFromFile(rpsGame, rpsCommand, 1, player1Line);
 				switch (message) {
 					case No_Winner:
 						player1Line++;
@@ -157,7 +157,7 @@ int MainAux::rpsPlayTwoPlayerMoves(RPSGame &rpsGame, std::string &player1MoveFil
 						finished = -2;
 						break;
 					default:
-						rpsGame.rpsSetWinner(2);
+						rpsGame.setWinner(2);
 						player1Finished = true;
 						player2Finished = true;
 						finished = player1Line;
@@ -171,7 +171,7 @@ int MainAux::rpsPlayTwoPlayerMoves(RPSGame &rpsGame, std::string &player1MoveFil
 			if (!player2Finished && std::getline(player2File, command)) {
 				RPSCommand rpsCommand;
 				rpsCommand = RPSCommandFactory::getRPSCommand(command, rpsCommand);
-				message = rpsSetMoveFromFile(rpsGame, rpsCommand, 2, player2Line);
+				message = setMoveFromFile(rpsGame, rpsCommand, 2, player2Line);
 				switch (message) {
 					case No_Winner:
 						player2Line++;
@@ -183,7 +183,7 @@ int MainAux::rpsPlayTwoPlayerMoves(RPSGame &rpsGame, std::string &player1MoveFil
 						finished = -3;
 						break;
 					default:
-						rpsGame.rpsSetWinner(1);
+						rpsGame.setWinner(1);
 						player1Finished = true;
 						player2Finished = true;
 						finished = player1Line;

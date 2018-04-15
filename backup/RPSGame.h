@@ -55,17 +55,17 @@ class RPSGame{
 
 public:
 	RPSGame():winner(0),player1Papers(0){}
-	bool rpsValidateNumbersOfPieces(int player);
+	bool validateNumbersOfPieces(int player);
 	bool rpsValidateNumberOfJokers(int player);
-	RPS_Message rpsSetPosition(RPSCommand &command, int player);
-	RPS_Message rpsSetMove(RPSCommand &command, int player);
-	void rpsPerformBattle(int fromX, int fromY, int toX, int toY, int player, int opponent);
-	void rpsExcludePiece(int x, int y, int player);
-	RPS_Message rpsCheckWinner();
+	RPS_Message setPosition(RPSCommand &command, int player);
+	RPS_Message setMove(RPSCommand &command, int player);
+	void performBattle(int fromX, int fromY, int toX, int toY, int player, int opponent);
+	void excludePiece(int x, int y, int player);
+	RPS_Message checkWinner();
 	friend std::ostream& operator<<(std::ostream& out, RPSGame &game);
-	int rpsGetWinner() { return this->winner; }
-	void rpsSetWinner(int winner) { this->winner = winner; }
-	void rpsFinishPositioningStage();
+	int getWinner() { return this->winner; }
+	void setWinner(int winner) { this->winner = winner; }
+	void finishPositioningStage();
 };
 
 #endif
