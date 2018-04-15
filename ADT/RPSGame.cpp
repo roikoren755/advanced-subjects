@@ -239,11 +239,13 @@ RPS_Message RPSGame::checkWinner() {
 	}
 
 	// check if moving pieces re gone
-	if (!this->player2Rocks && !this->player2Scissors && !this->player2Bombs && !this->player2Jokers) {
+	if (!this->player2Rocks && !this->player2Papers && !this->player2Scissors && !this->player2Bombs
+		&& !this->player2Jokers) {
 		this->winner = 1;
 		return All_Moving_Pieces_Captured;
 	}
-	if (!this->player1Rocks && !this->player1Scissors && !this->player1Bombs && !this->player1Jokers) {
+	if (!this->player1Rocks && !this->player1Papers && !this->player1Scissors && !this->player1Bombs
+		&& !this->player1Jokers) {
 		this->winner = 2;
 		return All_Moving_Pieces_Captured;
 	}
@@ -298,16 +300,18 @@ int RPSGame::finishPositioningStage() {
 		this->setWinner(1);
 		ret = ALL_FLAGS_CAPTURED;
 	}
-	else if (!this->player1Rocks && !this->player1Scissors && !this->player1Bombs && !this->player1Jokers) {
+	else if (!this->player1Rocks && !this->player1Papers && !this->player1Scissors && !this->player1Bombs
+			 && !this->player1Jokers) {
 		ret = ALL_MOVING_PIECES_CAPTURED;
-		if (!this->player2Rocks && !this->player2Scissors && !this->player2Bombs && !this->player2Jokers) {
+		if (!this->player2Rocks && !this->player2Papers && !this->player2Scissors && !this->player2Bombs
+			&& !this->player2Jokers) {
 			this->setWinner(0);
 		}
 		else {
 			this->setWinner(2);
 		}
 	}
-	else if (!this->player2Rocks && !this->player2Scissors && !this->player2Bombs && !this->player2Jokers) {
+	else if (!this->player2Rocks && !this->player2Papers && !this->player2Scissors && !this->player2Bombs && !this->player2Jokers) {
 		ret = ALL_MOVING_PIECES_CAPTURED;
 		this->setWinner(1);
 	}
