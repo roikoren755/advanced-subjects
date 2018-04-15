@@ -142,6 +142,5 @@ RPSCommand& RPSCommandFactory::getRPSCommand(const std::string& command, RPSComm
 	rpsCommand.setJokerX(jokerX);
 	rpsCommand.setJokerY(jokerY);
 
-//	std::cout << "Position ?" << (commandType == Position) << "Joker ?" << jokerInvolved << std::endl;
 	return rpsCommand;
 }

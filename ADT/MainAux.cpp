@@ -7,18 +7,18 @@
 #include "MainAux.h"
 #include "RPSCommandFactory.h"
 
-
-RPS_Message rpsSetMoveFromFile(RPSGame &rpsGame, RPSCommand &rpsCommand, int player, int line) {
+RPS_Message setMoveFromFile(RPSGame &rpsGame, RPSCommand &rpsCommand, int player, int line) {
 	RPS_Message message = Success;
 	if (rpsCommand.getCommandType() == Move) {
-		message = rpsGame.rpsSetMove(rpsCommand, player);
+		message = rpsGame.setMove(rpsCommand, player);
 		switch (message) {
 			case Invalid_Argument:
-				std::cout << "ERROR: player " << player << "'s move file, line " << line << ": Badly formatted move." << std::endl;
+				std::cout << "ERROR: player " << player << "'s move file, line " << line
+						  << ": Badly formatted move." << std::endl;
 				break;
 			case Destination_Out_Of_Range:
-				std::cout << "ERROR: player " << player << "'s move file, line " << line << ": Destination is out of range."
-						  << std::endl;
+				std::cout << "ERROR: player " << player << "'s move file, line " << line
+						  << ": Destination is out of range." << std::endl;
 				break;
 			case Source_Out_Of_Range:
 				std::cout << "ERROR: player " << player << "'s move file, line " << line
@@ -63,8 +63,8 @@ RPS_Message rpsSetMoveFromFile(RPSGame &rpsGame, RPSCommand &rpsCommand, int pla
 	return message;
 }
 
-std::string typeToString(PieceType pieceType){
-	switch(pieceType){
+std::string typeToString(PieceType pieceType) {
+	switch (pieceType) {
 		case Rock:
 			return "Rock";
 		case Scissors:
@@ -94,7 +94,7 @@ int MainAux::rpsLoadPositionFile(RPSGame &rpsGame, std::string &positionFile, in
 			RPSCommand rpsCommand;
 			rpsCommand = RPSCommandFactory::getRPSCommand(command, rpsCommand);
 			if (rpsCommand.getCommandType() == Position) {
-				message = rpsGame.rpsSetPosition(rpsCommand, player);
+				message = rpsGame.setPosition(rpsCommand, player);
 				//std::cout<<message<<std::endl;
 				switch (message) {
 					case Destination_Out_Of_Range:
@@ -135,19 +135,18 @@ int MainAux::rpsLoadPositionFile(RPSGame &rpsGame, std::string &positionFile, in
 
 		file.close();
 
-		if(valid && !rpsGame.rpsValidateNumberOfFlags(player)){
-			std::cout << "ERROR: Player "<<player<<" hadn't placed all of his flags." << std::endl;
+		if (valid && !rpsGame.validateNumberOfFlags(player)) {
+			std::cout << "ERROR: Player " << player << " hadn't placed all of his flags." << std::endl;
 			ret = i;
 			valid = false;
 		}
-		//ret = rpsGame.rpsValidateNumberOfJokers(player) ? ret : -2;
 	}
 	else {
 		ret = -1;
 	}
 
-	if(valid){
-		return 0;
+	if (valid) {
+		ret = 0;
 	}
 
 	return ret;
@@ -171,7 +170,7 @@ int MainAux::rpsPlayTwoPlayerMoves(RPSGame &rpsGame, std::string &player1MoveFil
 			if (!player1Finished && std::getline(player1File, command)) {
 				RPSCommand rpsCommand;
 				rpsCommand = RPSCommandFactory::getRPSCommand(command, rpsCommand);
-				message = rpsSetMoveFromFile(rpsGame, rpsCommand, 1, player1Line);
+				message = setMoveFromFile(rpsGame, rpsCommand, 1, player1Line);
 				switch (message) {
 					case No_Winner:
 					case Success:
@@ -188,7 +187,7 @@ int MainAux::rpsPlayTwoPlayerMoves(RPSGame &rpsGame, std::string &player1MoveFil
 						finished = ALL_FLAGS_CAPTURED;
 						break;
 					default:
-						rpsGame.rpsSetWinner(2);
+						rpsGame.setWinner(2);
 						player1Finished = true;
 						player2Finished = true;
 						finished = player1Line;
@@ -202,7 +201,7 @@ int MainAux::rpsPlayTwoPlayerMoves(RPSGame &rpsGame, std::string &player1MoveFil
 			if (!player2Finished && std::getline(player2File, command)) {
 				RPSCommand rpsCommand;
 				rpsCommand = RPSCommandFactory::getRPSCommand(command, rpsCommand);
-				message = rpsSetMoveFromFile(rpsGame, rpsCommand, 2, player2Line);
+				message = setMoveFromFile(rpsGame, rpsCommand, 2, player2Line);
 				switch (message) {
 					case No_Winner:
 					case Success:
@@ -219,7 +218,7 @@ int MainAux::rpsPlayTwoPlayerMoves(RPSGame &rpsGame, std::string &player1MoveFil
 						finished = ALL_FLAGS_CAPTURED;
 						break;
 					default:
-						rpsGame.rpsSetWinner(1);
+						rpsGame.setWinner(1);
 						player1Finished = true;
 						player2Finished = true;
 						finished = player1Line;
@@ -254,18 +253,19 @@ int MainAux::rpsPrintGamePositionErrorResult(RPSGame &rpsGame, int player1lineEr
 	else {
 		winner = player1lineError ? 2 : 1;
 	}
+
 	fout << "Winner: " << winner << std::endl;
 
-	if (winner == 0) {
-		fout <<"Reason: " << "Bad Positioning input file for both players - player 1: line " << player1lineError
+	if (!winner) {
+		fout << "Reason: " << "Bad Positioning input file for both players - player 1: line " << player1lineError
 			 << ", player 2: line " << player2lineError << std::endl;
 	}
 	else {
 		int loser = player1lineError ? 1 : 2;
 		int errorLine = player1lineError ? player1lineError : player2lineError;
-		fout << "Bad Positioning input file for player " << loser
-			 << " - line " << errorLine << std::endl;
+		fout << "Bad Positioning input file for player " << loser << " - line " << errorLine << std::endl;
 	}
+
 	fout << std::endl;
 	fout << rpsGame;
 
@@ -278,14 +278,16 @@ int MainAux::rpsPrintGameResult(RPSGame &game, int reason) {
 	if (!fout.is_open()) {
 		return -1;
 	}
-	int winner = game.rpsGetWinner();
-	fout << "Winner: " << game.rpsGetWinner() << std::endl;
+
+	int winner = game.getWinner();
+	fout << "Winner: " << winner << std::endl;
 	fout << "Reason: ";
 	if (reason > 0) {
-		int loser = winner == 1 ? 2 : 1; //if reason > 0 there is no tie TODO error??
-		fout << "Bad Moves input file for player " << loser << " - line " << reason <<std::endl;
+		int loser = winner == 1 ? 2 : 1; // if reason > 0 there is no tie TODO error??
+		fout << "Bad Moves input file for player " << loser << " - line " << reason << std::endl;
 	}
-	switch (reason) {
+	else {
+		switch (reason) {
 			case ALL_FLAGS_CAPTURED:
 				if (winner) {
 					fout << "All flags of the opponent are captured" << std::endl;
@@ -305,6 +307,9 @@ int MainAux::rpsPrintGameResult(RPSGame &game, int reason) {
 			case LEGAL_TIE:
 				fout << "A tie - both Moves input files done without a winner" << std::endl;
 				break;
+			default:
+				break;
+		}
 	}
 
 	fout << std::endl;
@@ -313,19 +318,3 @@ int MainAux::rpsPrintGameResult(RPSGame &game, int reason) {
 	fout.close();
 	return 1;
 }
-/**
-std::cout <<rpsGame.player1Rocks<< std::endl;
-std::cout <<rpsGame.player1Scissors<< std::endl;
-std::cout <<rpsGame.player1Papers<< std::endl;
-std::cout <<rpsGame.player1Bombs<< std::endl;
-std::cout <<rpsGame.player1Jokers<< std::endl;
-std::cout <<rpsGame.player1Flags<< std::endl<<std::endl;
-
-std::cout <<rpsGame.player2Rocks<< std::endl;
-std::cout <<rpsGame.player2Scissors<< std::endl;
-std::cout <<rpsGame.player2Papers<< std::endl;
-std::cout <<rpsGame.player2Bombs<< std::endl;
-std::cout <<rpsGame.player2Jokers<< std::endl;
-std::cout <<rpsGame.player2Flags<< std::endl;
-*/
-

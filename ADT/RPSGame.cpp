@@ -18,7 +18,7 @@
 #define ALL_MOVING_PIECES_CAPTURED -3
 #define LEGAL_TIE 0
 
-bool RPSGame::rpsValidateNumbersOfPieces(int player) {
+bool RPSGame::validateNumbersOfPieces(int player) {
 	if (player == 1 && this->player1Rocks <= ROCKS && this->player1Papers <= PAPERS && this->player1Scissors <= SCISSORS
 			&& this->player1Bombs <= BOMBS && this->player1Jokers <= JOKERS && this->player1Flags <= FLAGS) {
 		return true;
@@ -32,11 +32,11 @@ bool RPSGame::rpsValidateNumbersOfPieces(int player) {
 	return false;
 }
 
-bool RPSGame::rpsValidateNumberOfFlags(int player) {
+bool RPSGame::validateNumberOfFlags(int player) {
 	return (player == 1 ? this->player1Flags : this->player2Flags) == FLAGS;
 }
 
-RPS_Message RPSGame::rpsSetPosition(RPSCommand &command, int player) {
+RPS_Message RPSGame::setPosition(RPSCommand &command, int player) {
 	if (command.getCommandType() != Position) {
 		return Invalid_Argument;
 	}
@@ -44,12 +44,12 @@ RPS_Message RPSGame::rpsSetPosition(RPSCommand &command, int player) {
 	int toX = command.getToX();
 	int toY = command.getToY();
 
-	//checks the range
+	// checks the range
 	if (toX < 1 || toX > M || toY < 1 || toY > N) {
 		return Destination_Out_Of_Range;
 	}
 
-	//increment the counter
+	// increment the counter
 	PieceType pieceType = command.getPieceType();
 	if (command.isJokerInvolved()) {
 		player == 1 ? this->player1Jokers++ : this->player2Jokers++;
@@ -76,12 +76,12 @@ RPS_Message RPSGame::rpsSetPosition(RPSCommand &command, int player) {
 		}
 	}
 
-	//check if valid
-	if (!rpsValidateNumbersOfPieces(player)) {
+	// check if valid
+	if (!validateNumbersOfPieces(player)) {
 		return Too_Many_Pieces;
 	}
 
-	//check if there is a piece
+	// check if there is a piece
 	if (this->boards[player - 1][toY - 1][toX - 1].getPieceType() != None) {
 			return Bad_Position;
 	}
@@ -92,7 +92,7 @@ RPS_Message RPSGame::rpsSetPosition(RPSCommand &command, int player) {
 	return Success;
 }
 
-RPS_Message RPSGame::rpsSetMove(RPSCommand &command, int player) {
+RPS_Message RPSGame::setMove(RPSCommand &command, int player) {
 	if (command.getCommandType() != Move) {
 		return Invalid_Argument;
 	}
@@ -126,7 +126,7 @@ RPS_Message RPSGame::rpsSetMove(RPSCommand &command, int player) {
 
 	int opponent = player == 1 ? 2 : 1;
 	if (this->boards[opponent - 1][toY - 1][toX - 1].getPieceType() != None) {
-		this->rpsPerformBattle(fromX, fromY, toX, toY, player, opponent);
+		this->performBattle(fromX, fromY, toX, toY, player, opponent);
 	}
 	else {
 		this->boards[player - 1][toY - 1][toX - 1] = attacker;
@@ -148,64 +148,64 @@ RPS_Message RPSGame::rpsSetMove(RPSCommand &command, int player) {
 		this->boards[player - 1][jokerY - 1][jokerX - 1].setPieceType(command.getPieceType());
 	}
 
-	return this->rpsCheckWinner();
+	return this->checkWinner();
 }
 
-void RPSGame::rpsPerformBattle(int fromX, int fromY, int toX, int toY, int player, int opponent) {
+void RPSGame::performBattle(int fromX, int fromY, int toX, int toY, int player, int opponent) {
 	RPSPiece attacker = this->boards[player - 1][fromY - 1][fromX - 1];
 	RPSPiece defender = this->boards[opponent - 1][toY - 1][toX - 1];
 	PieceType attackerType = attacker.getPieceType();
 	PieceType defenderType = defender.getPieceType();
 
 	if (attackerType == defenderType || defenderType == Bomb || attackerType == Bomb) {
-		this->rpsExcludePiece(fromX, fromY, player);
-		this->rpsExcludePiece(toX, toY, opponent);
+		this->excludePiece(fromX, fromY, player);
+		this->excludePiece(toX, toY, opponent);
 	}
 	else if (attackerType == Rock) {
 		if (defenderType == Paper) {
-			this->rpsExcludePiece(fromX, fromY, player);
+			this->excludePiece(fromX, fromY, player);
 		}
 		else {
-			this->rpsExcludePiece(toX, toY, opponent);
+			this->excludePiece(toX, toY, opponent);
 			this->boards[player - 1][fromY - 1][fromX - 1] = RPSPiece();
 			this->boards[player - 1][toY - 1][toX - 1] = attacker;
 		}
 	}
 	else if (attackerType == Paper) {
 		if (defenderType == Scissors) {
-			this->rpsExcludePiece(fromX, fromY, player);
+			this->excludePiece(fromX, fromY, player);
 		}
 		else {
-			this->rpsExcludePiece(toX, toY, opponent);
+			this->excludePiece(toX, toY, opponent);
 			this->boards[player - 1][fromY - 1][fromX - 1] = RPSPiece();
 			this->boards[player - 1][toY - 1][toX - 1] = attacker;
 		}
 	}
 	else if (attackerType == Scissors) {
 		if (defenderType == Rock) {
-			this->rpsExcludePiece(fromX, fromY, player);
+			this->excludePiece(fromX, fromY, player);
 		}
 		else {
-			this->rpsExcludePiece(toX, toY, opponent);
+			this->excludePiece(toX, toY, opponent);
 			this->boards[player - 1][fromY - 1][fromX - 1] = RPSPiece();
 			this->boards[player - 1][toY - 1][toX - 1] = attacker;
 		}
 	}
 	else {
-		this->rpsExcludePiece(fromX, fromY, player);
+		this->excludePiece(fromX, fromY, player);
 		if (defenderType == Flag) {
-			this->rpsExcludePiece(toX, toY, opponent);
+			this->excludePiece(toX, toY, opponent);
 		}
 	}
 }
 
-void RPSGame::rpsExcludePiece(int x, int y, int player) {
+void RPSGame::excludePiece(int x, int y, int player) {
 	RPSPiece piece = this->boards[player - 1][y - 1][x - 1];
 	this->boards[player - 1][y - 1][x - 1] = RPSPiece();
 	if (piece.isPieceJoker()) {
 		player == 1 ? this->player1Jokers-- : this->player2Jokers--;
 	}
-	else {   //check the piece type and decrease counter
+	else { // check the piece type and decrease counter
 		switch (piece.getPieceType()) {
 			case Rock:
 				player == 1 ? this->player1Rocks-- : this->player2Rocks--;
@@ -227,8 +227,8 @@ void RPSGame::rpsExcludePiece(int x, int y, int player) {
 	}
 }
 
-RPS_Message RPSGame::rpsCheckWinner() {
-	//check if out of flags
+RPS_Message RPSGame::checkWinner() {
+	// check if out of flags
 	if (!this->player1Flags) {
 		this->winner = 2;
 		return All_Flags_Captured;
@@ -238,7 +238,7 @@ RPS_Message RPSGame::rpsCheckWinner() {
 		return All_Flags_Captured;
 	}
 
-	//check if moving pieces re gone
+	// check if moving pieces re gone
 	if (!this->player2Rocks && !this->player2Scissors && !this->player2Bombs && !this->player2Jokers) {
 		this->winner = 1;
 		return All_Moving_Pieces_Captured;
@@ -275,11 +275,11 @@ std::ostream& operator<<(std::ostream& out, RPSGame &game) {
 	return out;
 }
 
-int RPSGame::rpsFinishPositioningStage() {
+int RPSGame::finishPositioningStage() {
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < M; j++) {
 			if (this->boards[0][i][j].getPieceType() != None && this->boards[1][i][j].getPieceType() != None) {
-				this->rpsPerformBattle(j + 1, i + 1, j + 1, i + 1, 1, 2);
+				this->performBattle(j + 1, i + 1, j + 1, i + 1, 1, 2);
 			}
 		}
 	}
@@ -288,31 +288,31 @@ int RPSGame::rpsFinishPositioningStage() {
 	if (!this->player1Flags) {
 		ret = ALL_FLAGS_CAPTURED;
 		if (!this->player2Flags) {
-			this->rpsSetWinner(0);
+			this->setWinner(0);
 		}
 		else {
-			this->rpsSetWinner(2);
+			this->setWinner(2);
 		}
 	}
 	else if (!this->player2Flags) {
-		this->rpsSetWinner(1);
+		this->setWinner(1);
 		ret = ALL_FLAGS_CAPTURED;
 	}
 	else if (!this->player1Rocks && !this->player1Scissors && !this->player1Bombs && !this->player1Jokers) {
 		ret = ALL_MOVING_PIECES_CAPTURED;
 		if (!this->player2Rocks && !this->player2Scissors && !this->player2Bombs && !this->player2Jokers) {
-			this->rpsSetWinner(0);
+			this->setWinner(0);
 		}
 		else {
-			this->rpsSetWinner(2);
+			this->setWinner(2);
 		}
 	}
 	else if (!this->player2Rocks && !this->player2Scissors && !this->player2Bombs && !this->player2Jokers) {
 		ret = ALL_MOVING_PIECES_CAPTURED;
-		this->rpsSetWinner(1);
+		this->setWinner(1);
 	}
 	else {
-		this->rpsSetWinner(0);
+		this->setWinner(0);
 		ret = LEGAL_TIE;
 	}
 

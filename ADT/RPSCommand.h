@@ -14,8 +14,6 @@
 
 enum CommandType {Position, Move, InvalidCommand, NoLine};
 
-
-
 /**
  * data structure for command, with all necessary information
 */
@@ -32,7 +30,7 @@ class RPSCommand {
 	int jokerY;
 
 public:
-	//empty constructor for an invalid command
+	// empty constructor for an invalid command
 	RPSCommand(): commandType(InvalidCommand) {}
 	RPSCommand(CommandType commandType, PieceType pieceType, int fromX, int fromY, int toX, int toY, bool jokerInvolved,
 			   int jokerX, int jokerY): commandType(commandType), pieceType(pieceType), fromX(fromX),
@@ -40,8 +38,7 @@ public:
 										jokerY(jokerY) {}
 	CommandType getCommandType() { return this->commandType; };
 
-	//getters and setters
-
+	// getters and setters
 	void setCommandType(CommandType commandType) { this->commandType = commandType; }
 	PieceType getPieceType() { return this->pieceType; };
 	void setPieceType(PieceType pieceType) { this->pieceType = pieceType; }

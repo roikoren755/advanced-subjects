@@ -6,10 +6,9 @@
  */
 #include <iostream>
 #include <cstring>
-#include "RPSPiece.h"
-#include "RPSCommand.h"
 #include "RPSGame.h"
 #include "MainAux.h"
+
 #define PLAYER1_POSITION_FILE "player1.rps_board"
 #define PLAYER2_POSITION_FILE "player2.rps_board"
 #define PLAYER1_MOVES_FILE "player1.rps_moves"
@@ -36,24 +35,20 @@ int main() {
 	}
 
 	if (player1Positioning > 0 || player2Positioning > 0) {
-		MainAux::rpsPrintGamePositionErrorResult(game,player1Positioning,player2Positioning);
+		return MainAux::rpsPrintGamePositionErrorResult(game, player1Positioning, player2Positioning);
 	}
-	else{
-		int reason = game.rpsFinishPositioningStage();
-		if (reason) {  //game is done
-				 MainAux::rpsPrintGameResult(game,reason);
+	else {
+		int reason = game.finishPositioningStage();
+		if (reason) { // game is done
+				 MainAux::rpsPrintGameResult(game, reason);
 		}
-		else{
+		else {
 			std::string player1MovesFile = PLAYER1_MOVES_FILE;
-				std::string player2MovesFile = PLAYER2_MOVES_FILE;
+			std::string player2MovesFile = PLAYER2_MOVES_FILE;
 
-				reason = MainAux::rpsPlayTwoPlayerMoves(game,player1MovesFile,player2MovesFile);
+			reason = MainAux::rpsPlayTwoPlayerMoves(game, player1MovesFile, player2MovesFile);
 
-				 MainAux::rpsPrintGameResult(game,reason);
+			return MainAux::rpsPrintGameResult(game, reason);
 		}
 	}
-
-	delete &game;
-
-
 }
