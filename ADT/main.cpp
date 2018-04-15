@@ -42,6 +42,8 @@ int main() {
 		return MainAux::rpsPrintGamePositionErrorResult(game,player1Positioning,player2Positioning);
 	}
 
+	game.rpsFinishPositioningStage();
+
 	std::string player1MovesFile = PLAYER1_MOVES_FILE;
 	std::string player2MovesFile = PLAYER2_MOVES_FILE;
 
