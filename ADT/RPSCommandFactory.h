@@ -11,6 +11,7 @@
 
 class RPSCommandFactory {
 public:
+	//parse a command from a string
 	static RPSCommand& getRPSCommand(const std::string &command, RPSCommand& rpsCommand);
 };
 

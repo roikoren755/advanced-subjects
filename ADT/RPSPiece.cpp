@@ -6,6 +6,7 @@
  */
 #include "RPSPiece.h"
 
+//easy conversion
 #define CAPITAL_TO_LOW(c) (c - 'A' + 'a')
 
 RPSPiece& RPSPiece::operator=( const RPSPiece& otherPiece){
@@ -49,6 +50,7 @@ std::ostream& operator<<(std::ostream &out, RPSPiece &rpsPiece) {
                 break;
         }
     }
+
 
     piece =  player == 1 ? piece : CAPITAL_TO_LOW(piece);
     out << piece ;

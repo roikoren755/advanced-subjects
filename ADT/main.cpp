@@ -10,18 +10,16 @@
 #include "RPSCommand.h"
 #include "RPSGame.h"
 #include "MainAux.h"
-
+#define PLAYER1_POSITION_FILE "player1.rps_board"
+#define PLAYER2_POSITION_FILE "player2.rps_board"
 #define PLAYER1_MOVES_FILE "player1.rps_moves"
 #define PLAYER2_MOVES_FILE "player2.rps_moves"
 
 int main() {
 	RPSGame game = RPSGame();
-	//std::cout <<game.player2Flags<< std::endl;
-	//std::cout <<game.player1Rocks<< std::endl;
 
-	//int winner = 0;
-	std::string player1PositionFile = "player1.rps_board";
-	std::string player2PositionFile = "player2.rps_board";
+	std::string player1PositionFile = PLAYER1_POSITION_FILE;
+	std::string player2PositionFile = PLAYER2_POSITION_FILE;
 	int player1Positioning = MainAux::rpsLoadPositionFile(game, player1PositionFile, 1);
 	int player2Positioning = MainAux::rpsLoadPositionFile(game, player2PositionFile, 2);
 	if (player1Positioning == -1 && player2Positioning == -1) {

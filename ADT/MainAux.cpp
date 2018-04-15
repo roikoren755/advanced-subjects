@@ -93,7 +93,7 @@ int MainAux::rpsLoadPositionFile(RPSGame &rpsGame, std::string &positionFile, in
 		while (!ret && std::getline(file, command)) {
 			RPSCommand rpsCommand;
 			rpsCommand = RPSCommandFactory::getRPSCommand(command, rpsCommand);
-		//	std::cout<<rpsCommand.getPieceType()<<":"<<rpsCommand.getToX()<<","<<rpsCommand.getToY()<<std::endl;
+			std::cout<<rpsCommand.getPieceType()<<":"<<rpsCommand.getToX()<<","<<rpsCommand.getToY()<<std::endl;
 			if (rpsCommand.getCommandType() == Position) {
 				message = rpsGame.rpsSetPosition(rpsCommand, player);
 				//std::cout<<message<<std::endl;
@@ -127,7 +127,7 @@ int MainAux::rpsLoadPositionFile(RPSGame &rpsGame, std::string &positionFile, in
 				}
 			}
 			else if (rpsCommand.getCommandType() != NoLine) {
-				std::cout << "ERROR: " << player << "'s position file, line " << i
+				std::cout << "ERROR: player " << player << "'s position file, line " << i
 						  << ": Line isn't a legal positioning command." << std::endl;
 			}
 
@@ -136,7 +136,7 @@ int MainAux::rpsLoadPositionFile(RPSGame &rpsGame, std::string &positionFile, in
 
 		file.close();
 
-		if(valid && !rpsGame.rpsValidateNumberOfJokers(player)){
+		if(valid && !rpsGame.rpsValidateNumberOfFlags(player)){
 			std::cout << "ERROR: Player "<<player<<" hadn't placed all of his flags." << std::endl;
 			ret = i;
 			valid = false;
