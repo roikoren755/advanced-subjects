@@ -35,13 +35,12 @@ int main() {
 		return 1;
 	}
 
-
 	if (player1Positioning > 0 || player2Positioning > 0) {
 		return MainAux::rpsPrintGamePositionErrorResult(game,player1Positioning,player2Positioning);
 	}
 
 	int reason = game.rpsFinishPositioningStage();
-	if(reason){  //game is done
+	if (reason) {  //game is done
 		return MainAux::rpsPrintGameResult(game,reason);
 	}
 

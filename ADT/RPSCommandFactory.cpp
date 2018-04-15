@@ -59,12 +59,11 @@ RPSCommand& RPSCommandFactory::getRPSCommand(const std::string& command, RPSComm
 	}
 
 	if (argument[0] > 'A' && argument[0] < 'Z' && !argument[1]) {
+		commandType = Position;
 		if (argument[0] == 'J') {
 			jokerInvolved = true;
 		}
-		commandType = Position;
-
-		if ((pieceType = charToPieceType(argument[0])) == InvalidPiece) {
+		else if ((pieceType = charToPieceType(argument[0])) == InvalidPiece) {
 			commandType = InvalidCommand;
 		}
 
@@ -143,5 +142,6 @@ RPSCommand& RPSCommandFactory::getRPSCommand(const std::string& command, RPSComm
 	rpsCommand.setJokerX(jokerX);
 	rpsCommand.setJokerY(jokerY);
 
+//	std::cout << "Position ?" << (commandType == Position) << "Joker ?" << jokerInvolved << std::endl;
 	return rpsCommand;
 }
