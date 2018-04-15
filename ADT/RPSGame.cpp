@@ -271,7 +271,7 @@ std::ostream& operator<<(std::ostream& out, RPSGame &game) {
 		}
 		out << std::endl;
 	}
-	out << std::endl;
+
 	return out;
 }
 
