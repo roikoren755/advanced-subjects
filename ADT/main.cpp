@@ -40,7 +40,8 @@ int main() {
 	else {
 		int reason = game.finishPositioningStage();
 		if (reason) { // game is done
-				 MainAux::rpsPrintGameResult(game, reason);
+			std::cout << "TEST" << std::endl;
+			return MainAux::rpsPrintGameResult(game, reason);
 		}
 		else {
 			std::string player1MovesFile = PLAYER1_MOVES_FILE;
