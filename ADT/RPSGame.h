@@ -38,8 +38,8 @@ enum RPS_Message {
 class RPSGame{
 	RPSPiece boards[NUM_PLAYERS][N][M];
 	int winner = 0;
-	RPS_Message winnerReason;
-
+//	RPS_Message winnerReason;
+public:
 	int player1Rocks = 0;
 	int player1Papers = 0;
 	int player1Scissors = 0;
@@ -51,11 +51,13 @@ class RPSGame{
 	int player2Papers = 0;
 	int player2Scissors = 0;
 	int player2Bombs = 0;
-	int player2Jokers;
-	int player2Flags;
+	int player2Jokers = 0;
+	int player2Flags = 0;
 
 public:
-	RPSGame():winner(0),player1Papers(0){}
+	RPSGame():winner(0),player1Rocks(0),player1Papers(0),player1Scissors(0),player1Bombs(0),
+			  player1Jokers(0),player1Flags(0),player2Rocks(0),player2Papers(0),player2Scissors(0),
+			  player2Bombs(0),player2Jokers(0),player2Flags(0){}
 	bool rpsValidateNumbersOfPieces(int player);
 	bool rpsValidateNumberOfJokers(int player);
 	RPS_Message rpsSetPosition(RPSCommand &command, int player);
@@ -66,8 +68,8 @@ public:
 	friend std::ostream& operator<<(std::ostream& out, RPSGame &game);
 	int rpsGetWinner() { return this->winner; }
 	void rpsSetWinner(int winner) { this->winner = winner; }
-	void rpsSetWinnerReason(RPS_Message message) { this->winnerReason = message; }
-	RPS_Message rpsGetWinnerReason(RPS_Message message) { return this->winnerReason; }
+//	void rpsSetWinnerReason(RPS_Message message) { this->winnerReason = message; }
+//	RPS_Message rpsGetWinnerReason() { return this->winnerReason; }
 
 	void rpsFinishPositioningStage();
 };

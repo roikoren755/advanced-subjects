@@ -16,7 +16,10 @@
 
 int main() {
 	RPSGame game = RPSGame();
-	int winner = 0;
+	//std::cout <<game.player2Flags<< std::endl;
+	//std::cout <<game.player1Rocks<< std::endl;
+
+	//int winner = 0;
 	std::string player1PositionFile = "player1.rps_board";
 	std::string player2PositionFile = "player2.rps_board";
 	int player1Positioning = MainAux::rpsLoadPositionFile(game, player1PositionFile, 1);

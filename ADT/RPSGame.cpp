@@ -103,7 +103,7 @@ RPS_Message RPSGame::rpsSetMove(RPSCommand &command, int player) {
 		return Source_Out_Of_Range;
 	}
 
-	if (abs(toX - fromX) != 1 || abs(toY - fromY) != 1) {
+	if ( !( (abs(toX - fromX) == 1 && toY == fromY) || (abs(toY - fromY) == 1 && toX == fromX) ) ){
 		return Illegal_Move;
 	}
 
