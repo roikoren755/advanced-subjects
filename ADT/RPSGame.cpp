@@ -126,7 +126,7 @@ RPS_Message RPSGame::rpsSetMove(RPSCommand &command, int player) {
 	}
 	else {
 		this->boards[player - 1][toY - 1][toX - 1] = attacker;
-		this->boards[player - 1][fromX - 1][fromY - 1] = RPSPiece();
+		this->boards[player - 1][fromY - 1][fromX - 1] = RPSPiece();
 	}
 
 	if (command.isJokerInvolved()) {
@@ -250,7 +250,7 @@ std::ostream& operator<<(std::ostream& out, RPSGame &game) {
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < M; j++) {
 			for (int k = 0; k < NUM_PLAYERS; k++){
-				if ( game.boards[k][i][j].getPieceType() != None) {
+				if (game.boards[k][i][j].getPieceType() != None) {
 					out << game.boards[k][i][j];
 					printed = true;
 				}
@@ -272,7 +272,7 @@ int RPSGame::rpsFinishPositioningStage() {
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < M; j++) {
 			if (this->boards[0][i][j].getPieceType() != None && this->boards[1][i][j].getPieceType() != None) {
-				this->rpsPerformBattle(j, i, j, i, 1, 2);
+				this->rpsPerformBattle(j + 1, i + 1, j + 1, i + 1, 1, 2);
 			}
 		}
 	}

@@ -77,9 +77,6 @@ std::string typeToString(PieceType pieceType){
 			return "Flag";
 		default:
 			return "";
-
-
-
 	}
 }
 
@@ -178,6 +175,7 @@ int MainAux::rpsPlayTwoPlayerMoves(RPSGame &rpsGame, std::string &player1MoveFil
 				message = rpsSetMoveFromFile(rpsGame, rpsCommand, 1, player1Line);
 				switch (message) {
 					case No_Winner:
+					case Success:
 						player1Line++;
 						break;
 					case All_Moving_Pieces_Captured:
@@ -208,6 +206,7 @@ int MainAux::rpsPlayTwoPlayerMoves(RPSGame &rpsGame, std::string &player1MoveFil
 				message = rpsSetMoveFromFile(rpsGame, rpsCommand, 2, player2Line);
 				switch (message) {
 					case No_Winner:
+					case Success:
 						player2Line++;
 						break;
 					case All_Moving_Pieces_Captured:

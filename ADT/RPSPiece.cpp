@@ -41,6 +41,9 @@ std::ostream& operator<<(std::ostream &out, RPSPiece &rpsPiece) {
             case Flag:
                 piece = 'F';
                 break;
+			case None:
+				piece = ' ';
+				break;
             default:
                 piece = '_';
                 break;
