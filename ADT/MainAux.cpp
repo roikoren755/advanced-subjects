@@ -7,38 +7,39 @@
 #include "MainAux.h"
 #include "RPSCommandFactory.h"
 
+
 RPS_Message rpsSetMoveFromFile(RPSGame &rpsGame, RPSCommand &rpsCommand, int player, int line) {
 	RPS_Message message = rpsGame.rpsSetMove(rpsCommand, player);
 	switch (message) {
 		case Invalid_Argument:
-			std::cout << "ERROR: " << player << "'s move file, line " << line << ": Badly formatted move." << std::endl;
+			std::cout << "ERROR: player" << player << "'s move file, line " << line << ": Badly formatted move." << std::endl;
 			break;
 		case Destination_Out_Of_Range:
-			std::cout << "ERROR: " << player << "'s move file, line " << line << ": Destination is out of range."
+			std::cout << "ERROR: player" << player << "'s move file, line " << line << ": Destination is out of range."
 																		<< std::endl;
 			break;
 		case Source_Out_Of_Range:
-			std::cout << "ERROR: " << player << "'s position file, line " << line
+			std::cout << "ERROR: player" << player << "'s position file, line " << line
 					  << ": Starting position is out of range." << std::endl;
 			break;
 		case Illegal_Move:
-			std::cout << "ERROR: " << player << "'s position file, line " << line
+			std::cout << "ERROR: player" << player << "'s position file, line " << line
 					  << ": Piece cannot move to a non-adjacent position." << std::endl;
 			break;
 		case No_Piece_In_Position:
-			std::cout << "ERROR: " << player << "'s position file, line " << line
+			std::cout << "ERROR: player" << player << "'s position file, line " << line
 					  << ": Position does not contain a piece." << std::endl;
 			break;
 		case Immovable_Piece_In_Position:
-			std::cout << "ERROR: " << player << "'s position file, line " << line
+			std::cout << "ERROR: player" << player << "'s position file, line " << line
 					  << ": Piece at given position is an immovable one." << std::endl;
 			break;
 		case No_Joker_in_position:
-			std::cout << "ERROR: " << player << "'s position file, line " << line
+			std::cout << "ERROR: player" << player << "'s position file, line " << line
 					  << ": Position does not contain a joker piece." << std::endl;
 			break;
 		case Invalid_Joker_Assigning:
-			std::cout << "ERROR: " << player << "'s position file, line " << line
+			std::cout << "ERROR: player" << player << "'s position file, line " << line
 					  << ": Joker can not become that piece!." << std::endl;
 			break;
 		case No_Winner:
@@ -52,6 +53,26 @@ RPS_Message rpsSetMoveFromFile(RPSGame &rpsGame, RPSCommand &rpsCommand, int pla
 	}
 
 	return message;
+}
+
+std::string typeToString(PieceType pieceType){
+	switch(pieceType){
+		case Rock:
+			return "Rock";
+		case Scissors:
+			return "Scissors";
+		case Paper:
+			return "Paper";
+		case Bomb:
+			return "Bomb";
+		case Flag:
+			return "Flag";
+		default:
+			return "";
+
+
+
+	}
 }
 
 int MainAux::rpsLoadPositionFile(RPSGame &rpsGame, std::string &positionFile, int player) {
@@ -86,7 +107,8 @@ int MainAux::rpsLoadPositionFile(RPSGame &rpsGame, std::string &positionFile, in
 						break;
 					case Too_Many_Pieces:
 						std::cout << "ERROR: player " << player << "'s position file, line " << i
-								  << ": Illegal number of pieces of type "<<rpsCommand.getPieceType() << std::endl;
+								  << ": Illegal number of pieces of type "<<
+								  typeToString(rpsCommand.getPieceType()) << std::endl;
 						ret = i;
 						valid = false;
 						break;
@@ -275,7 +297,19 @@ int MainAux::rpsPrintGameResult(RPSGame &game,int reason){
 	fout.close();
 	return 1;
 }
+/**
+std::cout <<rpsGame.player1Rocks<< std::endl;
+std::cout <<rpsGame.player1Scissors<< std::endl;
+std::cout <<rpsGame.player1Papers<< std::endl;
+std::cout <<rpsGame.player1Bombs<< std::endl;
+std::cout <<rpsGame.player1Jokers<< std::endl;
+std::cout <<rpsGame.player1Flags<< std::endl<<std::endl;
 
-
-
+std::cout <<rpsGame.player2Rocks<< std::endl;
+std::cout <<rpsGame.player2Scissors<< std::endl;
+std::cout <<rpsGame.player2Papers<< std::endl;
+std::cout <<rpsGame.player2Bombs<< std::endl;
+std::cout <<rpsGame.player2Jokers<< std::endl;
+std::cout <<rpsGame.player2Flags<< std::endl;
+*/
 
