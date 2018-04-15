@@ -1,7 +1,7 @@
 /*
  * main.cpp
  *
- *  Created on: 5 באפר 2018
+ *  Created on: 5 April 2018
  *      Author: user
  */
 #include <iostream>
@@ -44,4 +44,3 @@ int main() {
 
 	std::cout<<game<<std::endl;
 }
-

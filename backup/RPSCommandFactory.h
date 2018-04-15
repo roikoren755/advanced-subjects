@@ -11,7 +11,7 @@
 
 class RPSCommandFactory {
 public:
-    static RPSCommand* getRPSCommand(char const* command);
+	static RPSCommand& getRPSCommand(const std::string &command, RPSCommand& rpsCommand);
 };
 
 #endif //ADVANCED_SUBJECTS_RPSCOMMANDFACTORY_H
