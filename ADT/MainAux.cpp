@@ -235,64 +235,74 @@ int MainAux::rpsPlayTwoPlayerMoves(RPSGame &rpsGame, std::string &player1MoveFil
 	return finished;
 }
 
-int MainAux::rpsPrintGamePositionErrorResult(RPSGame &rpsGame,int player1lineError,int player2lineError){
+int MainAux::rpsPrintGamePositionErrorResult(RPSGame &rpsGame, int player1lineError, int player2lineError) {
 	std::ofstream fout("rps.output");
+	if (!fout.is_open()) {
+		return -1;
+	}
 
 	int winner;
-	if(player1lineError&&player2lineError){
+	if (player1lineError && player2lineError) {
 		winner = 0;
 	}
-	else{
-		winner = player1lineError? 2 : 1;
+	else {
+		winner = player1lineError ? 2 : 1;
 	}
-	fout<<"Winner: "<<winner<<std::endl;
+	fout << "Winner: " << winner << std::endl;
 
-	if(winner == 0){
-		fout<<"Reason: "<<"Bad Positioning input file for both players - player 1: line "<<player1lineError
-				<<", player 2: line "<<player2lineError<<std::endl;
+	if (winner == 0) {
+		fout <<"Reason: " << "Bad Positioning input file for both players - player 1: line " << player1lineError
+			 << ", player 2: line " << player2lineError << std::endl;
 	}
-	else{
-		int loser = player1lineError? 1 : 2;
-		int errorLine = player1lineError? player1lineError : player2lineError;
-		fout<<"Bad Positioning input file for player "<< loser
-				<<" - line "<<errorLine<< std::endl;
+	else {
+		int loser = player1lineError ? 1 : 2;
+		int errorLine = player1lineError ? player1lineError : player2lineError;
+		fout << "Bad Positioning input file for player " << loser
+			 << " - line " << errorLine << std::endl;
 	}
-	fout<<std::endl;
-	fout<<rpsGame;
+	fout << std::endl;
+	fout << rpsGame;
 
 	fout.close();
 	return 1;
 }
 
-int MainAux::rpsPrintGameResult(RPSGame &game,int reason){
+int MainAux::rpsPrintGameResult(RPSGame &game, int reason) {
 	std::ofstream fout("rps.output");
-	int winner = game.rpsGetWinner();
-	fout<<"Winner: "<<game.rpsGetWinner()<<std::endl;
-	fout<<"Reason: ";
-	if(reason>0){
-		int loser = winner == 1? 2 : 1; //if reason > 0 there is no tie TODO error??
-		fout<<"Bad Moves input file for player "<<loser<< "- line "<<reason<<std::endl;
+	if (!fout.is_open()) {
+		return -1;
 	}
-	switch(reason){
+	int winner = game.rpsGetWinner();
+	fout << "Winner: " << game.rpsGetWinner() << std::endl;
+	fout << "Reason: ";
+	if (reason > 0) {
+		int loser = winner == 1 ? 2 : 1; //if reason > 0 there is no tie TODO error??
+		fout << "Bad Moves input file for player " << loser << "- line " << reason <<std::endl;
+	}
+	switch (reason) {
 			case ALL_FLAGS_CAPTURED:
-				if(winner){
-					fout<<"All flags of the opponent are captured"<<std::endl;
+				if (winner) {
+					fout << "All flags of the opponent are captured" << std::endl;
 				}
-				else{
-					fout<<"A tie - all flags are eaten by both players in the position files"<<std::endl;
+				else {
+					fout << "A tie - all flags are eaten by both players in the position files" << std::endl;
 				}
 				break;
 			case ALL_MOVING_PIECES_CAPTURED:
-				fout<<"All moving PIECEs of the opponent are eaten"<<std::endl;
+				if (winner) {
+					fout << "All moving PIECEs of the opponent are eaten" << std::endl;
+				}
+				else {
+					fout << "A tie - All moving PIECEs of the opponent are eaten" << std::endl; // TODO - Both players have no moving pieces after positioning tie message
+				}
 				break;
 			case LEGAL_TIE:
-				fout<<"A tie - both Moves input files done without a winner"<<std::endl;
+				fout << "A tie - both Moves input files done without a winner" << std::endl;
 				break;
-
 	}
 
-	fout<<std::endl;
-	fout<<game;
+	fout << std::endl;
+	fout << game;
 
 	fout.close();
 	return 1;
