@@ -42,7 +42,7 @@ RPS_Message rpsSetMoveFromFile(RPSGame &rpsGame, RPSCommand &rpsCommand, int pla
 				break;
 			case Invalid_Joker_Assigning:
 				std::cout << "ERROR: player " << player << "'s move file, line " << line
-						  << ": Starting position is out of range." << std::endl;
+						  << ": Joker can not become that piece!." << std::endl;
 				break;
 			case No_Winner:
 			case All_Flags_Captured:
