@@ -42,12 +42,15 @@ int main() {
 		return MainAux::rpsPrintGamePositionErrorResult(game,player1Positioning,player2Positioning);
 	}
 
-	game.rpsFinishPositioningStage();
+	int reason = game.rpsFinishPositioningStage();
+	if(reason){  //game is done
+		return MainAux::rpsPrintGameResult(game,reason);
+	}
 
 	std::string player1MovesFile = PLAYER1_MOVES_FILE;
 	std::string player2MovesFile = PLAYER2_MOVES_FILE;
 
-	int reason = MainAux::rpsPlayTwoPlayerMoves(game,player1MovesFile,player2MovesFile);
+	reason = MainAux::rpsPlayTwoPlayerMoves(game,player1MovesFile,player2MovesFile);
 
 	return MainAux::rpsPrintGameResult(game,reason);
 
