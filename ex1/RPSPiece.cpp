@@ -9,8 +9,14 @@
 //easy conversion
 #define CAPITAL_TO_LOW(c) (c - 'A' + 'a')
 
-RPSPiece& RPSPiece::test() {
-	std::cout << "TEST" << std::endl;
+RPSPiece& RPSPiece::operator=(const RPSPiece& otherPiece) {
+    if (&otherPiece == this) {
+        return *this;
+    }
+    pieceType = otherPiece.pieceType;
+    isJoker = otherPiece.isJoker;
+    player = otherPiece.player;
+    return *this;
 }
 
 std::ostream& operator<<(std::ostream &out, RPSPiece &rpsPiece) {
