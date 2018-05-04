@@ -14,7 +14,7 @@
 #define PLAYER1_MOVES_FILE "player1.rps_moves"
 #define PLAYER2_MOVES_FILE "player2.rps_moves"
 
-int main() {
+int main1() {
 	RPSGame game = RPSGame();
 
 	std::string player1PositionFile = PLAYER1_POSITION_FILE;
