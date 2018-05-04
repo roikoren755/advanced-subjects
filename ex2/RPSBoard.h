@@ -7,6 +7,7 @@
 
 #include "Board.h"
 #include "Point.h"
+#include "RPSPiece.h"
 
 #define N 10
 #define M 10
@@ -14,9 +15,10 @@
 #define N_PLAYERS 2
 
 class RPSBoard: public Board {
-	char board[N_PLAYERS][N][M];
+	RPSPiece board[N_PLAYERS][N][M];
 public:
 	int getPlayer(const Point& pos) const override;
+	RPSPiece getPiece(const Point& pos);
 	~RPSBoard() {}
 };
 
