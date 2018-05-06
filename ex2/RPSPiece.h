@@ -2,7 +2,7 @@
 #define RPSPIECE_H_
 
 #include <iostream>
-
+#define NONE '0'
 enum PieceType {None, Rock, Paper, Scissors, Bomb, Flag, InvalidPiece};
 
 /**
@@ -14,15 +14,16 @@ enum PieceType {None, Rock, Paper, Scissors, Bomb, Flag, InvalidPiece};
 
 
 class RPSPiece {
-	PieceType pieceType;
-	bool isJoker;
+	char pieceType;
+	char jokerRepresentation;
 	int player;
 public:
 	//empty constructor for null piece
-	RPSPiece(): pieceType(None), isJoker(false), player(0) {}
+	RPSPiece(): pieceType(NONE), jokerRepresentation(NONE), player(0) {}
 
 	//constructor with parameters
-	RPSPiece(PieceType pieceType, bool isJoker, int player): pieceType(pieceType), isJoker(isJoker), player(player) {}
+	RPSPiece(char pieceType, char jokerRepresentation, int player): pieceType(pieceType),
+												jokerRepresentation(jokerRepresentation), player(player) {}
 
 	RPSPiece& operator=( const RPSPiece& );
 

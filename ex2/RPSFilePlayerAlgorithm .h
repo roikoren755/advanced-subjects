@@ -18,10 +18,10 @@ public:
     RPSFilePlayerAlgorithm(int player): player(player),
                     movesFile(player==1?PLAYER1_MOVES_FILE:PLAYER2_MOVES_FILE){}
 
-     void getInitialPositions(int player, std::vector<unique_ptr<PiecePosition>>& vectorToFill) override ;
-     void notifyOnInitialBoard(const Board& b, const std::vector<unique_ptr<FightInfo>>& fights) override ;
-     void notifyOnOpponentMove(const Move& move); // called only on opponent's move
-     void notifyFightResult(const FightInfo& fightInfo); // called only if there was a fight
+     void getInitialPositions(int player, std::vector<unique_ptr<PiecePosition>>& vectorToFill){return; }
+     void notifyOnInitialBoard(const Board& b, const std::vector<unique_ptr<FightInfo>>& fights){return; }
+     void notifyOnOpponentMove(const Move& move){return; }
+     void notifyFightResult(const FightInfo& fightInfo){return; }
      unique_ptr<Move> getMove();
      unique_ptr<JokerChange> getJokerChange(); // nullptr if no change is requested
      ~PlayerAlgorithm() {}
