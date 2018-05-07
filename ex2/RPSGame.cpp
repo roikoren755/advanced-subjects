@@ -6,6 +6,7 @@
  */
 
 #include "RPSGame.h"
+#include "RPSBoard.h"
 //#include <vector>
 
 #define ROCKS 2

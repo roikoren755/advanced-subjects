@@ -3,7 +3,8 @@
 
 #include <iostream>
 #define NONE '0'
-enum PieceType {None, Rock, Paper, Scissors, Bomb, Flag, InvalidPiece};
+#define NOT_JOKER '#'
+//enum PieceType {None, Rock, Paper, Scissors, Bomb, Flag, InvalidPiece};
 
 /**
  * represent a piece, contains data:
@@ -31,11 +32,11 @@ public:
 
 	//getters and setters:
 
-	PieceType getPieceType() { return this->pieceType; }
+	char getPieceType() { return this->pieceType; }
 
-	void setPieceType(PieceType pieceType) { if (this->isPieceJoker()) this->pieceType = pieceType; }
+	void setJokerRepresentation(char pieceType) { if (this->pieceType == 'J') this->jokerRepresentation = pieceType; }
 
-	bool isPieceJoker() { return this->isJoker; }
+	char getJokerRepresentation() { return this->jokerRepresentation; }
 
 	int getPlayer() { return this->player; }
 };

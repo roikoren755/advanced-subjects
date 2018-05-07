@@ -9,9 +9,9 @@
 
 #include "RPSPiece.h"
 #include "PlayerAlgorithm.h"
-#include "Board.h"
+//#include "Board.h"
+#include "RPSBoard.h"
 #include "Move.h"
-
 #include <stdlib.h>
 
 
@@ -50,8 +50,8 @@ enum RPS_Message {
 
 class RPSGame{
 	RPSBoard board;
-	PlayerAlgorithm player1algo;
-	PlayerAlgorithm player2algo;
+	//PlayerAlgorithm player1algo;
+	//PlayerAlgorithm player2algo;
 	int winner ;
 
 	int player1Rocks ;
@@ -88,7 +88,7 @@ public:
 	RPS_Message setPosition(PiecePosition &position, int player);
 
 	// sets a Move in the game, given a command and the player
-	RPS_Message setMove(RPSCommand &command, int player);
+	RPS_Message setMove(unique_ptr<Move> move, int player);
 
 	// performs a battle between 2 pieces and sets the winner(if there is) at his spot
 	void performBattle(int fromX, int fromY, int toX, int toY, int player, int opponent);
