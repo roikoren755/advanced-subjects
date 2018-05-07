@@ -14,43 +14,14 @@ RPSPiece& RPSPiece::operator=(const RPSPiece& otherPiece) {
         return *this;
     }
     pieceType = otherPiece.pieceType;
-    isJoker = otherPiece.isJoker;
+    jokerRepresentation = otherPiece.jokerRepresentation;
     player = otherPiece.player;
     return *this;
 }
 
 std::ostream& operator<<(std::ostream &out, RPSPiece &rpsPiece) {
     int player = rpsPiece.getPlayer();
-    char piece;
-    if (rpsPiece.isPieceJoker()) {
-        piece = 'J';
-    }
-    else {
-        switch (rpsPiece.getPieceType()) {
-            case Rock:
-                piece = 'R';
-                break;
-            case Paper:
-                piece = 'P';
-                break;
-            case Scissors:
-                piece = 'S';
-                break;
-            case Bomb:
-                piece = 'B';
-                break;
-            case Flag:
-                piece = 'F';
-                break;
-			case None:
-				piece = ' ';
-				break;
-            default:
-                piece = '_';
-                break;
-        }
-    }
-
+    char piece = rpsPiece.getPieceType();
 
     piece =  player == 1 ? piece : CAPITAL_TO_LOW(piece);
     out << piece ;

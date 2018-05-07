@@ -80,7 +80,7 @@ public:
 	// checks if the number of flags for one player is as it should be when initialized
 	bool validateNumberOfFlags(int player);
 
-	RPS_Message setInitialPositions(PlayerAlgorithm &algorithm , int player);
+    RPS_Message setInitialPositions(std::vector<unique_ptr<PiecePosition>> &positions , int player);
 
 	// sets a position in the game, given a command and the player.
 	// returns An appropriate message with the information -
