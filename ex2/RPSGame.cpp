@@ -7,7 +7,7 @@
 
 #include "RPSGame.h"
 #include "RPSBoard.h"
-//#include <vector>
+#include <vector>
 
 #define ROCKS 2
 #define PAPERS 5
@@ -20,10 +20,10 @@
 #define ALL_MOVING_PIECES_CAPTURED -3
 #define LEGAL_TIE 0
 
-RPS_Message RPSGame::setInitialPositions(vector<unique_ptr<PiecePosition>> &positions , int player){
+RPS_Message RPSGame::setInitialPositions(std::vector<unique_ptr<PiecePosition>> &positions , int player){
 	RPS_Message message;
 	for(auto itr = positions.begin(); itr!=positions.end(); itr++){
-		message = setPosition(*itr,player);
+		message = setPosition(**itr,player);
 		if(message!=success){
 			return  message;
 		}
@@ -108,11 +108,11 @@ RPS_Message RPSGame::setPosition(PiecePosition &position, int player){
 
 RPS_Message RPSGame::setMove(unique_ptr<Move> move, int player) {
 
-	int fromX = (*move).getFrom().getX;
-	int fromY = (*move).getFrom().getY;
+	int fromX = (*move).getFrom().getX();
+	int fromY = (*move).getFrom().getY();
 
-	int toX = (*move).getTo().getX;
-	int toY = (*move).getTo().getY;
+	int toX = (*move).getTo().getX();
+	int toY = (*move).getTo().getY();
 
 	if (toX < 1 || toX > M || toY < 1 || toY > N) {
 		return Destination_Out_Of_Range;
@@ -125,18 +125,18 @@ RPS_Message RPSGame::setMove(unique_ptr<Move> move, int player) {
 	if ( !( (abs(toX - fromX) == 1 && toY == fromY) || (abs(toY - fromY) == 1 && toX == fromX) ) ){
 		return Illegal_Move;
 	}
-
-	RPSPiece attacker = this->boards[player - 1][fromY - 1][fromX - 1];
-	if (attacker.getPieceType() == None) {
+//[player - 1][fromY - 1][fromX - 1];
+	RPSPiece attacker = this->board.getPiece(fromY,fromX);
+	if (attacker.getPieceType() == NONE) {
 		return No_Piece_In_Position;
 	}
 
-	else if (attacker.getPieceType() == Bomb || attacker.getPieceType() == Flag) {
+	else if (attacker.getPieceType() == 'B' || attacker.getPieceType() == 'F') {
 		return Immovable_Piece_In_Position;
 	}
 
 	int opponent = player == 1 ? 2 : 1;
-	if (this->boards[opponent - 1][toY - 1][toX - 1].getPieceType() != None) {
+	if (this->boards[opponent - 1][toY - 1][toX - 1].getPieceType() != NONE) {
 		this->performBattle(fromX, fromY, toX, toY, player, opponent);
 	}
 	else {

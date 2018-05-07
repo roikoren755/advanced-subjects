@@ -2,8 +2,11 @@
 // Created by user on 04/05/2018.
 //
 
+
 #ifndef ADVANCED_SUBJECTS_RPSFILEPLAYERALGORITHM_H
 #define ADVANCED_SUBJECTS_RPSFILEPLAYERALGORITHM_H
+
+#include "PlayerAlgorithm.h"
 
 #define PLAYER1_MOVES_FILE "player1.rps_moves"
 #define PLAYER2_MOVES_FILE "player2.rps_moves"

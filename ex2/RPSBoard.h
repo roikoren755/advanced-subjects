@@ -18,7 +18,8 @@ class RPSBoard: public Board {
 	RPSPiece board[N_PLAYERS][N][M];
 public:
 	int getPlayer(const Point& pos) const override;
-	RPSPiece getPiece(const Point& pos);
+	RPSPiece& getPiece(const Point& pos);
+	RPSPiece& getPiece(int x,int y);
 	~RPSBoard() {}
 };
 
