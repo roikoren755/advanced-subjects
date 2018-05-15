@@ -1,0 +1,4 @@
+ToolSet: 3.20@C:\TDM-GCC-32
+Options: 
+
+Options:-DCMAKE_CXX_COMPILER=C:/TDM-GCC-32/bin/c++.exe

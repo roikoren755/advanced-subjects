@@ -1,0 +1,3 @@
+C:/Users/user/CLionProjects/advanced-subjects/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/user/CLionProjects/advanced-subjects/cmake-build-debug/CMakeFiles/dbsg.dir
+C:/Users/user/CLionProjects/advanced-subjects/cmake-build-debug/CMakeFiles/edit_cache.dir
