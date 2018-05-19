@@ -9,10 +9,9 @@
 
 #include "RPSPiece.h"
 #include "PlayerAlgorithm.h"
-//#include "Board.h"
 #include "RPSBoard.h"
 #include "Move.h"
-#include <stdlib.h>
+#include "RPSPiecePosition.h"
 
 
 #define N 10
@@ -48,31 +47,29 @@ enum RPS_Message {
 	Too_Many_Pieces
 };
 
-class RPSGame{
+class RPSGame {
 	RPSBoard board;
-	//PlayerAlgorithm player1algo;
-	//PlayerAlgorithm player2algo;
-	int winner ;
+	PlayerAlgorithm player1Algorithm; // TODO - remove?
+	PlayerAlgorithm player2Algorithm; // TODO - same?
+	int winner = 0;
 
-	int player1Rocks ;
-	int player1Papers ;
-	int player1Scissors ;
-	int player1Bombs ;
-	int player1Jokers ;
-	int player1Flags ;
+	int player1Rocks = 0;
+	int player1Papers = 0;
+	int player1Scissors = 0;
+	int player1Bombs = 0;
+	int player1Jokers = 0;
+	int player1Flags = 0;
 
-	int player2Rocks ;
-	int player2Papers ;
-	int player2Scissors ;
-	int player2Bombs ;
-	int player2Jokers ;
-	int player2Flags ;
+	int player2Rocks = 0;
+	int player2Papers = 0;
+	int player2Scissors = 0;
+	int player2Bombs = 0;
+	int player2Jokers = 0;
+	int player2Flags = 0;
 
 public:
-	// empty cons', makes sure all parameters are initialized to 0
-	RPSGame(): winner(0), player1Rocks(0), player1Papers(0), player1Scissors(0), player1Bombs(0),
-			   player1Jokers(0), player1Flags(0), player2Rocks(0), player2Papers(0), player2Scissors(0),
-			   player2Bombs(0), player2Jokers(0), player2Flags(0) {}
+	RPSGame(PlayerAlgorithm& player1Algorithm, PlayerAlgorithm& player2Algorithm): player1Algorithm(player1Algorithm),
+																				   player2Algorithm(player2Algorithm) {}
 
 	// checks if the number of pieces of one player did not exceeded
 	bool validateNumbersOfPieces(int player);
@@ -80,18 +77,18 @@ public:
 	// checks if the number of flags for one player is as it should be when initialized
 	bool validateNumberOfFlags(int player);
 
-    RPS_Message setInitialPositions(std::vector<unique_ptr<PiecePosition>> &positions , int player);
+    RPS_Message setInitialPositions(std::vector<unique_ptr<PiecePosition>>& positions, int player);
 
 	// sets a position in the game, given a command and the player.
 	// returns An appropriate message with the information -
 	// whether there was an error and if so what it is
-	RPS_Message setPosition(PiecePosition &position, int player);
+	RPS_Message setPosition(PiecePosition& position, int player);
 
 	// sets a Move in the game, given a command and the player
 	RPS_Message setMove(unique_ptr<Move> move, int player);
 
 	// performs a battle between 2 pieces and sets the winner(if there is) at his spot
-	void performBattle(int fromX, int fromY, int toX, int toY, int player, int opponent);
+	FightInfo performBattle(int x, int y);
 
 	// removes a piece from the board and subtract the counter for that piece by 1
 	void excludePiece(int x, int y, int player);

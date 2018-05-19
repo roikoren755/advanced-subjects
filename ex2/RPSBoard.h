@@ -15,12 +15,12 @@
 #define N_PLAYERS 2
 
 class RPSBoard: public Board {
-	RPSPiece board[N_PLAYERS][N][M];
 public:
+	RPSPiece board[N_PLAYERS][N][M]; // TODO - fix meeee: can leave it like this, or change to functions of getting and setting
 	int getPlayer(const Point& pos) const override;
 	RPSPiece& getPiece(const Point& pos);
 	RPSPiece& getPiece(int x,int y);
-	~RPSBoard() {}
+	~RPSBoard() override = default;
 };
 
 #endif //ADVANCED_SUBJECTS_RPSBOARD_H

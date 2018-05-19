@@ -1,5 +1,3 @@
-
-
 // Created by Roi Koren on 30/04/2018.
 //
 
@@ -14,16 +12,15 @@ int RPSBoard::getPlayer(const Point &pos) const {
 
 	return 0;
 }
-RPSPiece& RPSBoard::getPiece(int x,int y){
-	if (this->board[1-1][y - 1][x - 1].getPieceType() != NONE){
-		return this->board[1-1][y - 1][x - 1];
+RPSPiece& RPSBoard::getPiece(int x, int y) {
+	if (this->board[0][y - 1][x - 1].getPieceType() != NONE) {
+		return this->board[0][y - 1][x - 1];
 	}
 
-	return this->board[2-1][y - 1][x - 1]
-
+	return this->board[1][y - 1][x - 1];
 }
 
-RPSPiece& RPSBoard::getPiece(const Point& pos){
+RPSPiece& RPSBoard::getPiece(const Point& pos) {
 	int x = pos.getX();
 	int y = pos.getY();
 
