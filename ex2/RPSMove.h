@@ -14,8 +14,8 @@ class RPSMove: public Move {
 	RPSMove(Point from, Point to): from(from), to(to) {}
 	RPSMove(Move move): from(move.getFrom()), to(move.getTo()) {}
 	RPSMove(Move& move): from(move.getFrom()), to(move.getTo()) {}
-	const Point& getFrom() const override { return &this->from; }
-	const Point& getTo() const override { return &this->to; }
+	const Point& getFrom() const override { return this->from; }
+	const Point& getTo() const override { return this->to; }
 	~RPSMove() override {}
 };
 
