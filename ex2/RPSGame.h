@@ -12,6 +12,7 @@
 #include "RPSBoard.h"
 #include "Move.h"
 #include "RPSPiecePosition.h"
+#include "RPSFightInfo.h"
 
 
 #define N 10
@@ -49,8 +50,6 @@ enum RPS_Message {
 
 class RPSGame {
 	RPSBoard board;
-	PlayerAlgorithm player1Algorithm; // TODO - remove?
-	PlayerAlgorithm player2Algorithm; // TODO - same?
 	int winner = 0;
 
 	int player1Rocks = 0;
@@ -68,8 +67,7 @@ class RPSGame {
 	int player2Flags = 0;
 
 public:
-	RPSGame(PlayerAlgorithm& player1Algorithm, PlayerAlgorithm& player2Algorithm): player1Algorithm(player1Algorithm),
-																				   player2Algorithm(player2Algorithm) {}
+	RPSGame() = default;
 
 	// checks if the number of pieces of one player did not exceeded
 	bool validateNumbersOfPieces(int player);
@@ -88,7 +86,7 @@ public:
 	RPS_Message setMove(unique_ptr<Move> move, int player);
 
 	// performs a battle between 2 pieces and sets the winner(if there is) at his spot
-	FightInfo performBattle(int x, int y);
+	RPSFightInfo performBattle(int x, int y);
 
 	// removes a piece from the board and subtract the counter for that piece by 1
 	void excludePiece(int x, int y, int player);
@@ -99,7 +97,7 @@ public:
 	// after all pieces are set performs battles between every 2 pieces at the same spot,
 	// returns 0 if the game isn't over, or an int representing a massage for the reason why the
 	// game is over
-	int finishPositioningStage();
+	int finishPositioningStage(std::vector<std::unique_ptr<FightInfo>>& vectorToFill);
 
 	friend std::ostream& operator<<(std::ostream& out, RPSGame &game);
 

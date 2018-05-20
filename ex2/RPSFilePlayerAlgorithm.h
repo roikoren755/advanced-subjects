@@ -13,9 +13,6 @@
 #include "RPSFightInfo.h"
 #include "RPSBoard.h"
 
-#define PLAYER1_MOVES_FILE "player1.rps_moves"
-#define PLAYER2_MOVES_FILE "player2.rps_moves"
-
 class RPSFilePlayerAlgorithm : public PlayerAlgorithm {
     int player;
     std::vector<unique_ptr<PiecePosition>> initialPositions;
