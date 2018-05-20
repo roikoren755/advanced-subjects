@@ -18,6 +18,10 @@ public:
 																					   player1piece(player1piece),
 																					   player2piece(player2piece),
 																					   winner(winner) {}
+	RPSFightInfo(int x, int y, char player1piece, char player2piece, int winner): position(RPSPoint(x, y)),
+																					 player1piece(player1piece),
+																					 player2piece(player2piece),
+																					 winner(winner) {}
 	RPSFightInfo(FightInfo&& fightInfo): position(fightInfo.getPosition()), player1piece(fightInfo.getPiece(1)),
 										 player2piece(fightInfo.getPiece(2)), winner(fightInfo.getWinner()) {}
 	RPSFightInfo(const FightInfo& fightInfo): position(fightInfo.getPosition()), player1piece(fightInfo.getPiece(1)),
