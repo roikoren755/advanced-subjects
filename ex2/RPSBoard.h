@@ -17,10 +17,13 @@
 class RPSBoard: public Board {
 	RPSPiece board[N_PLAYERS][N][M];
 public:
+	RPSBoard();
 	int getPlayer(const Point& pos) const override;
 	RPSPiece& getPiece(const Point& pos);
 	RPSPiece& getPiece(int x,int y);
-	~RPSBoard() {}
+	RPSPiece& getPiece(int player, int x, int y);
+	void setPiece(int player, RPSPiece piece, int x, int y);
+	~RPSBoard() override = default;
 };
 
 #endif //ADVANCED_SUBJECTS_RPSBOARD_H
