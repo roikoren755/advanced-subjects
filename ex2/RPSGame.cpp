@@ -89,13 +89,7 @@ RPS_Message RPSGame::setPosition(PiecePosition &position, int player) {
 	}
 
 	// check if there is a piece
-<<<<<<< HEAD
-	if (this->board.getPiece(toX,toY).getPieceType() != NONE){
-	//	std::cout << "ERROR: player " << player
-	//			  << ": Destination already contains a player piece." << std::endl;
-=======
-	if (this->board.getPiece(toX, toY).getPlayer() == player) {
->>>>>>> e515910ba0b086ad99de6b14be188d0fc58f39d3
+	if (this->board.getPlayer(RPSPoint(toX, toY)) == player) {
 		return Bad_Position;
 	}
 	else {
