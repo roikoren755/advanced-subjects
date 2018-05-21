@@ -86,6 +86,12 @@
 		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/JokerChange.h">
 			<Option target="dbsg"/>
 		</Unit>
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/MainAux.cpp">
+			<Option target="dbsg"/>
+		</Unit>
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/MainAux.h">
+			<Option target="dbsg"/>
+		</Unit>
 		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/Move.h">
 			<Option target="dbsg"/>
 		</Unit>
@@ -96,6 +102,12 @@
 			<Option target="dbsg"/>
 		</Unit>
 		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/Point.h">
+			<Option target="dbsg"/>
+		</Unit>
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSAutomaticPlayerAlgorithm.cpp">
+			<Option target="dbsg"/>
+		</Unit>
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSAutomaticPlayerAlgorithm.h">
 			<Option target="dbsg"/>
 		</Unit>
 		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSBoard.cpp">

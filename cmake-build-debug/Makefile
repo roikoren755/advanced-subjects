@@ -122,6 +122,60 @@ dbsg/fast:
 	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/build
 .PHONY : dbsg/fast
 
+ex2/MainAux.obj: ex2/MainAux.cpp.obj
+
+.PHONY : ex2/MainAux.obj
+
+# target to build an object file
+ex2/MainAux.cpp.obj:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/MainAux.cpp.obj
+.PHONY : ex2/MainAux.cpp.obj
+
+ex2/MainAux.i: ex2/MainAux.cpp.i
+
+.PHONY : ex2/MainAux.i
+
+# target to preprocess a source file
+ex2/MainAux.cpp.i:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/MainAux.cpp.i
+.PHONY : ex2/MainAux.cpp.i
+
+ex2/MainAux.s: ex2/MainAux.cpp.s
+
+.PHONY : ex2/MainAux.s
+
+# target to generate assembly for a file
+ex2/MainAux.cpp.s:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/MainAux.cpp.s
+.PHONY : ex2/MainAux.cpp.s
+
+ex2/RPSAutomaticPlayerAlgorithm.obj: ex2/RPSAutomaticPlayerAlgorithm.cpp.obj
+
+.PHONY : ex2/RPSAutomaticPlayerAlgorithm.obj
+
+# target to build an object file
+ex2/RPSAutomaticPlayerAlgorithm.cpp.obj:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/RPSAutomaticPlayerAlgorithm.cpp.obj
+.PHONY : ex2/RPSAutomaticPlayerAlgorithm.cpp.obj
+
+ex2/RPSAutomaticPlayerAlgorithm.i: ex2/RPSAutomaticPlayerAlgorithm.cpp.i
+
+.PHONY : ex2/RPSAutomaticPlayerAlgorithm.i
+
+# target to preprocess a source file
+ex2/RPSAutomaticPlayerAlgorithm.cpp.i:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/RPSAutomaticPlayerAlgorithm.cpp.i
+.PHONY : ex2/RPSAutomaticPlayerAlgorithm.cpp.i
+
+ex2/RPSAutomaticPlayerAlgorithm.s: ex2/RPSAutomaticPlayerAlgorithm.cpp.s
+
+.PHONY : ex2/RPSAutomaticPlayerAlgorithm.s
+
+# target to generate assembly for a file
+ex2/RPSAutomaticPlayerAlgorithm.cpp.s:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/RPSAutomaticPlayerAlgorithm.cpp.s
+.PHONY : ex2/RPSAutomaticPlayerAlgorithm.cpp.s
+
 ex2/RPSBoard.obj: ex2/RPSBoard.cpp.obj
 
 .PHONY : ex2/RPSBoard.obj
@@ -266,6 +320,12 @@ help:
 	@echo ... rebuild_cache
 	@echo ... dbsg
 	@echo ... edit_cache
+	@echo ... ex2/MainAux.obj
+	@echo ... ex2/MainAux.i
+	@echo ... ex2/MainAux.s
+	@echo ... ex2/RPSAutomaticPlayerAlgorithm.obj
+	@echo ... ex2/RPSAutomaticPlayerAlgorithm.i
+	@echo ... ex2/RPSAutomaticPlayerAlgorithm.s
 	@echo ... ex2/RPSBoard.obj
 	@echo ... ex2/RPSBoard.i
 	@echo ... ex2/RPSBoard.s

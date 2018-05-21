@@ -3,7 +3,10 @@
 //
 #include <iostream>
 
-int main() {
-    std::cout <<"hello"<<std::endl;
+
+int main(int argc, char argv[]) {
+    std::vector<unique_ptr<PlayerAlgorithm>>& players = new std::vector<unique_ptr<PlayerAlgorithm>>(2);
+
+    ;
     return 1;
 }
