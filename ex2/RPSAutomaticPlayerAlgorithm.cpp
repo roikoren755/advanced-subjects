@@ -9,10 +9,10 @@
 #include "RPSJokerChange.h"
 
 void RPSAutomaticPlayerAlgorithm::notifyOnInitialBoard(const Board& b, const std::vector<unique_ptr<FightInfo>>& fights) {
-	for (int i = 1; i <= N; i++) {
-		for (int j = 1; j <= M; j++) {
-			if (b.getPlayer(RPSPoint(j, i)) != this->player) {
-				this->board.setPiece(opponent, RPSPiece(NOT_JOKER, NOT_JOKER, opponent), j, i);
+	for (int i = 1; i <= M; i++) {
+		for (int j = 1; j <= N; j++) {
+			if (b.getPlayer(RPSPoint(i, j)) != this->player) {
+				this->board.setPiece(opponent, RPSPiece(NOT_JOKER, NOT_JOKER, opponent), i, j);
 			}
 		}
 	}

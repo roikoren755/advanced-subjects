@@ -264,10 +264,10 @@ RPS_Message RPSGame::checkWinner() {
 
 std::ostream& operator<<(std::ostream& out, RPSGame &game) {
 	bool printed = false;
-	for (int i = 1; i <= N; i++) {
-		for (int j = 1; j <= M; j++) {
+	for (int i = 1; i <= M; i++) {
+		for (int j = 1; j <= N; j++) {
 			for (int k = 1; k <= NUM_PLAYERS; k++){
-				RPSPiece piece = game.board.getPiece(k, j, i);
+				RPSPiece piece = game.board.getPiece(k, i, j);
 				if (piece.getPieceType() != NONE) {
 					out << piece;
 					printed = true;
@@ -288,9 +288,9 @@ std::ostream& operator<<(std::ostream& out, RPSGame &game) {
 }
 
 int RPSGame::finishPositioningStage(std::vector<std::unique_ptr<FightInfo>>& vectorToFill) {
-	for (int i = 1; i <= N; i++) {
-		for (int j = 1; j <= M; j++) {
-			if (this->board.getPiece(1, j, i).getPieceType() != NONE && this->board.getPiece(2, j, i).getPieceType() != NONE) {
+	for (int i = 1; i <= M; i++) {
+		for (int j = 1; j <= N; j++) {
+			if (this->board.getPiece(1, i, j).getPieceType() != NONE && this->board.getPiece(2, i, j).getPieceType() != NONE) {
 				vectorToFill.emplace_back(std::make_unique<RPSFightInfo>(this->performBattle(i, j)));
 			}
 		}

@@ -4,8 +4,8 @@
 #include "RPSBoard.h"
 
 RPSBoard::RPSBoard() {
-	for (int i = 0; i < N; i++) {
-		for (int j = 0; j < M; j++) {
+	for (int i = 0; i < M; i++) {
+		for (int j = 0; j < N; j++) {
 			for (int k = 0; k < 2; k++) {
 				this->board[k][j][i] = RPSPiece();
 			}
