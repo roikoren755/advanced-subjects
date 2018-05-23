@@ -21,6 +21,7 @@ int main1() {
 	std::string player2PositionFile = PLAYER2_POSITION_FILE;
 	int player1Positioning = MainAux::rpsLoadPositionFile(game, player1PositionFile, 1);
 	int player2Positioning = MainAux::rpsLoadPositionFile(game, player2PositionFile, 2);
+
 	if (player1Positioning == -1 && player2Positioning == -1) {
 		std::cout << "ERROR: Could not open either positioning file. Quitting..." << std::endl;
 		return 1;

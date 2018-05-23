@@ -102,6 +102,7 @@ public:
 	// getters and setters
 	int getWinner() { return this->winner; }
 	void setWinner(int winner) { this->winner = winner; }
+
 };
 
 #endif
