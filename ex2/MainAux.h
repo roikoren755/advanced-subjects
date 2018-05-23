@@ -16,8 +16,8 @@ public:
     static int RPSMakePlayerAlgorithm( char arg[], std::vector<unique_ptr<PlayerAlgorithm>>& algorithms);
     static int RPSPerformPositioning(RPSGame game ,std::vector<unique_ptr<PlayerAlgorithm>>& algorithms);
     static int RPSPrintGamePositionErrorResult(RPSGame game, int feedback);
-    static int rpsPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<PlayerAlgorithm>>& algorithms);
-    static int rpsPrintGameResult(RPSGame& game, int reason);
+    static int RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<PlayerAlgorithm>>& algorithms);
+    static int RPSPrintGameResult(RPSGame& game, int reason);
 };
 
 

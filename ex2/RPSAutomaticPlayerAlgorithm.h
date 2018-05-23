@@ -20,7 +20,7 @@ class RPSAutomaticPlayerAlgorithm: public PlayerAlgorithm {
 	int opponentPapers = 0;
 	int opponentScissors = 0;
 public:
-    RPSAutomaticPlayerAlgorithm():	opponentFlags(FLAGS), opponentBombs(BOMBS), opponentJokers(JOKERS), opponentRocks(rocks),
+    RPSAutomaticPlayerAlgorithm():	opponentFlags(FLAGS), opponentBombs(BOMBS), opponentJokers(JOKERS), opponentRocks(ROCKS),
                                       opponentPapers(PAPERS), opponentScissors(SCISSORS) {}
 	RPSAutomaticPlayerAlgorithm(int flags, int bombs, int jokers, int rocks, int papers, int scissors):
 			opponentFlags(flags), opponentBombs(bombs), opponentJokers(jokers), opponentRocks(rocks),

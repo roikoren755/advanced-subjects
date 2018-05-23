@@ -28,17 +28,14 @@ int main(int argc, char* argv[]) {
     int reason = game.finishPositioningStage(fights);
     if (reason) { // game is done
         //std::cout << "TEST" << std::endl;
-        return MainAux::rpsPrintGameResult(game, reason);
+        return MainAux::RPSPrintGameResult(game, reason);
     }
 
     algorithms[PLAYER(1)]->notifyOnInitialBoard(game.getBoard(),fights);
     algorithms[PLAYER(2)]->notifyOnInitialBoard(game.getBoard(),fights);
 
-    reason = MainAux::rpsPlayTwoPlayerMoves(game, player1MovesFile, player2MovesFile);
+    reason = MainAux::RPSPlayTwoPlayersMoves(game, algorithms);
 
-    return MainAux::rpsPrintGameResult(game, reason);
+    return MainAux::RPSPrintGameResult(game, reason);
 }
 
-
-    return 1;
-}
