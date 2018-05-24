@@ -180,31 +180,43 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
             int toX = movePtr->getTo().getX();
             int toY = movePtr->getTo().getY();
             message = game.setMove(move, i + 1);
-            if (message == Success || message == Battle_Required) {
-                if (game.changeJokerRepresentation(algorithms[i]->getJokerChange()) != Success) {
-                    game.setWinner((i + 1 == 1) ? 2 : 1);
-                    return ILLEGAL_MOVE;
-                }
+            if (message == Battle_Required || message == Success) {
+				algorithms[1 - i]->notifyOnOpponentMove(move);
 
-                algorithms[1 - i]->notifyOnOpponentMove(move);
-                if (message == Battle_Required) {
-                    RPSFightInfo info = game.performBattle(toX, toY);
-                    algorithms[1 - 1]->notifyFightResult(info);
-                    algorithms[2 - 1]->notifyFightResult(info);
-                }
+				if (message == Battle_Required) {
+					RPSFightInfo info = game.performBattle(toX, toY);
+					algorithms[1 - 1]->notifyFightResult(info);
+					algorithms[2 - 1]->notifyFightResult(info);
 
-                if (message == Success) {
-                    moveCounter++;
-                    if (moveCounter >= MAX_NO_FIGHT_MOVES_ALLOWED) {
-                        game.setWinner(0);
-                        return LEGAL_TIE;
-                    }
-                }
-            } else {  //in this case illegal move was done
-                //winner = (i + 1 == 1) ? 2 : 1;
-                game.setWinner((i + 1 == 1) ? 2 : 1);
-                return ILLEGAL_MOVE;
+					message = game.checkWinner();
+					switch (message) {
+						case No_Winner:
+							break;
+						case All_Moving_Pieces_Captured:
+							return ALL_MOVING_PIECES_CAPTURED;
+						case All_Flags_Captured:
+							return ALL_FLAGS_CAPTURED;
+						default: //should'nt happen
+							break;
+					}
+				}
+				else {
+					moveCounter++;
+					if (moveCounter >= MAX_NO_FIGHT_MOVES_ALLOWED) {
+						game.setWinner(0);
+						return LEGAL_TIE;
+					}
+				}
+
+				if (game.changeJokerRepresentation(algorithms[i]->getJokerChange()) != Success) {
+					game.setWinner((i + 1 == 1) ? 2 : 1);
+					return ILLEGAL_MOVE;
+				}
             }
+			else {  //in this case illegal move was done
+				game.setWinner((i + 1 == 1) ? 2 : 1);
+				return ILLEGAL_MOVE;
+			}
 
             message = game.checkWinner();
             switch (message) {
