@@ -31,8 +31,6 @@ CMakeFiles/dbsg.dir/ex2/RPSAutomaticPlayerAlgorithm.cpp.obj: ../ex2/Point.h
 CMakeFiles/dbsg.dir/ex2/RPSAutomaticPlayerAlgorithm.cpp.obj: ../ex2/RPSAutomaticPlayerAlgorithm.cpp
 CMakeFiles/dbsg.dir/ex2/RPSAutomaticPlayerAlgorithm.cpp.obj: ../ex2/RPSAutomaticPlayerAlgorithm.h
 CMakeFiles/dbsg.dir/ex2/RPSAutomaticPlayerAlgorithm.cpp.obj: ../ex2/RPSBoard.h
-CMakeFiles/dbsg.dir/ex2/RPSAutomaticPlayerAlgorithm.cpp.obj: ../ex2/RPSFightInfo.h
-CMakeFiles/dbsg.dir/ex2/RPSAutomaticPlayerAlgorithm.cpp.obj: ../ex2/RPSGame.h
 CMakeFiles/dbsg.dir/ex2/RPSAutomaticPlayerAlgorithm.cpp.obj: ../ex2/RPSJokerChange.h
 CMakeFiles/dbsg.dir/ex2/RPSAutomaticPlayerAlgorithm.cpp.obj: ../ex2/RPSMove.h
 CMakeFiles/dbsg.dir/ex2/RPSAutomaticPlayerAlgorithm.cpp.obj: ../ex2/RPSPiece.h

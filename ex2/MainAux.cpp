@@ -60,7 +60,7 @@ int MainAux::RPSPerformPositioning(RPSGame game ,std::vector<unique_ptr<PlayerAl
 
     for (int i = 0; i < NUM_PLAYERS; i++) {
         algorithms[i]->getInitialPositions(i + 1, playerPos);
-        for (auto ptr : playerPos) {
+        for (auto& ptr : playerPos) {
             message = game.setPosition(*ptr, i + 1);
             switch (message) {
                 case Destination_Out_Of_Range:
@@ -149,14 +149,14 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
     while(!winner){
         for (int i = 0; i < NUM_PLAYERS; i++) {
             auto movePtr = algorithms[i]->getMove();
-            Move move = *movePtr;
+           // Move move = *movePtr;
             int toX = movePtr->getTo().getX();
             int toY = movePtr->getTo().getY();
             message = game.setMove(std::move(movePtr),i+1);
-            if(message == Success || message == ){
+            if(message == Success || message == Battle_Required){
                 game.setNewJoker(std::move(algorithms[i]->getJokerChange()));
-                algorithms[1-i]->notifyOnOpponentMove(move);
-                if(message == ) {
+                algorithms[1-i]->notifyOnOpponentMove(*movePtr);
+                if(message == Battle_Required) {
                     FightInfo info = game.performBattle(toX, toY);
                     algorithms[1-1]->notifyFightResult(info);
                     algorithms[2-1]->notifyFightResult(info);
