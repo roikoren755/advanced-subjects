@@ -33,10 +33,13 @@ int MainAux::RPSMakePlayerAlgorithm(int argc, char arg[],std::vector<unique_ptr<
         std::cout<<"ERROR: bad command line argument"<<std::endl;
         return !SUCCESS;
     }
+    std::cout<<arg<<std::endl;
 
     char* players[NUM_PLAYERS];
     players[PLAYER(1)] = strtok(arg, TOKENS);
-    players[PLAYER(2)] = strtok(nullptr, TOKENS);
+    std::cout<<"here"<<std::endl;
+
+    players[PLAYER(2)] = strtok(NULL, TOKENS);
 
     for(int i = 0; i<NUM_PLAYERS; i++){
         if(strcpy(players[i],AUTO)) {
@@ -50,6 +53,7 @@ int MainAux::RPSMakePlayerAlgorithm(int argc, char arg[],std::vector<unique_ptr<
             return i+1;
         }
     }
+
     return SUCCESS;
 
 }

@@ -32,7 +32,11 @@ RPSPoint.o: RPSPoint.h Point.h
 	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
 MainAux.o: MainAux.cpp RPSAutomaticPlayerAlgorithm.h PlayerAlgorithm.h Point.h PiecePosition.h Board.h FightInfo.h Move.h JokerChange.h RPSBoard.h RPSPiece.h RPSFilePlayerAlgorithm.h RPSPiecePosition.h RPSPoint.h RPSMove.h RPSJokerChange.h RPSFightInfo.h MainAux.h RPSGame.h
 	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
+<<<<<<< HEAD
+main.o: main.cpp MainAux.h MainAux.cpp
+=======
 main.o: main.cpp MainAux.h RPSGame.h RPSPiece.h PlayerAlgorithm.h Point.h PiecePosition.h Board.h FightInfo.h Move.h JokerChange.h RPSBoard.h RPSPiecePosition.h RPSPoint.h RPSFightInfo.h #put dependencies here!
+>>>>>>> df87826654e9b77a56973aee5001c676e923ed45
 	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
 clean:
 	rm -f $(OBJS) $(EXEC) *Test *.o
