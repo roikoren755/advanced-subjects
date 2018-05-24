@@ -66,7 +66,6 @@ RPSPiecePosition getRPSPiecePositionFromLine(const std::string& line) {
 			else {
 				switch (argument[0]) {
 					case 'B':
-					case 'F':
 					case 'P':
 					case 'R':
 					case 'S':
@@ -151,7 +150,6 @@ std::pair<std::unique_ptr<RPSMove>, std::unique_ptr<RPSJokerChange>> getRPSMoveA
 				else {
 					switch (argument[0]) {
 						case 'B':
-						case 'F':
 						case 'P':
 						case 'R':
 						case 'S':
@@ -214,7 +212,7 @@ void RPSFilePlayerAlgorithm::loadMovesAndJokerChangesFromFile(const std::string&
 	movesAndJokerChangesFileStream.close();
 }
 
-void RPSFilePlayerAlgorithm::getInitialPositions(int player, std::vector<unique_ptr<PiecePosition>>& vectorToFill) {
+void RPSFilePlayerAlgorithm::getInitialPositions(int player, std::vector<std::unique_ptr<PiecePosition>>& vectorToFill) {
 	// TODO - move file loading here?
 	if (player != this->player) {
 		return;
@@ -225,7 +223,7 @@ void RPSFilePlayerAlgorithm::getInitialPositions(int player, std::vector<unique_
 	}
 }
 
-unique_ptr<Move> RPSFilePlayerAlgorithm::getMove() {
+std::unique_ptr<Move> RPSFilePlayerAlgorithm::getMove() {
 	if (this->movesAndJokerChanges.empty()) {
 		return nullptr;
 	}
@@ -233,7 +231,7 @@ unique_ptr<Move> RPSFilePlayerAlgorithm::getMove() {
 	return std::move(this->movesAndJokerChanges.at(this->turn).first);
 }
 
-unique_ptr<JokerChange> RPSFilePlayerAlgorithm::getJokerChange() {
+std::unique_ptr<JokerChange> RPSFilePlayerAlgorithm::getJokerChange() {
 	if (this->movesAndJokerChanges.empty()) {
 		return nullptr;
 	}
@@ -245,7 +243,7 @@ void RPSFilePlayerAlgorithm::notifyFightResult(const FightInfo &fightInfo) {
 	if (fightInfo.getWinner()) {} // To get rid of warnings...
 }
 
-void RPSFilePlayerAlgorithm::notifyOnInitialBoard(const Board &b, const std::vector<unique_ptr<FightInfo>> &fights) {
+void RPSFilePlayerAlgorithm::notifyOnInitialBoard(const Board &b, const std::vector<std::unique_ptr<FightInfo>> &fights) {
 	if (b.getPlayer(RPSPoint(1, 1)) || fights.empty()) {} // Again, no warnings
 }
 

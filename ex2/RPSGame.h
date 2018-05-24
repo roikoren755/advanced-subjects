@@ -46,6 +46,7 @@ enum RPS_Message {
 	No_Winner,
 	Too_Many_Pieces,
 	Battle_Required,
+	Bad_Joker_Representation,
 };
 
 class RPSGame {
@@ -99,12 +100,11 @@ public:
 	// game is over
 	int finishPositioningStage(std::vector<std::unique_ptr<FightInfo>>& vectorToFill);
 
+	RPS_Message changeJokerRepresentation(std::unique_ptr<JokerChange> jokerChange);
+
 	friend std::ostream& operator<<(std::ostream& out, RPSGame &game);
 
 	// getters and setters
-	void setNewJoker(std::unique_ptr<JokerChange> jokerChange){this->board.
-				getPiece(jokerChange->getJokerChangePosition()).
-				setJokerRepresentation(jokerChange->getJokerNewRep());}
 	int getWinner() { return this->winner; }
 	void setWinner(int winner) { this->winner = winner; }
 	RPSBoard getBoard() { return this->board; }

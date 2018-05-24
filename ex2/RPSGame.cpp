@@ -21,7 +21,7 @@
 #define ALL_MOVING_PIECES_CAPTURED (-3)
 #define LEGAL_TIE 0
 
-RPS_Message RPSGame::setInitialPositions(std::vector<unique_ptr<PiecePosition>>& positions, int player) {
+RPS_Message RPSGame::setInitialPositions(std::vector<std::unique_ptr<PiecePosition>>& positions, int player) {
 	RPS_Message message;
 	for (auto itr = positions.begin(); itr != positions.end(); itr++) {
 		message = this->setPosition(**itr, player);
@@ -32,7 +32,6 @@ RPS_Message RPSGame::setInitialPositions(std::vector<unique_ptr<PiecePosition>>&
 
 	return Success;
 }
-
 
 bool RPSGame::validateNumbersOfPieces(int player) {
 	if (player == 1 && this->player1Rocks <= ROCKS && this->player1Papers <= PAPERS && this->player1Scissors <= SCISSORS
@@ -99,7 +98,7 @@ RPS_Message RPSGame::setPosition(PiecePosition &position, int player) {
 	return Success;
 }
 
-RPS_Message RPSGame::setMove(unique_ptr<Move> move, int player) {
+RPS_Message RPSGame::setMove(std::unique_ptr<Move> move, int player) {
 	int fromX = (*move).getFrom().getX();
 	int fromY = (*move).getFrom().getY();
 
@@ -234,6 +233,7 @@ void RPSGame::excludePiece(int x, int y, int player) {
 			break;
 		case 'F':
 			player == 1 ? this->player1Flags-- : this->player2Flags--;
+			break;
 		default:
 			break;
 	}
@@ -264,6 +264,37 @@ RPS_Message RPSGame::checkWinner() {
 
 	this->winner = 0;
 	return No_Winner;
+}
+
+RPS_Message RPSGame::changeJokerRepresentation(std::unique_ptr<JokerChange> jokerChange) {
+	if (jokerChange == nullptr) {
+		return Success;
+	}
+
+	int x = jokerChange->getJokerChangePosition().getX();
+	int y = jokerChange->getJokerChangePosition().getY();
+	if (x < 0 || x > M || y < 0 || y > N) {
+		return Bad_Position;
+	}
+
+	char newRepresentation = jokerChange->getJokerNewRep();
+	switch (newRepresentation) {
+		case 'B':
+		case 'R':
+		case 'P':
+		case 'S':
+			break;
+		default:
+			return Bad_Joker_Representation;
+	}
+
+	if (this->board.getPiece(jokerChange->getJokerChangePosition()).getPieceType() != 'J') {
+		return No_Joker_in_position;
+	}
+
+	this->board.getPiece(jokerChange->getJokerChangePosition()).setJokerRepresentation(jokerChange->getJokerNewRep());
+
+	return Success;
 }
 
 std::ostream& operator<<(std::ostream& out, RPSGame &game) {

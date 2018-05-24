@@ -24,7 +24,7 @@ RPSAutomaticPlayerAlgorithm::RPSAutomaticPlayerAlgorithm() {
 	this->opponentScissors = SCISSORS;
 }
 
-void RPSAutomaticPlayerAlgorithm::notifyOnInitialBoard(const Board& b, const std::vector<unique_ptr<FightInfo>>& fights) {
+void RPSAutomaticPlayerAlgorithm::notifyOnInitialBoard(const Board& b, const std::vector<std::unique_ptr<FightInfo>>& fights) {
 	for (int i = 1; i <= M; i++) {
 		for (int j = 1; j <= N; j++) {
 			if (b.getPlayer(RPSPoint(i, j)) != this->player) {
@@ -87,7 +87,7 @@ void RPSAutomaticPlayerAlgorithm::updateBoardByBattle(const FightInfo &fightInfo
 	}
 }
 
-void RPSAutomaticPlayerAlgorithm::getInitialPositions(int player, std::vector<unique_ptr<PiecePosition>> &vectorToFill) {
+void RPSAutomaticPlayerAlgorithm::getInitialPositions(int player, std::vector<std::unique_ptr<PiecePosition>> &vectorToFill) {
 	this->player = player;
 	this->opponent = player == 1 ? 2 : 1;
 	this->board.setPiece(player, RPSPiece('F', player), 8, 8);
@@ -118,7 +118,7 @@ void RPSAutomaticPlayerAlgorithm::getInitialPositions(int player, std::vector<un
 	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(4, 4, 'S', NOT_JOKER));
 }
 
-unique_ptr<Move> RPSAutomaticPlayerAlgorithm::getMove() {
+std::unique_ptr<Move> RPSAutomaticPlayerAlgorithm::getMove() {
 	for (int i = 1; i <= M; i++) {
 		for (int j = 1; j <= N; j++) {
 			RPSPiece rpsPiece = this->board.getPiece(player, i, j);
@@ -186,7 +186,7 @@ unique_ptr<Move> RPSAutomaticPlayerAlgorithm::getMove() {
 	return nullptr; // Shouldn't get here...
 }
 
-unique_ptr<JokerChange> RPSAutomaticPlayerAlgorithm::getJokerChange() {
+std::unique_ptr<JokerChange> RPSAutomaticPlayerAlgorithm::getJokerChange() {
 	for (int i = 1; i <= M; i++) {
 		for (int j = 1; j <= N; j++) {
 			RPSPiece rpsPiece = this->board.getPiece(player, i, j);

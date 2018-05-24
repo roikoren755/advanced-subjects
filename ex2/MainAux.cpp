@@ -154,7 +154,7 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
             int toY = movePtr->getTo().getY();
             message = game.setMove(std::move(movePtr),i+1);
             if(message == Success || message == Battle_Required){
-                game.setNewJoker(std::move(algorithms[i]->getJokerChange()));
+                game.changeJokerRepresentation(algorithms[i]->getJokerChange());
                 algorithms[1-i]->notifyOnOpponentMove(*movePtr);
                 if(message == Battle_Required) {
                     FightInfo info = game.performBattle(toX, toY);
