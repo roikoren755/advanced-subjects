@@ -102,9 +102,10 @@ public:
 	friend std::ostream& operator<<(std::ostream& out, RPSGame &game);
 
 	// getters and setters
-	void setNewJoker(std::unique_ptr<JokerChange> jokerChange){this->board.
+	RPS_Message setNewJoker(std::unique_ptr<JokerChange> jokerChange){this->board.
 				getPiece(jokerChange->getJokerChangePosition()).
-				setJokerRepresentation(jokerChange->getJokerNewRep());}
+				setJokerRepresentation(jokerChange->getJokerNewRep());
+	return Success;}
 	int getWinner() { return this->winner; }
 	void setWinner(int winner) { this->winner = winner; }
 	RPSBoard getBoard() { return this->board; }

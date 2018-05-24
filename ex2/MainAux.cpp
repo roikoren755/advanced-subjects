@@ -20,7 +20,7 @@
 #define PLAYER2_POSITION_FILE "player2.rps_board"
 #define PLAYER1_MOVES_FILE "player1.rps_moves"
 #define PLAYER2_MOVES_FILE "player2.rps_moves"
-
+#define MAX_NO_FIGHT_MOVES_ALLOWED 100
 #define ALL_FLAGS_CAPTURED -2
 #define ALL_MOVING_PIECES_CAPTURED -3
 #define LEGAL_TIE 0
@@ -36,12 +36,11 @@ int MainAux::RPSMakePlayerAlgorithm( char arg[],std::vector<unique_ptr<PlayerAlg
 
     for(int i = 0; i<NUM_PLAYERS; i++){
         if(strcpy(players[i],AUTO)) {
-            unique_ptr<PlayerAlgorithm> ptr = std::make_unique<PlayerAlgorithm>(new RPSAutomaticPlayerAlgorithm());
+            unique_ptr<PlayerAlgorithm> ptr = std::make_unique<RPSAutomaticPlayerAlgorithm>(new RPSAutomaticPlayerAlgorithm(FLAGS,));
             algorithms.push_back(std::move(ptr));
         }
         else if(strcpy(players[i],FILE)) {
-            unique_ptr<PlayerAlgorithm> ptr = std::make_unique<PlayerAlgorithm>(new RPSFilePlayerAlgorithm(
-                    i+1,(i+1 == 1)?PLAYER1_POSITION_FILE:PLAYER2_POSITION_FILE,
+            unique_ptr<PlayerAlgorithm> ptr = std::make_unique<RPSFilePlayerAlgorithm>(new RPSFilePlayerAlgorithm(i+1,(i+1 == 1)?PLAYER1_POSITION_FILE:PLAYER2_POSITION_FILE,
                         (i+1 == 1)?PLAYER1_MOVES_FILE:PLAYER2_MOVES_FILE));
             algorithms.push_back(std::move(ptr));
         }
@@ -141,34 +140,54 @@ int MainAux::RPSPrintGamePositionErrorResult(RPSGame game, int feedback){
 
 
 
-int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<PlayerAlgorithm>>& algorithms){
-    int winner;
+int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<PlayerAlgorithm>>& algorithms) {
+    //int winner;
     RPS_Message message;
     int moveCounter = 0;
 
-    while(!winner){
+    while (1) {
         for (int i = 0; i < NUM_PLAYERS; i++) {
             auto movePtr = algorithms[i]->getMove();
-           // Move move = *movePtr;
+            // Move move = *movePtr;
             int toX = movePtr->getTo().getX();
             int toY = movePtr->getTo().getY();
-            message = game.setMove(std::move(movePtr),i+1);
-            if(message == Success || message == Battle_Required){
-                game.setNewJoker(std::move(algorithms[i]->getJokerChange()));
-                algorithms[1-i]->notifyOnOpponentMove(*movePtr);
-                if(message == Battle_Required) {
-                    FightInfo info = game.performBattle(toX, toY);
-                    algorithms[1-1]->notifyFightResult(info);
-                    algorithms[2-1]->notifyFightResult(info);
+            message = game.setMove(std::move(movePtr), i + 1);
+            if (message == Success || message == Battle_Required) {
+                if (game.setNewJoker(std::move(algorithms[i]->getJokerChange())) != Success) {
+                    game.setWinner((i + 1 == 1) ? 2 : 1);
+                    return ILLEGAL_MOVE;
                 }
-            }
-            else{  //in this case illegal move was done
-                winner = (i+1==1)? 2 : 1;
-                game.setWinner(winner);
+                algorithms[1 - i]->notifyOnOpponentMove(*movePtr);
+                if (message == Battle_Required) {
+                    unique_ptr<FightInfo> infoPtr = std::make_unique<FightInfo>(game.performBattle(toX, toY));
+                    algorithms[1 - 1]->notifyFightResult(*infoPtr);
+                    algorithms[2 - 1]->notifyFightResult(*infoPtr);
+                }
+                if (message == Success) {
+                    moveCounter++;
+                    if (moveCounter >= MAX_NO_FIGHT_MOVES_ALLOWED) {
+                        game.setWinner(0);
+                        return LEGAL_TIE;
+                    }
+                }
+            } else {  //in this case illegal move was done
+                //winner = (i + 1 == 1) ? 2 : 1;
+                game.setWinner((i + 1 == 1) ? 2 : 1);
                 return ILLEGAL_MOVE;
             }
 
             message = game.checkWinner();
+            switch (message) {
+                case No_Winner:
+                    break;
+                case All_Moving_Pieces_Captured:
+                    return ALL_MOVING_PIECES_CAPTURED;
+                case All_Flags_Captured:
+                    return ALL_FLAGS_CAPTURED;
+                default: //should'nt happen
+                    break;
+            }
+
         }
     }
 }
@@ -176,10 +195,10 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
 
 
 
+
 //==========================================================================
 
-
-int MainAux::RPSPrintGameResult(RPSGame &game, int reason) {
+int MainAux::RPSPrintGameResult(RPSGame& game, int reason) {
     std::ofstream fout("rps.output");
     if (!fout.is_open()) {
         std::cout << "ERROR: could'nt open output file" << std::endl;
@@ -187,6 +206,8 @@ int MainAux::RPSPrintGameResult(RPSGame &game, int reason) {
     }
 
     int winner = game.getWinner();
+    int loser = (winner == 1)? 2 : 1;
+
     fout << "Winner: " << winner << std::endl;
     fout << "Reason: ";
     switch (reason) {
@@ -207,10 +228,9 @@ int MainAux::RPSPrintGameResult(RPSGame &game, int reason) {
                 }
                 break;
             case LEGAL_TIE:
-                fout << "A tie - both Moves input files done without a winner" << std::endl;
+                fout << "A tie - max no-fight moves allowed performed " << std::endl;
                 break;
             case ILLEGAL_MOVE:
-                int loser = (winner == 1)? 2 : 1;
                 fout << "Bad Move for player " << loser <<std::endl;
                 break;
             default:
