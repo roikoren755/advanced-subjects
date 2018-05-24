@@ -156,6 +156,7 @@ int MainAux::RPSPrintGamePositionErrorResult(RPSGame& game, int feedback){
     fout.close();
     return 1;
 }
+
 //==========================================================================
 
 
