@@ -6,8 +6,6 @@
 #include "MainAux.h"
 #include "RPSGame.h"
 
-
-
 int main(int argc, char* argv[]) {
     std::vector<unique_ptr<PlayerAlgorithm>> algorithms;// =  std::vector<unique_ptr<PlayerAlgorithm>>(2);;
     int feedback = MainAux::RPSMakePlayerAlgorithm(argc,argv[1], algorithms);
