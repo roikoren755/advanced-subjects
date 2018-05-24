@@ -140,7 +140,11 @@ RPS_Message RPSGame::setMove(unique_ptr<Move> move, int player) {
 		this->board.setPiece(player, RPSPiece(), fromX, fromY);
 	}
 
-	return Success;
+	if (this->board.getPiece(player == 1 ? 2 : 1, toX, toY).getPieceType() == NONE) {
+		return Success;
+	}
+
+	return Battle_Required;
 }
 
 RPSFightInfo RPSGame::performBattle(int x, int y) {

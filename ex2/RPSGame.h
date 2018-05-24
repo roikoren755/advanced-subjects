@@ -45,7 +45,8 @@ enum RPS_Message {
 	All_Flags_Captured,
 	All_Moving_Pieces_Captured,
 	No_Winner,
-	Too_Many_Pieces
+	Too_Many_Pieces,
+	Battle_Required,
 };
 
 class RPSGame {
