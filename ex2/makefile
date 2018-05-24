@@ -1,6 +1,6 @@
 COMP = g++#-5.3.0
 #put all your object files here
-OBJS = main.o RPSBoard.o RPSAutomaticPlayerAlgorithm.o RPSFilePlayerAlgorithm.o RPSGame.o RPSPiece.o #objects should be placed here!
+OBJS = main.o MainAux.o RPSBoard.o RPSAutomaticPlayerAlgorithm.o RPSFilePlayerAlgorithm.o RPSGame.o RPSPiece.o #objects should be placed here!
 #The executable filename DON'T CHANGE
 EXEC = ex2
 CPP_COMP_FLAG = -std=c++14 -Wall -Wextra \
