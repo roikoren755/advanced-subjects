@@ -18,6 +18,12 @@
 #define M 10
 #define NUM_PLAYERS 2
 
+#define ROCKS 2
+#define PAPERS 5
+#define SCISSORS 1
+#define BOMBS 2
+#define JOKERS 2
+#define FLAGS 1
 
 /**
  * represent a game, contains data:
@@ -105,13 +111,7 @@ public:
 	friend std::ostream& operator<<(std::ostream& out, RPSGame &game);
 
 	// getters and setters
-<<<<<<< HEAD
-	RPS_Message setNewJoker(std::unique_ptr<JokerChange> jokerChange){this->board.
-				getPiece(jokerChange->getJokerChangePosition()).
-				setJokerRepresentation(jokerChange->getJokerNewRep());
-	return Success;}
-=======
->>>>>>> 322324a52b2ab5b24870cd49a2ee13a58d863fd7
+
 	int getWinner() { return this->winner; }
 	void setWinner(int winner) { this->winner = winner; }
 	RPSBoard getBoard() { return this->board; }

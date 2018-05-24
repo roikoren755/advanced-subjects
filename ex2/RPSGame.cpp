@@ -10,12 +10,7 @@
 #include "RPSFightInfo.h"
 #include <vector>
 
-#define ROCKS 2
-#define PAPERS 5
-#define SCISSORS 1
-#define BOMBS 2
-#define JOKERS 2
-#define FLAGS 1
+
 
 #define ALL_FLAGS_CAPTURED (-2)
 #define ALL_MOVING_PIECES_CAPTURED (-3)

@@ -6,7 +6,7 @@
 
 #include <string.h>
 #include <fstream>
-#include <memory>
+//#include <memory>
 #include "RPSAutomaticPlayerAlgorithm.h"
 #include "RPSFilePlayerAlgorithm.h"
 #include "MainAux.h"
@@ -29,27 +29,32 @@
 
 #define BOTH_PLAYERS_LOST 3
 
-int MainAux::RPSMakePlayerAlgorithm( char arg[],std::vector<unique_ptr<PlayerAlgorithm>>& algorithms){
+int MainAux::RPSMakePlayerAlgorithm(int argc, char arg[],std::vector<unique_ptr<PlayerAlgorithm>>& algorithms){
+    if(argc<2){
+        std::cout<<"ERROR: bad command line argument"<<std::endl;
+        return !SUCCESS;
+    }
+
     char* players[NUM_PLAYERS];
     players[PLAYER(1)] = strtok(arg,TOKENS);
     players[PLAYER(2)] = strtok(NULL,TOKENS);
 
     for(int i = 0; i<NUM_PLAYERS; i++){
         if(strcpy(players[i],AUTO)) {
-            unique_ptr<PlayerAlgorithm> ptr = std::make_unique<RPSAutomaticPlayerAlgorithm>(new RPSAutomaticPlayerAlgorithm(FLAGS,));
+            unique_ptr<PlayerAlgorithm> ptr = std::make_unique<RPSAutomaticPlayerAlgorithm>( RPSAutomaticPlayerAlgorithm(FLAGS,BOMBS,JOKERS,ROCKS,PAPERS,SCISSORS));
             algorithms.push_back(std::move(ptr));
         }
         else if(strcpy(players[i],FILE)) {
-            unique_ptr<PlayerAlgorithm> ptr = std::make_unique<RPSFilePlayerAlgorithm>(new RPSFilePlayerAlgorithm(i+1,(i+1 == 1)?PLAYER1_POSITION_FILE:PLAYER2_POSITION_FILE,
-                        (i+1 == 1)?PLAYER1_MOVES_FILE:PLAYER2_MOVES_FILE));
+            unique_ptr<PlayerAlgorithm> ptr = std::make_unique<RPSFilePlayerAlgorithm>( RPSFilePlayerAlgorithm(i+1,(i+1 == 1)?PLAYER1_POSITION_FILE:PLAYER2_POSITION_FILE,(i+1 == 1)?PLAYER1_MOVES_FILE:PLAYER2_MOVES_FILE));
             algorithms.push_back(std::move(ptr));
         }
         else{
             std::cout<<"ERROR: bad command line argument"<<std::endl;
             return i+1;
         }
-        return SUCCESS;
     }
+    return SUCCESS;
+
 }
 
 int MainAux::RPSPerformPositioning(RPSGame game ,std::vector<unique_ptr<PlayerAlgorithm>>& algorithms) {
@@ -151,29 +156,20 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
             // Move move = *movePtr;
             int toX = movePtr->getTo().getX();
             int toY = movePtr->getTo().getY();
-<<<<<<< HEAD
             message = game.setMove(std::move(movePtr), i + 1);
             if (message == Success || message == Battle_Required) {
-                if (game.setNewJoker(std::move(algorithms[i]->getJokerChange())) != Success) {
+                if (game.changeJokerRepresentation(std::move(algorithms[i]->getJokerChange())) != Success) {
                     game.setWinner((i + 1 == 1) ? 2 : 1);
                     return ILLEGAL_MOVE;
-=======
-            message = game.setMove(std::move(movePtr),i+1);
-            if(message == Success || message == Battle_Required){
-                game.changeJokerRepresentation(algorithms[i]->getJokerChange());
-                algorithms[1-i]->notifyOnOpponentMove(*movePtr);
-                if(message == Battle_Required) {
-                    FightInfo info = game.performBattle(toX, toY);
-                    algorithms[1-1]->notifyFightResult(info);
-                    algorithms[2-1]->notifyFightResult(info);
->>>>>>> 322324a52b2ab5b24870cd49a2ee13a58d863fd7
                 }
+
                 algorithms[1 - i]->notifyOnOpponentMove(*movePtr);
                 if (message == Battle_Required) {
-                    unique_ptr<FightInfo> infoPtr = std::make_unique<FightInfo>(game.performBattle(toX, toY));
-                    algorithms[1 - 1]->notifyFightResult(*infoPtr);
-                    algorithms[2 - 1]->notifyFightResult(*infoPtr);
+                    RPSFightInfo info = game.performBattle(toX, toY);
+                    algorithms[1 - 1]->notifyFightResult(info);
+                    algorithms[2 - 1]->notifyFightResult(info);
                 }
+
                 if (message == Success) {
                     moveCounter++;
                     if (moveCounter >= MAX_NO_FIGHT_MOVES_ALLOWED) {
