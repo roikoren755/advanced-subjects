@@ -112,7 +112,7 @@ RPS_Message RPSGame::setMove(const Move& move, int player) {
 		return Illegal_Move;
 	}
 
-	RPSPiece piece = this->board.getPiece(fromY,fromX);
+	RPSPiece piece = this->board.getPiece(fromX,fromY);
 
 	if (piece.getPieceType() == NONE) {
 		return No_Piece_In_Position;
