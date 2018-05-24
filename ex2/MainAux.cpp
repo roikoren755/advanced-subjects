@@ -4,7 +4,7 @@
 
 
 
-#include <string.h>
+#include <string>
 #include <fstream>
 //#include <memory>
 #include "RPSAutomaticPlayerAlgorithm.h"
@@ -21,8 +21,8 @@
 #define PLAYER1_MOVES_FILE "player1.rps_moves"
 #define PLAYER2_MOVES_FILE "player2.rps_moves"
 #define MAX_NO_FIGHT_MOVES_ALLOWED 100
-#define ALL_FLAGS_CAPTURED -2
-#define ALL_MOVING_PIECES_CAPTURED -3
+#define ALL_FLAGS_CAPTURED (-2)
+#define ALL_MOVING_PIECES_CAPTURED (-3)
 #define LEGAL_TIE 0
 #define ILLEGAL_MOVE 1
 
@@ -36,17 +36,15 @@ int MainAux::RPSMakePlayerAlgorithm(int argc, char arg[],std::vector<unique_ptr<
     }
 
     char* players[NUM_PLAYERS];
-    players[PLAYER(1)] = strtok(arg,TOKENS);
-    players[PLAYER(2)] = strtok(NULL,TOKENS);
+    players[PLAYER(1)] = strtok(arg, TOKENS);
+    players[PLAYER(2)] = strtok(nullptr, TOKENS);
 
     for(int i = 0; i<NUM_PLAYERS; i++){
         if(strcpy(players[i],AUTO)) {
-            unique_ptr<PlayerAlgorithm> ptr = std::make_unique<RPSAutomaticPlayerAlgorithm>( RPSAutomaticPlayerAlgorithm(FLAGS,BOMBS,JOKERS,ROCKS,PAPERS,SCISSORS));
-            algorithms.push_back(std::move(ptr));
+            algorithms.emplace_back(std::make_unique<RPSAutomaticPlayerAlgorithm>());
         }
         else if(strcpy(players[i],FILE)) {
-            unique_ptr<PlayerAlgorithm> ptr = std::make_unique<RPSFilePlayerAlgorithm>( RPSFilePlayerAlgorithm(i+1,(i+1 == 1)?PLAYER1_POSITION_FILE:PLAYER2_POSITION_FILE,(i+1 == 1)?PLAYER1_MOVES_FILE:PLAYER2_MOVES_FILE));
-            algorithms.push_back(std::move(ptr));
+            algorithms.emplace_back(std::make_unique<RPSFilePlayerAlgorithm>(i + 1, i ? PLAYER2_POSITION_FILE : PLAYER1_POSITION_FILE, i ? PLAYER2_MOVES_FILE : PLAYER1_MOVES_FILE));
         }
         else{
             std::cout<<"ERROR: bad command line argument"<<std::endl;
@@ -150,7 +148,7 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
     RPS_Message message;
     int moveCounter = 0;
 
-    while (1) {
+    while (true) {
         for (int i = 0; i < NUM_PLAYERS; i++) {
             auto movePtr = algorithms[i]->getMove();
             // Move move = *movePtr;
@@ -158,12 +156,12 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
             int toY = movePtr->getTo().getY();
             message = game.setMove(std::move(movePtr), i + 1);
             if (message == Success || message == Battle_Required) {
-                if (game.changeJokerRepresentation(std::move(algorithms[i]->getJokerChange())) != Success) {
+                if (game.changeJokerRepresentation(algorithms[i]->getJokerChange()) != Success) {
                     game.setWinner((i + 1 == 1) ? 2 : 1);
                     return ILLEGAL_MOVE;
                 }
 
-                algorithms[1 - i]->notifyOnOpponentMove(*movePtr);
+                algorithms[1 - i]->notifyOnOpponentMove(*movePtr); // TODO - FIX ME!
                 if (message == Battle_Required) {
                     RPSFightInfo info = game.performBattle(toX, toY);
                     algorithms[1 - 1]->notifyFightResult(info);
