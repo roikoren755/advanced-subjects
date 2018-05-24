@@ -42,7 +42,7 @@ bool RPSGame::validateNumberOfFlags(int player) {
 	return (player == 1 ? this->player1Flags : this->player2Flags) == FLAGS;
 }
 
-RPS_Message RPSGame::setPosition(PiecePosition &position, int player) {
+RPS_Message RPSGame::setPosition(const PiecePosition &position, int player) {
 	int toX = position.getPosition().getX();
 	int toY = position.getPosition().getY();
 
@@ -93,12 +93,12 @@ RPS_Message RPSGame::setPosition(PiecePosition &position, int player) {
 	return Success;
 }
 
-RPS_Message RPSGame::setMove(std::unique_ptr<Move> move, int player) {
-	int fromX = (*move).getFrom().getX();
-	int fromY = (*move).getFrom().getY();
+RPS_Message RPSGame::setMove(const Move& move, int player) {
+	int fromX = move.getFrom().getX();
+	int fromY = move.getFrom().getY();
 
-	int toX = (*move).getTo().getX();
-	int toY = (*move).getTo().getY();
+	int toX = move.getTo().getX();
+	int toY = move.getTo().getY();
 
 	if (toX < 1 || toX > M || toY < 1 || toY > N) {
 		return Destination_Out_Of_Range;

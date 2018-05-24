@@ -87,10 +87,10 @@ public:
 	// sets a position in the game, given a command and the player.
 	// returns An appropriate message with the information -
 	// whether there was an error and if so what it is
-	RPS_Message setPosition(PiecePosition& position, int player);
+	RPS_Message setPosition(const PiecePosition& position, int player);
 
 	// sets a Move in the game, given a command and the player
-	RPS_Message setMove(unique_ptr<Move> move, int player);
+	RPS_Message setMove(const Move& move, int player);
 
 	// performs a battle between 2 pieces and sets the winner(if there is) at his spot
 	RPSFightInfo performBattle(int x, int y);
