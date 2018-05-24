@@ -66,6 +66,7 @@ int MainAux::RPSPerformPositioning(RPSGame& game ,std::vector<unique_ptr<PlayerA
         algorithms[i]->getInitialPositions(i + 1, playerPos);
         for (auto& ptr : playerPos) {
             if(ptr == nullptr){
+                ret += (i + 1);
                 valid = 0;
                 break;
             }
