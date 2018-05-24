@@ -65,6 +65,10 @@ int MainAux::RPSPerformPositioning(RPSGame& game ,std::vector<unique_ptr<PlayerA
     for (int i = 0; i < NUM_PLAYERS; i++) {
         algorithms[i]->getInitialPositions(i + 1, playerPos);
         for (auto& ptr : playerPos) {
+            if(ptr == nullptr){
+                valid = 0;
+                break;
+            }
             message = game.setPosition(*ptr, i + 1);
             switch (message) {
                 case Destination_Out_Of_Range:
@@ -163,6 +167,10 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
     while (true) {
         for (int i = 0; i < NUM_PLAYERS; i++) {
             auto movePtr = algorithms[i]->getMove();
+            if(movePtr == nullptr){
+                game.setWinner((i + 1 == 1) ? 2 : 1);
+                return ILLEGAL_MOVE;
+            }
             RPSMove move = *movePtr;
             int toX = movePtr->getTo().getX();
             int toY = movePtr->getTo().getY();
