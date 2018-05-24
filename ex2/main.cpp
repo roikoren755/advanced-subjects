@@ -20,7 +20,6 @@ int main(int argc, char* argv[]) {
     }
 
     std::vector<unique_ptr<FightInfo>> fights;
-    game.finishPositioningStage(fights);
 
     int reason = game.finishPositioningStage(fights);
     if (reason) { // game is done

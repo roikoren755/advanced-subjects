@@ -191,7 +191,7 @@ void RPSFilePlayerAlgorithm::loadInitialPositionsFromFile(const std::string& ini
 	std::string line;
 	if (initialPositionsFileStream.is_open()) {
 		while (std::getline(initialPositionsFileStream, line)) {
-			this->initialPositions.push_back(std::make_unique<RPSPiecePosition>(getRPSPiecePositionFromLine(line)));
+			this->initialPositions.emplace_back(std::make_unique<RPSPiecePosition>(getRPSPiecePositionFromLine(line)));
 		}
 	}
 
