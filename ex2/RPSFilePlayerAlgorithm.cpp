@@ -193,9 +193,13 @@ void RPSFilePlayerAlgorithm::loadInitialPositionsFromFile(const std::string& ini
 		while (std::getline(initialPositionsFileStream, line)) {
 			this->initialPositions.emplace_back(std::make_unique<RPSPiecePosition>(getRPSPiecePositionFromLine(line)));
 		}
+
+		initialPositionsFileStream.close();
 	}
 
-	initialPositionsFileStream.close();
+	else {
+		this->initialPositions.emplace_back(nullptr);
+	}
 }
 
 void RPSFilePlayerAlgorithm::loadMovesAndJokerChangesFromFile(const std::string& movesAndJokerChangesFile) {
@@ -207,13 +211,16 @@ void RPSFilePlayerAlgorithm::loadMovesAndJokerChangesFromFile(const std::string&
 		while (std::getline(movesAndJokerChangesFileStream, line)) {
 			this->movesAndJokerChanges.emplace_back(getRPSMoveAndJokerChangePairFromLine(line));
 		}
+
+		movesAndJokerChangesFileStream.close();
 	}
 
-	movesAndJokerChangesFileStream.close();
+	else {
+		this->movesAndJokerChanges.emplace_back(std::pair<std::unique_ptr<RPSMove>, std::unique_ptr<RPSJokerChange>>(nullptr, nullptr));
+	}
 }
 
 void RPSFilePlayerAlgorithm::getInitialPositions(int player, std::vector<std::unique_ptr<PiecePosition>>& vectorToFill) {
-	// TODO - move file loading here?
 	if (player != this->player) {
 		return;
 	}
@@ -225,12 +232,15 @@ void RPSFilePlayerAlgorithm::getInitialPositions(int player, std::vector<std::un
 }
 
 std::unique_ptr<Move> RPSFilePlayerAlgorithm::getMove() {
-	this->movesAndJokerChanges.erase(this->movesAndJokerChanges.begin());
+	if (this->turn) {
+		this->movesAndJokerChanges.erase(this->movesAndJokerChanges.begin());
+	}
+	this->turn++;
 	if (this->movesAndJokerChanges.empty()) {
 		return nullptr;
 	}
 
-	return std::move(this->movesAndJokerChanges.at(this->turn).first);
+	return std::move(this->movesAndJokerChanges.front().first);
 }
 
 std::unique_ptr<JokerChange> RPSFilePlayerAlgorithm::getJokerChange() {
@@ -238,7 +248,7 @@ std::unique_ptr<JokerChange> RPSFilePlayerAlgorithm::getJokerChange() {
 		return nullptr;
 	}
 
-	return std::move(this->movesAndJokerChanges.at(this->turn++).second);
+	return std::move(this->movesAndJokerChanges.front().second);
 }
 
 void RPSFilePlayerAlgorithm::notifyFightResult(const FightInfo &fightInfo) {
