@@ -1,0 +1,18 @@
+.so file - shared object, special compiling to this, dynamically load-able. Maybe we'll go over this with Netanel
+		   may contain calls to functions that are not implemented in its source file.
+		   file name RSPPlayer_<ID>.so (insert id, notice rSp). class name identical, publicly inherits
+		   from PlayerAlgorithm.
+automatic player - .so file, knows 1 thing (prototype) about manager - registration
+game manager - regular executable, loads .so files, goes over a container of PlayerAlgorithms, and collects results.
+multithreading - shouldn't worry about one algorithm running several games in parallel, because manager should create
+				 an instance of the algorithm per game. means we can't have static variables in the algorithm
+optional parameters - number of threads to run the competition on, path to load .so files from. can add one for how
+					  many games to play, defaulted to 30, for easier testing
+loading .so - normally you call a function inside the file once you load it, here it will be different. what to do if
+			  an algorithm doesn't register itself?
+algorithm id - id of one of the student pair
+registering algorithm - call REGISTER_ALGORITHM(<ID>)
+smartness of algorithm - don't be stupid, don't have to improve upon ex2 (if that wasn't stupid). remember board state,
+						 look for flag...
+bonus - can get 100 even if your algorithm comes in last. first places get bonus, that will count towards final grade
+		even if ex got >100
