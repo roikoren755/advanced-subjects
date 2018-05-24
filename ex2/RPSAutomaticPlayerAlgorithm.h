@@ -8,6 +8,13 @@
 #include "PlayerAlgorithm.h"
 #include "RPSBoard.h"
 
+#define ROCKS 2
+#define PAPERS 5
+#define SCISSORS 1
+#define BOMBS 2
+#define JOKERS 2
+#define FLAGS 1
+
 class RPSAutomaticPlayerAlgorithm: public PlayerAlgorithm {
 	RPSBoard board;
 	int player = 0;
