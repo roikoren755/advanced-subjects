@@ -1,4 +1,4 @@
-COMP = g++-5.3.0
+COMP = g++#-5.3.0
 #put all your object files here
 OBJS = main.o RPSBoard.o RPSAutomaticPlayerAlgorithm.o RPSFilePlayerAlgorithm.o RPSGame.o RPSPiece.o #objects should be placed here!
 #The executable filename DON'T CHANGE
@@ -30,9 +30,9 @@ RPSPiecePosition.o: RPSPiecePosition.h PiecePosition.h Point.h RPSPoint.h
 	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
 RPSPoint.o: RPSPoint.h Point.h
 	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
-MainAux.o: MainAux.cpp PlayerAlgorithm.h Point.h PiecePosition.h Board.h FightInfo.h Move.h JokerChange.h MainAux.h RPSGame.h RPSPiece.h RPSBoard.h RPSPiecePosition.h RPSPoint.h RPSFightInfo.h
+MainAux.o: MainAux.cpp RPSAutomaticPlayerAlgorithm.h PlayerAlgorithm.h Point.h PiecePosition.h Board.h FightInfo.h Move.h JokerChange.h RPSBoard.h RPSPiece.h RPSFilePlayerAlgorithm.h RPSPiecePosition.h RPSPoint.h RPSMove.h RPSJokerChange.h RPSFightInfo.h MainAux.h RPSGame.h
 	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
-main.o: main.cpp #put dependencies here!
+main.o: main.cpp MainAux.h RPSGame.h RPSPiece.h PlayerAlgorithm.h Point.h PiecePosition.h Board.h FightInfo.h Move.h JokerChange.h RPSBoard.h RPSPiecePosition.h RPSPoint.h RPSFightInfo.h #put dependencies here!
 	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
 clean:
 	rm -f $(OBJS) $(EXEC) *Test *.o
