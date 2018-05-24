@@ -151,11 +151,22 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
             // Move move = *movePtr;
             int toX = movePtr->getTo().getX();
             int toY = movePtr->getTo().getY();
+<<<<<<< HEAD
             message = game.setMove(std::move(movePtr), i + 1);
             if (message == Success || message == Battle_Required) {
                 if (game.setNewJoker(std::move(algorithms[i]->getJokerChange())) != Success) {
                     game.setWinner((i + 1 == 1) ? 2 : 1);
                     return ILLEGAL_MOVE;
+=======
+            message = game.setMove(std::move(movePtr),i+1);
+            if(message == Success || message == Battle_Required){
+                game.changeJokerRepresentation(algorithms[i]->getJokerChange());
+                algorithms[1-i]->notifyOnOpponentMove(*movePtr);
+                if(message == Battle_Required) {
+                    FightInfo info = game.performBattle(toX, toY);
+                    algorithms[1-1]->notifyFightResult(info);
+                    algorithms[2-1]->notifyFightResult(info);
+>>>>>>> 322324a52b2ab5b24870cd49a2ee13a58d863fd7
                 }
                 algorithms[1 - i]->notifyOnOpponentMove(*movePtr);
                 if (message == Battle_Required) {
