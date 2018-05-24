@@ -172,7 +172,7 @@ std::pair<std::unique_ptr<RPSMove>, std::unique_ptr<RPSJokerChange>> getRPSMoveA
 
 	return std::make_pair(std::make_unique<RPSMove>(fromX, fromY, toX, toY),
 	        jokerInvolved ? std::make_unique<RPSJokerChange>(jokerX, jokerY, jokerRepresentation) : nullptr);
-};
+}
 
 RPSFilePlayerAlgorithm::RPSFilePlayerAlgorithm(int player, const std::string& initialPositionsFile, const std::string& movesFile) {
 	if (player != 1 && player != 2) {

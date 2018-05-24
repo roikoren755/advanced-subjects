@@ -4,7 +4,6 @@
 
 
 
-#include <string>
 #include <fstream>
 //#include <memory>
 #include "RPSAutomaticPlayerAlgorithm.h"

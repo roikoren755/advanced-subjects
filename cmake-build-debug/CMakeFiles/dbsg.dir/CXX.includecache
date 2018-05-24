@@ -13,8 +13,6 @@ C:/Users/user/CLionProjects/advanced-subjects/ex2/FightInfo.h
 C:/Users/user/CLionProjects/advanced-subjects/ex2/JokerChange.h
 
 C:/Users/user/CLionProjects/advanced-subjects/ex2/MainAux.cpp
-string.h
--
 fstream
 -
 RPSAutomaticPlayerAlgorithm.h
@@ -99,6 +97,8 @@ fstream
 -
 
 C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSFilePlayerAlgorithm.h
+string.h
+-
 PlayerAlgorithm.h
 C:/Users/user/CLionProjects/advanced-subjects/ex2/PlayerAlgorithm.h
 RPSPiecePosition.h
