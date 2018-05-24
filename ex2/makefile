@@ -1,4 +1,4 @@
-COMP = g++#-5.3.0
+COMP = g++-5.3.0
 #put all your object files here
 OBJS = main.o MainAux.o RPSBoard.o RPSAutomaticPlayerAlgorithm.o RPSFilePlayerAlgorithm.o RPSGame.o RPSPiece.o #objects should be placed here!
 #The executable filename DON'T CHANGE

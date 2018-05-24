@@ -13,7 +13,6 @@ int main(int argc, char* argv[]) {
     if(feedback!=SUCCESS){
         return 0;
     }
-
     RPSGame game = RPSGame();
     feedback = MainAux::RPSPerformPositioning(game,algorithms);
     if(feedback>0){
@@ -25,7 +24,7 @@ int main(int argc, char* argv[]) {
 
     int reason = game.finishPositioningStage(fights);
     if (reason) { // game is done
-        //std::cout << "TEST" << std::endl;
+        std::cout << "TEST" << std::endl;
         return MainAux::RPSPrintGameResult(game, reason);
     }
 
@@ -33,6 +32,7 @@ int main(int argc, char* argv[]) {
     algorithms[PLAYER(2)]->notifyOnInitialBoard(game.getBoard(),fights);
 
     reason = MainAux::RPSPlayTwoPlayersMoves(game, algorithms);
+    std::cout<<"here"<<std::endl;
 
     return MainAux::RPSPrintGameResult(game, reason);
 }
