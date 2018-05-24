@@ -45,7 +45,6 @@ RPSPiecePosition getRPSPiecePositionFromLine(const std::string& line) {
 				piece = argument[0];
 				break;
 			default:
-				piece = INVALID_PIECE;
 				break;
 		}
 

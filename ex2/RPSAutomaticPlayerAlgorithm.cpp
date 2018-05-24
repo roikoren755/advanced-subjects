@@ -113,15 +113,23 @@ unique_ptr<Move> RPSAutomaticPlayerAlgorithm::getMove() {
 			}
 			if (this->board.getPlayer(RPSPoint(i, j)) == player) {
 				if (i - 1 > 0 && this->board.getPlayer(RPSPoint(i - 1, j)) == opponent) {
+					this->board.setPiece(player, this->board.getPiece(player, 1, j), i - 1, j);
+					this->board.setPiece(player, RPSPiece(), i, j);
 					return std::make_unique<RPSMove>(RPSPoint(i, j), RPSPoint(i - 1, j));
 				}
 				if (i + 1 < M && this->board.getPlayer(RPSPoint(i + 1, j)) == opponent) {
+					this->board.setPiece(player, this->board.getPiece(player, 1, j), i + 1, j);
+					this->board.setPiece(player, RPSPiece(), i, j);
 					return std::make_unique<RPSMove>(RPSPoint(i, j), RPSPoint(i + 1, j));
 				}
 				if (j - 1 > 0 && this->board.getPlayer(RPSPoint(i, j - 1)) == opponent) {
+					this->board.setPiece(player, this->board.getPiece(player, 1, j), i, j - 1);
+					this->board.setPiece(player, RPSPiece(), i, j);
 					return std::make_unique<RPSMove>(RPSPoint(i, j), RPSPoint(i, j - 1));
 				}
 				if (j + 1 < N && this->board.getPlayer(RPSPoint(i, j + 1)) == opponent) {
+					this->board.setPiece(player, this->board.getPiece(player, 1, j), i, j + 1);
+					this->board.setPiece(player, RPSPiece(), i, j);
 					return std::make_unique<RPSMove>(RPSPoint(i, j), RPSPoint(i, j + 1));
 				}
 			}
@@ -137,15 +145,23 @@ unique_ptr<Move> RPSAutomaticPlayerAlgorithm::getMove() {
 				continue;
 			}
 			if (i - 1 > 0 && this->board.getPlayer(RPSPoint(i - 1, j)) != player) {
+				this->board.setPiece(player, this->board.getPiece(player, 1, j), i - 1, j);
+				this->board.setPiece(player, RPSPiece(), i, j);
 				return std::make_unique<RPSMove>(RPSPoint(i, j), RPSPoint(i - 1, j));
 			}
 			if (i + 1 < M && this->board.getPlayer(RPSPoint(i + 1, j)) != player) {
+				this->board.setPiece(player, this->board.getPiece(player, 1, j), i + 1, j);
+				this->board.setPiece(player, RPSPiece(), i, j);
 				return std::make_unique<RPSMove>(RPSPoint(i, j), RPSPoint(i + 1, j));
 			}
 			if (j - 1 > 0 && this->board.getPlayer(RPSPoint(i, j - 1)) != player) {
+				this->board.setPiece(player, this->board.getPiece(player, 1, j), i, j - 1);
+				this->board.setPiece(player, RPSPiece(), i, j);
 				return std::make_unique<RPSMove>(RPSPoint(i, j), RPSPoint(i, j - 1));
 			}
 			if (j + 1 < N && this->board.getPlayer(RPSPoint(i, j + 1)) != player) {
+				this->board.setPiece(player, this->board.getPiece(player, 1, j), i, j + 1);
+				this->board.setPiece(player, RPSPiece(), i, j);
 				return std::make_unique<RPSMove>(RPSPoint(i, j), RPSPoint(i, j + 1));
 			}
 		}
@@ -163,15 +179,19 @@ unique_ptr<JokerChange> RPSAutomaticPlayerAlgorithm::getJokerChange() {
 				continue;
 			}
 			if (this->board.getPlayer(RPSPoint(i - 1, j)) == opponent) {
+				this->board.getPiece(player, i, j).setJokerRepresentation('B');
 				return std::make_unique<RPSJokerChange>(RPSPoint(i, j), 'B');
 			}
 			if (this->board.getPlayer(RPSPoint(i + 1, j)) == opponent) {
+				this->board.getPiece(player, i, j).setJokerRepresentation('B');
 				return std::make_unique<RPSJokerChange>(RPSPoint(i, j), 'B');
 			}
 			if (this->board.getPlayer(RPSPoint(i, j - 1)) == opponent) {
+				this->board.getPiece(player, i, j).setJokerRepresentation('B');
 				return std::make_unique<RPSJokerChange>(RPSPoint(i, j), 'B');
 			}
 			if (this->board.getPlayer(RPSPoint(i, j + 1)) == opponent) {
+				this->board.getPiece(player, i, j).setJokerRepresentation('B');
 				return std::make_unique<RPSJokerChange>(RPSPoint(i, j), 'B');
 			}
 		}
@@ -201,6 +221,7 @@ unique_ptr<JokerChange> RPSAutomaticPlayerAlgorithm::getJokerChange() {
 					return nullptr;
 			}
 
+			this->board.getPiece(player, i, j).setJokerRepresentation(newRepresentation);
 			return std::make_unique<RPSJokerChange>(i, j, newRepresentation);
 		}
 	}

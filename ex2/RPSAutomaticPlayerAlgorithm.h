@@ -7,6 +7,7 @@
 
 #include "PlayerAlgorithm.h"
 #include "RPSBoard.h"
+#include "RPSPoint.h"
 
 class RPSAutomaticPlayerAlgorithm: public PlayerAlgorithm {
 	RPSBoard board;
