@@ -163,17 +163,17 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
     while (true) {
         for (int i = 0; i < NUM_PLAYERS; i++) {
             auto movePtr = algorithms[i]->getMove();
-            // Move move = *movePtr;
+            RPSMove move = *movePtr;
             int toX = movePtr->getTo().getX();
             int toY = movePtr->getTo().getY();
-            message = game.setMove(*movePtr, i + 1);
+            message = game.setMove(move, i + 1);
             if (message == Success || message == Battle_Required) {
                 if (game.changeJokerRepresentation(algorithms[i]->getJokerChange()) != Success) {
                     game.setWinner((i + 1 == 1) ? 2 : 1);
                     return ILLEGAL_MOVE;
                 }
 
-                algorithms[1 - i]->notifyOnOpponentMove(*movePtr);
+                algorithms[1 - i]->notifyOnOpponentMove(move);
                 if (message == Battle_Required) {
                     RPSFightInfo info = game.performBattle(toX, toY);
                     algorithms[1 - 1]->notifyFightResult(info);
@@ -259,7 +259,6 @@ int MainAux::RPSPrintGameResult(RPSGame& game, int reason) {
     fout << game;
 
     fout.close();
-    std::cout<<"here1"<<std::endl;
 
     return 1;
 }
