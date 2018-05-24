@@ -219,11 +219,13 @@ void RPSFilePlayerAlgorithm::getInitialPositions(int player, std::vector<std::un
 	}
 	auto numberOfPieces = (int) this->initialPositions.size();
 	for (int i = 0; i < numberOfPieces; i++) {
-		vectorToFill.push_back(std::move(this->initialPositions.front()));
+		vectorToFill.emplace_back(std::move(this->initialPositions.front()));
+		this->initialPositions.erase(this->initialPositions.begin());
 	}
 }
 
 std::unique_ptr<Move> RPSFilePlayerAlgorithm::getMove() {
+	this->movesAndJokerChanges.erase(this->movesAndJokerChanges.begin());
 	if (this->movesAndJokerChanges.empty()) {
 		return nullptr;
 	}
