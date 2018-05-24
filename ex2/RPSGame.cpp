@@ -16,18 +16,6 @@
 #define ALL_MOVING_PIECES_CAPTURED (-3)
 #define LEGAL_TIE 0
 
-RPS_Message RPSGame::setInitialPositions(std::vector<std::unique_ptr<PiecePosition>>& positions, int player) {
-	RPS_Message message;
-	for (auto itr = positions.begin(); itr != positions.end(); itr++) {
-		message = this->setPosition(**itr, player);
-		if (message != Success) {
-			return message;
-		}
-	}
-
-	return Success;
-}
-
 bool RPSGame::validateNumbersOfPieces(int player) {
 	if (player == 1 && this->player1Rocks <= ROCKS && this->player1Papers <= PAPERS && this->player1Scissors <= SCISSORS
 			&& this->player1Bombs <= BOMBS && this->player1Jokers <= JOKERS && this->player1Flags <= FLAGS) {
@@ -280,7 +268,7 @@ RPS_Message RPSGame::changeJokerRepresentation(std::unique_ptr<JokerChange> joke
 		case 'S':
 			break;
 		default:
-			return Bad_Joker_Representation;
+			return Invalid_Joker_Assigning;
 	}
 
 	if (this->board.getPiece(jokerChange->getJokerChangePosition()).getPieceType() != 'J') {

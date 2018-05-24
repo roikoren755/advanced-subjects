@@ -6,7 +6,7 @@
 #define ADVANCED_SUBJECTS_RPSJOKERCHANGE_H
 
 #include "JokerChange.h"
-#include "Point.h"
+#include "RPSPoint.h"
 
 class RPSJokerChange: public JokerChange {
 	const RPSPoint position;

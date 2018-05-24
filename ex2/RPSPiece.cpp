@@ -6,10 +6,9 @@
  */
 #include "RPSPiece.h"
 
-//easy conversion
 #define CAPITAL_TO_LOW(c) ((c) - 'A' + 'a')
 
-RPSPiece& RPSPiece::operator=(const RPSPiece& otherPiece) {
+RPSPiece& RPSPiece::operator=(const RPSPiece& otherPiece) { // Copy EVERYTHING
     if (&otherPiece == this) {
         return *this;
     }

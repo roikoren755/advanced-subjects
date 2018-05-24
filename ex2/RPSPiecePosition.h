@@ -5,9 +5,7 @@
 #ifndef ADVANCED_SUBJECTS_RPSPIECEPOSITION_H
 #define ADVANCED_SUBJECTS_RPSPIECEPOSITION_H
 
-#include <string>
 #include "PiecePosition.h"
-#include "Point.h"
 #include "RPSPoint.h"
 
 #define INVALID_PIECE '#'

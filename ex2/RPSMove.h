@@ -6,7 +6,7 @@
 #define ADVANCED_SUBJECTS_RPSMOVE_H
 
 #include "Move.h"
-#include "Point.h"
+#include "RPSPoint.h"
 
 class RPSMove: public Move {
 	const RPSPoint from;

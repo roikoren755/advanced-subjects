@@ -175,6 +175,13 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
             auto movePtr = algorithms[i]->getMove();
             if(movePtr == nullptr){
                 i == 1 ? (player1Finished = true) : (player2Finished = true);
+
+                moveCounter++;
+                if (moveCounter >= MAX_NO_FIGHT_MOVES_ALLOWED) {
+                    game.setWinner(0);
+                    return LEGAL_TIE;
+                }
+
                 break;
             }
             RPSMove move = *movePtr;

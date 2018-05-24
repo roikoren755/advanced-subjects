@@ -33,7 +33,7 @@ RPSPiecePosition getRPSPiecePositionFromLine(const std::string& line) {
 	}
 
 	char* argument = strtok(buffer, DELIMITERS);
-	if (argument && argument[0] > 'A' && argument[0] < 'Z' && !argument[1]) {
+	if (argument && argument[0] > 'A' && argument[0] < 'Z' && !argument[1]) { // Check formatting
 		switch (argument[0]) {
 			case 'J':
 				jokerInvolved = true;
@@ -106,7 +106,7 @@ std::pair<std::unique_ptr<RPSMove>, std::unique_ptr<RPSJokerChange>> getRPSMoveA
 		return std::make_pair(nullptr, nullptr);
 	}
 
-	if (argument[0] > '0' && argument[0] <= '9') {
+	if (argument[0] > '0' && argument[0] <= '9') { // Formatting
 		if ((fromX = getPositiveInt(argument)) < 1) {
 			return std::make_pair(std::make_unique<RPSMove>(fromX, fromY, toX, toY), nullptr);
 		}
@@ -128,7 +128,7 @@ std::pair<std::unique_ptr<RPSMove>, std::unique_ptr<RPSJokerChange>> getRPSMoveA
 
 		argument = strtok(nullptr, DELIMITERS);
 		if (argument) {
-			if (!strcmp(argument, "J:")) {
+			if (!strcmp(argument, "J:")) { // Joker?
 				jokerInvolved = true;
 				argument = strtok(nullptr, DELIMITERS);
 				if (!argument || (jokerX = getPositiveInt(argument)) < 1) {
@@ -232,7 +232,7 @@ void RPSFilePlayerAlgorithm::getInitialPositions(int player, std::vector<std::un
 }
 
 std::unique_ptr<Move> RPSFilePlayerAlgorithm::getMove() {
-	if (this->turn) {
+	if (this->turn) { // Means we read the first move and joker change, and can safely start removing.
 		this->movesAndJokerChanges.erase(this->movesAndJokerChanges.begin());
 	}
 	this->turn++;

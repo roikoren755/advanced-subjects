@@ -8,7 +8,7 @@
 #include "RPSGame.h"
 
 #define SUCCESS 0
-#define PLAYER(i) (i-1)
+#define PLAYER(i) (i - 1)
 
 
 class MainAux {
