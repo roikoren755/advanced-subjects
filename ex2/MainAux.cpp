@@ -40,10 +40,10 @@ int MainAux::RPSMakePlayerAlgorithm(int argc, char arg[],std::vector<unique_ptr<
 
 
     for(int i = 0; i<NUM_PLAYERS; i++){
-        if(strcpy(players[i],AUTO)) {
+        if(!strcmp(players[i],AUTO)) {
             algorithms.emplace_back(std::make_unique<RPSAutomaticPlayerAlgorithm>());
         }
-        else if(strcpy(players[i],FILE)) {
+        else if(!strcmp(players[i],FILE)) {
             algorithms.emplace_back(std::make_unique<RPSFilePlayerAlgorithm>(i + 1, i ? PLAYER2_POSITION_FILE : PLAYER1_POSITION_FILE, i ? PLAYER2_MOVES_FILE : PLAYER1_MOVES_FILE));
         }
         else{
@@ -56,7 +56,7 @@ int MainAux::RPSMakePlayerAlgorithm(int argc, char arg[],std::vector<unique_ptr<
 
 }
 
-int MainAux::RPSPerformPositioning(RPSGame game ,std::vector<unique_ptr<PlayerAlgorithm>>& algorithms) {
+int MainAux::RPSPerformPositioning(RPSGame& game ,std::vector<unique_ptr<PlayerAlgorithm>>& algorithms) {
     std::vector<unique_ptr<PiecePosition>> playerPos;
     RPS_Message message;
     int ret = 0;
@@ -119,7 +119,7 @@ int MainAux::RPSPerformPositioning(RPSGame game ,std::vector<unique_ptr<PlayerAl
 //==================================================================================
 
 
-int MainAux::RPSPrintGamePositionErrorResult(RPSGame game, int feedback){
+int MainAux::RPSPrintGamePositionErrorResult(RPSGame& game, int feedback){
 
     std::ofstream fout("rps.output");
     if (!fout.is_open()) {
