@@ -233,7 +233,7 @@ int MainAux::RPSPrintGameResult(RPSGame& game, int reason) {
                     fout << "All flags of the opponent are captured" << std::endl;
                 }
                 else {
-                    fout << "A tie - all flags are eaten by both players in the position files" << std::endl;
+                    fout << "A tie - all flags are eaten by both players in the position stage" << std::endl;
                 }
                 break;
             case ALL_MOVING_PIECES_CAPTURED:

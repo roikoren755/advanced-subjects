@@ -45,6 +45,7 @@ bool RPSGame::validateNumberOfFlags(int player) {
 RPS_Message RPSGame::setPosition(const PiecePosition &position, int player) {
 	int toX = position.getPosition().getX();
 	int toY = position.getPosition().getY();
+	std::cout<<toX<<"-"<<toY<<":"<<player<<std::endl;
 
 	// checks the range
 	if (toX < 1 || toX > M || toY < 1 || toY > N) {
@@ -328,6 +329,8 @@ int RPSGame::finishPositioningStage(std::vector<std::unique_ptr<FightInfo>>& vec
 
 	int ret;
 	if (!this->player1Flags) {
+		std::cout<<"here2"<<std::endl;
+
 		ret = ALL_FLAGS_CAPTURED;
 		if (!this->player2Flags) {
 			this->setWinner(0);
