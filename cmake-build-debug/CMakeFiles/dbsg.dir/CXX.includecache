@@ -13,10 +13,24 @@ C:/Users/user/CLionProjects/advanced-subjects/ex2/FightInfo.h
 C:/Users/user/CLionProjects/advanced-subjects/ex2/JokerChange.h
 
 C:/Users/user/CLionProjects/advanced-subjects/ex2/MainAux.cpp
+string.h
+-
+fstream
+-
+memory
+-
+RPSAutomaticPlayerAlgorithm.h
+C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSAutomaticPlayerAlgorithm.h
+RPSFilePlayerAlgorithm.h
+C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSFilePlayerAlgorithm.h
 MainAux.h
 C:/Users/user/CLionProjects/advanced-subjects/ex2/MainAux.h
+RPSGame.h
+C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSGame.h
 
 C:/Users/user/CLionProjects/advanced-subjects/ex2/MainAux.h
+RPSGame.h
+C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSGame.h
 
 C:/Users/user/CLionProjects/advanced-subjects/ex2/Move.h
 
@@ -59,6 +73,8 @@ PlayerAlgorithm.h
 C:/Users/user/CLionProjects/advanced-subjects/ex2/PlayerAlgorithm.h
 RPSBoard.h
 C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSBoard.h
+RPSGame.h
+C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSGame.h
 
 C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSBoard.cpp
 RPSBoard.h
@@ -161,6 +177,10 @@ C:/Users/user/CLionProjects/advanced-subjects/ex2/Point.h
 C:/Users/user/CLionProjects/advanced-subjects/ex2/main.cpp
 iostream
 -
-PlayerAlgorithm.h
+algorithm
 -
+MainAux.h
+C:/Users/user/CLionProjects/advanced-subjects/ex2/MainAux.h
+RPSGame.h
+C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSGame.h
 
