@@ -163,13 +163,18 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
     //int winner;
     RPS_Message message;
     int moveCounter = 0;
+    bool player1Finished = false;
+    bool player2Finished = false;
 
-    while (true) {
+    while (!player1Finished || !player2Finished) {
         for (int i = 0; i < NUM_PLAYERS; i++) {
+            if (i == 1 ? player1Finished : player2Finished) {
+                continue;
+            }
             auto movePtr = algorithms[i]->getMove();
             if(movePtr == nullptr){
-                game.setWinner((i + 1 == 1) ? 2 : 1);
-                return ILLEGAL_MOVE;
+                i == 1 ? (player1Finished = true) : (player2Finished = true);
+                break;
             }
             RPSMove move = *movePtr;
             int toX = movePtr->getTo().getX();
@@ -215,6 +220,8 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
 
         }
     }
+
+    return LEGAL_TIE;
 }
 
 
