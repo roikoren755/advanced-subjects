@@ -8,6 +8,22 @@
 #include "RPSMove.h"
 #include "RPSJokerChange.h"
 
+#define ROCKS 2
+#define PAPERS 5
+#define SCISSORS 1
+#define BOMBS 2
+#define JOKERS 2
+#define FLAGS 1
+
+RPSAutomaticPlayerAlgorithm::RPSAutomaticPlayerAlgorithm() {
+	this->opponentFlags = FLAGS;
+	this->opponentBombs = BOMBS;
+	this->opponentJokers = JOKERS;
+	this->opponentRocks = ROCKS;
+	this->opponentPapers = PAPERS;
+	this->opponentScissors = SCISSORS;
+}
+
 void RPSAutomaticPlayerAlgorithm::notifyOnInitialBoard(const Board& b, const std::vector<unique_ptr<FightInfo>>& fights) {
 	for (int i = 1; i <= M; i++) {
 		for (int j = 1; j <= N; j++) {

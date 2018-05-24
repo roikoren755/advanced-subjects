@@ -14,13 +14,6 @@
 #include "RPSPiecePosition.h"
 #include "RPSFightInfo.h"
 
-#define ROCKS 2
-#define PAPERS 5
-#define SCISSORS 1
-#define BOMBS 2
-#define JOKERS 2
-#define FLAGS 1
-
 #define N 10
 #define M 10
 #define NUM_PLAYERS 2
