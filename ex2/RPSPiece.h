@@ -4,7 +4,6 @@
 #include <iostream>
 #define NONE '0'
 #define NOT_JOKER '#'
-//enum PieceType {None, Rock, Paper, Scissors, Bomb, Flag, InvalidPiece};
 
 /**
  * represent a piece, contains data:
@@ -12,8 +11,6 @@
  * - Is the piece a joker
  * - The player the piece belong to
 */
-
-
 class RPSPiece {
 	char pieceType;
 	char jokerRepresentation;
@@ -28,7 +25,6 @@ public:
 																	player(player) {}
 	RPSPiece& operator=(const RPSPiece&);
 	friend std::ostream& operator<<(std::ostream &out, RPSPiece &piece);
-
 	//getters and setters:
 	char getPieceType() const { return this->pieceType; }
 	void setJokerRepresentation(char pieceType) { if (this->pieceType == 'J') this->jokerRepresentation = pieceType; }

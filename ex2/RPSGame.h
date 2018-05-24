@@ -38,7 +38,6 @@ enum RPS_Message {
 	Success,
 	Invalid_Argument,
 	Bad_Position,
-	Index_Out_Of_Range,
 	Illegal_Move,
 	No_Piece_In_Position,
 	Destination_Out_Of_Range,
@@ -52,7 +51,6 @@ enum RPS_Message {
 	No_Winner,
 	Too_Many_Pieces,
 	Battle_Required,
-	Bad_Joker_Representation,
 };
 
 class RPSGame {
@@ -81,8 +79,6 @@ public:
 
 	// checks if the number of flags for one player is as it should be when initialized
 	bool validateNumberOfFlags(int player);
-
-    RPS_Message setInitialPositions(std::vector<unique_ptr<PiecePosition>>& positions, int player);
 
 	// sets a position in the game, given a command and the player.
 	// returns An appropriate message with the information -
