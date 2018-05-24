@@ -9,9 +9,8 @@
 
 
 int main(int argc, char* argv[]) {
-    cout<<"here"<<
     std::vector<unique_ptr<PlayerAlgorithm>> algorithms;// =  std::vector<unique_ptr<PlayerAlgorithm>>(2);;
-    int feedback = MainAux::RPSMakePlayerAlgorithm(argc,argv[2], algorithms);
+    int feedback = MainAux::RPSMakePlayerAlgorithm(argc,argv[1], algorithms);
 
     if(feedback!=SUCCESS){
         return 0;
