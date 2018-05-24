@@ -169,7 +169,7 @@ std::unique_ptr<Move> RPSAutomaticPlayerAlgorithm::getMove() {
 				this->board.setPiece(this->player, RPSPiece(), i, j);
 				return std::make_unique<RPSMove>(RPSPoint(i, j), RPSPoint(i - 1, j));
 			}
-			if (i + 1 < M && this->board.getPlayer(RPSPoint(i + 1, j)) != this->player) {
+			if (i + 1 <= M && this->board.getPlayer(RPSPoint(i + 1, j)) != this->player) {
 				this->board.setPiece(this->player, this->board.getPiece(this->player, 1, j), i + 1, j);
 				this->board.setPiece(this->player, RPSPiece(), i, j);
 				return std::make_unique<RPSMove>(RPSPoint(i, j), RPSPoint(i + 1, j));
@@ -179,7 +179,7 @@ std::unique_ptr<Move> RPSAutomaticPlayerAlgorithm::getMove() {
 				this->board.setPiece(this->player, RPSPiece(), i, j);
 				return std::make_unique<RPSMove>(RPSPoint(i, j), RPSPoint(i, j - 1));
 			}
-			if (j + 1 < N && this->board.getPlayer(RPSPoint(i, j + 1)) != this->player) {
+			if (j + 1 <= N && this->board.getPlayer(RPSPoint(i, j + 1)) != this->player) {
 				this->board.setPiece(this->player, this->board.getPiece(this->player, 1, j), i, j + 1);
 				this->board.setPiece(this->player, RPSPiece(), i, j);
 				return std::make_unique<RPSMove>(RPSPoint(i, j), RPSPoint(i, j + 1));
