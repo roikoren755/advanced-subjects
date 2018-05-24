@@ -33,13 +33,11 @@ int MainAux::RPSMakePlayerAlgorithm(int argc, char arg[],std::vector<unique_ptr<
         std::cout<<"ERROR: bad command line argument"<<std::endl;
         return !SUCCESS;
     }
-    std::cout<<arg<<std::endl;
 
     char* players[NUM_PLAYERS];
     players[PLAYER(1)] = strtok(arg, TOKENS);
-    std::cout<<"here"<<std::endl;
-
     players[PLAYER(2)] = strtok(NULL, TOKENS);
+
 
     for(int i = 0; i<NUM_PLAYERS; i++){
         if(strcpy(players[i],AUTO)) {
@@ -62,6 +60,7 @@ int MainAux::RPSPerformPositioning(RPSGame game ,std::vector<unique_ptr<PlayerAl
     std::vector<unique_ptr<PiecePosition>> playerPos;
     RPS_Message message;
     int ret = 0;
+    int valid = 1;
 
     for (int i = 0; i < NUM_PLAYERS; i++) {
         algorithms[i]->getInitialPositions(i + 1, playerPos);
@@ -97,11 +96,20 @@ int MainAux::RPSPerformPositioning(RPSGame game ,std::vector<unique_ptr<PlayerAl
                                                               " An unknown error has occurred." << std::endl;
                     break;
             }
+
+            if(ret>0){
+                valid = 0;
+                break;
+            }
+
         }
 
-        if (!game.validateNumberOfFlags(i + 1)) {
+        if (valid && !game.validateNumberOfFlags(i + 1)) {
             std::cout << "ERROR: Player " << i + 1 << " hadn't placed all of his flags." << std::endl;
+            ret += (i + 1);
         }
+
+        playerPos.clear();
 
     }
     return ret;
@@ -112,6 +120,7 @@ int MainAux::RPSPerformPositioning(RPSGame game ,std::vector<unique_ptr<PlayerAl
 
 
 int MainAux::RPSPrintGamePositionErrorResult(RPSGame game, int feedback){
+
     std::ofstream fout("rps.output");
     if (!fout.is_open()) {
         std::cout << "ERROR: could'nt open output file" << std::endl;
@@ -250,5 +259,7 @@ int MainAux::RPSPrintGameResult(RPSGame& game, int reason) {
     fout << game;
 
     fout.close();
+    std::cout<<"here1"<<std::endl;
+
     return 1;
 }
