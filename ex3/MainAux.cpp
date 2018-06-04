@@ -7,18 +7,10 @@
 #include <fstream>
 #include <string.h>
 #include "RSPPlayer_204057566.h"
-#include "RPSFilePlayerAlgorithm.h"
 #include "MainAux.h"
 #include "RPSGame.h"
+#include "RPSMove.h"
 
-
-#define AUTO "auto"
-#define FILE "file"
-#define TOKENS "-vs"
-#define PLAYER1_POSITION_FILE "player1.rps_board"
-#define PLAYER2_POSITION_FILE "player2.rps_board"
-#define PLAYER1_MOVES_FILE "player1.rps_moves"
-#define PLAYER2_MOVES_FILE "player2.rps_moves"
 #define MAX_NO_FIGHT_MOVES_ALLOWED 100
 #define ALL_FLAGS_CAPTURED (-2)
 #define ALL_MOVING_PIECES_CAPTURED (-3)
@@ -28,32 +20,16 @@
 
 #define BOTH_PLAYERS_LOST 3
 
-int MainAux::RPSMakePlayerAlgorithm(int argc, char arg[],std::vector<unique_ptr<PlayerAlgorithm>>& algorithms){
-    if(argc<2){
-        std::cout<<"ERROR: bad command line argument"<<std::endl;
-        return !SUCCESS;
-    }
+int MainAux::GetPositiveInt(const char *const integer) {
+    int result = 0;
+    int i = 0;
+    while (integer && integer[i] >= '0' && integer[i] <= '9') {
+    result *= 10;
+    result += integer[i] - '0';
+    i++;
+}
 
-    char* players[NUM_PLAYERS];
-    players[PLAYER(1)] = strtok(arg, TOKENS);
-    players[PLAYER(2)] = strtok(nullptr, TOKENS);
-
-
-    for(int i = 0; i<NUM_PLAYERS; i++){
-        if(!strcmp(players[i],AUTO)) {
-            algorithms.emplace_back(std::make_unique<RSPPlayer_204057566>());
-        }
-        else if(!strcmp(players[i],FILE)) {
-            algorithms.emplace_back(std::make_unique<RPSFilePlayerAlgorithm>(i + 1, i ? PLAYER2_POSITION_FILE : PLAYER1_POSITION_FILE, i ? PLAYER2_MOVES_FILE : PLAYER1_MOVES_FILE));
-        }
-        else{
-            std::cout<<"ERROR: bad command line argument"<<std::endl;
-            return i+1;
-        }
-    }
-
-    return SUCCESS;
-
+return result;
 }
 
 int MainAux::RPSPerformPositioning(RPSGame& game ,std::vector<unique_ptr<PlayerAlgorithm>>& algorithms) {

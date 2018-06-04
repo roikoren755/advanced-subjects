@@ -353,5 +353,6 @@ std::unique_ptr<JokerChange> RSPPlayer_204057566::getJokerChange() {
 	return nullptr;
 }
 
-REGISTER_ALGORITHM(204057566);
-
+extern "C" {
+	REGISTER_ALGORITHM(204057566)
+}

@@ -1,38 +1,42 @@
 COMP = g++-5.3.0
 #put all your object files here
-OBJS = main.o MainAux.o RPSBoard.o RSPPlayer_204057566.o RPSFilePlayerAlgorithm.o RPSGame.o RPSPiece.o #objects should be placed here!
+OBJS = main.o MainAux.o RPSBoard.o RPSFilePlayerAlgorithm.o RPSGame.o RPSPiece.o TournamentManager.o #objects should be placed here!
+SO_OBJS = RSPPlayer_204057566.o RPSBoard.o RPSPiece.o
 #The executable filename DON'T CHANGE
-EXEC = ex2
+EXEC = ex3
+SO = RSPPlayer_204057566.so
 CPP_COMP_FLAG = -std=c++14 -Wall -Wextra \
 -Werror -pedantic-errors -DNDEBUG
 
 $(EXEC): $(OBJS)
 	$(COMP) $(OBJS) -o $@
+$(SO): $(SO_OBJS)
+	$(COMP) $(SO_OBJS) -shared -o $@
 #a rule for building a simple c++ source file
 #use g++ -MM main.cpp to see dependencies
-RPSBoard.o: RPSBoard.cpp RPSBoard.h Board.h Point.h RPSPiece.h
+AlgorithmRegistration.o: AlgorithmRegistration.cpp AlgorithmRegistration.h PlayerAlgorithm.h Point.h PiecePosition.h Board.h FightInfo.h Move.h JokerChange.h TournamentManager.h
 	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
-RSPPlayer_204057566.o: RSPPlayer_204057566.cpp RSPPlayer_204057566.h PlayerAlgorithm.h Point.h PiecePosition.h Board.h FightInfo.h Move.h JokerChange.h RPSBoard.h RPSPiece.h RPSPoint.h RPSPiecePosition.h RPSMove.h RPSJokerChange.h
+main.o: main.cpp MainAux.h RPSGame.h RPSPiece.h PlayerAlgorithm.h Point.h PiecePosition.h Board.h FightInfo.h Move.h JokerChange.h RPSBoard.h RPSPiecePosition.h RPSPoint.h RPSFightInfo.h #put dependencies here!
 	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
-RPSFightInfo.o: RPSFightInfo.h FightInfo.h RPSPoint.h Point.h
+MainAux.o: MainAux.cpp RSPPlayer_204057566.h PlayerAlgorithm.h Point.h PiecePosition.h Board.h FightInfo.h Move.h JokerChange.h RPSBoard.h RPSPiece.h RPSFilePlayerAlgorithm.h RPSPiecePosition.h RPSPoint.h RPSMove.h RPSJokerChange.h RPSFightInfo.h MainAux.h RPSGame.h
 	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
 RPSFilePlayerAlgorithm.o: RPSFilePlayerAlgorithm.cpp RPSFilePlayerAlgorithm.h PlayerAlgorithm.h Point.h PiecePosition.h Board.h FightInfo.h Move.h JokerChange.h RPSPiecePosition.h RPSPoint.h RPSMove.h RPSJokerChange.h RPSFightInfo.h RPSBoard.h RPSPiece.h
 	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
 RPSGame.o: RPSGame.cpp RPSGame.h RPSPiece.h PlayerAlgorithm.h Point.h PiecePosition.h Board.h FightInfo.h Move.h JokerChange.h RPSBoard.h RPSPiecePosition.h RPSPoint.h RPSFightInfo.h
 	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
-RPSJokerChange.o: RPSJokerChange.h JokerChange.h Point.h
+TournamentManager.o: TournamentManager.cpp TournamentManager.h PlayerAlgorithm.h Point.h PiecePosition.h Board.h FightInfo.h Move.h JokerChange.h
 	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
-RPSMove.o: RPSMove.h Move.h Point.h
-	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
+RSPPlayer_204057566.o: RSPPlayer_204057566.cpp RSPPlayer_204057566.h AlgorithmRegistration.h PlayerAlgorithm.h Point.h PiecePosition.h Board.h FightInfo.h Move.h JokerChange.h RPSBoard.h RPSPiece.h RPSPoint.h RPSPiecePosition.h RPSMove.h RPSJokerChange.h
+	$(COMP) -fPIC $(CPP_COMP_FLAG) -c $*.cpp
+RPSBoard.o: RPSBoard.cpp RPSBoard.h Board.h Point.h RPSPiece.h
+	$(COMP) -fPIC $(CPP_COMP_FLAG) -c $*.cpp
 RPSPiece.o: RPSPiece.cpp RPSPiece.h
-	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
-RPSPiecePosition.o: RPSPiecePosition.h PiecePosition.h Point.h RPSPoint.h
-	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
-RPSPoint.o: RPSPoint.h Point.h
-	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
-MainAux.o: MainAux.cpp RSPPlayer_204057566.h PlayerAlgorithm.h Point.h PiecePosition.h Board.h FightInfo.h Move.h JokerChange.h RPSBoard.h RPSPiece.h RPSFilePlayerAlgorithm.h RPSPiecePosition.h RPSPoint.h RPSMove.h RPSJokerChange.h RPSFightInfo.h MainAux.h RPSGame.h
-	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
-main.o: main.cpp MainAux.h RPSGame.h RPSPiece.h PlayerAlgorithm.h Point.h PiecePosition.h Board.h FightInfo.h Move.h JokerChange.h RPSBoard.h RPSPiecePosition.h RPSPoint.h RPSFightInfo.h #put dependencies here!
-	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
+	$(COMP) -fPIC $(CPP_COMP_FLAG) -c $*.cpp
+
+.PHONY: all rps_tournament rps_lib
+all: $(EXEC) $(SO)
+rps_tournament: $(EXEC)
+rps_lib: $(SO)
+
 clean:
 	rm -f $(OBJS) $(EXEC) *Test *.o
