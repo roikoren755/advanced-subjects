@@ -5,6 +5,8 @@
 #include "RPSFilePlayerAlgorithm.h"
 #include <iostream>
 #include <fstream>
+#include <string.h>
+
 
 #define MAXIMUM_LINE_LENGTH 1024
 #define DELIMITERS " \t\n"

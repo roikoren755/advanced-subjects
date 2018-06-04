@@ -5,12 +5,7 @@
 #define NONE '0'
 #define NOT_JOKER '#'
 
-/**
- * represent a piece, contains data:
- * - The piece type
- * - Is the piece a joker
- * - The player the piece belong to
-*/
+
 class RPSPiece {
 	char pieceType;
 	char jokerRepresentation;

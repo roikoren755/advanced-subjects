@@ -11,6 +11,7 @@ class RPSPoint : public Point {
 	const int x;
 	const int y;
 public:
+	RPSPoint(): x(-1),y(-1) {}
 	RPSPoint(int x, int y): x(x), y(y) {}
 	explicit RPSPoint(const Point&& point): x(point.getX()), y(point.getY()) {}
 	explicit RPSPoint(const Point& point): x(point.getX()), y(point.getY()) {}

@@ -80,76 +80,82 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/FightInfo.h">
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/AlgorithmRegistration.cpp">
 			<Option target="dbsg"/>
 		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/JokerChange.h">
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/AlgorithmRegistration.h">
 			<Option target="dbsg"/>
 		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/MainAux.cpp">
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/FightInfo.h">
 			<Option target="dbsg"/>
 		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/MainAux.h">
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/JokerChange.h">
 			<Option target="dbsg"/>
 		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/Move.h">
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/MainAux.cpp">
 			<Option target="dbsg"/>
 		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/PiecePosition.h">
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/MainAux.h">
 			<Option target="dbsg"/>
 		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/PlayerAlgorithm.h">
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/Move.h">
 			<Option target="dbsg"/>
 		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/Point.h">
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/PiecePosition.h">
 			<Option target="dbsg"/>
 		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSAutomaticPlayerAlgorithm.cpp">
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/PlayerAlgorithm.h">
 			<Option target="dbsg"/>
 		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSAutomaticPlayerAlgorithm.h">
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/Point.h">
 			<Option target="dbsg"/>
 		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSBoard.cpp">
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSBoard.cpp">
 			<Option target="dbsg"/>
 		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSBoard.h">
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSBoard.h">
 			<Option target="dbsg"/>
 		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSFightInfo.h">
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSFightInfo.h">
 			<Option target="dbsg"/>
 		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSFilePlayerAlgorithm.cpp">
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSFilePlayerAlgorithm.cpp">
 			<Option target="dbsg"/>
 		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSFilePlayerAlgorithm.h">
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSFilePlayerAlgorithm.h">
 			<Option target="dbsg"/>
 		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSGame.cpp">
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSGame.cpp">
 			<Option target="dbsg"/>
 		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSGame.h">
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSGame.h">
 			<Option target="dbsg"/>
 		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSJokerChange.h">
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSJokerChange.h">
 			<Option target="dbsg"/>
 		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSMove.h">
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSMove.h">
 			<Option target="dbsg"/>
 		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSPiece.cpp">
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiece.cpp">
 			<Option target="dbsg"/>
 		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSPiece.h">
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiece.h">
 			<Option target="dbsg"/>
 		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSPiecePosition.h">
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiecePosition.h">
 			<Option target="dbsg"/>
 		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSPoint.h">
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPoint.h">
 			<Option target="dbsg"/>
 		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex2/main.cpp">
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/RSPPlayer_204057566.cpp">
+			<Option target="dbsg"/>
+		</Unit>
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/RSPPlayer_204057566.h">
+			<Option target="dbsg"/>
+		</Unit>
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/main.cpp">
 			<Option target="dbsg"/>
 		</Unit>
 		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/CMakeLists.txt">

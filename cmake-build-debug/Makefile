@@ -122,194 +122,221 @@ dbsg/fast:
 	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/build
 .PHONY : dbsg/fast
 
-ex2/MainAux.obj: ex2/MainAux.cpp.obj
+ex3/AlgorithmRegistration.obj: ex3/AlgorithmRegistration.cpp.obj
 
-.PHONY : ex2/MainAux.obj
-
-# target to build an object file
-ex2/MainAux.cpp.obj:
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/MainAux.cpp.obj
-.PHONY : ex2/MainAux.cpp.obj
-
-ex2/MainAux.i: ex2/MainAux.cpp.i
-
-.PHONY : ex2/MainAux.i
-
-# target to preprocess a source file
-ex2/MainAux.cpp.i:
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/MainAux.cpp.i
-.PHONY : ex2/MainAux.cpp.i
-
-ex2/MainAux.s: ex2/MainAux.cpp.s
-
-.PHONY : ex2/MainAux.s
-
-# target to generate assembly for a file
-ex2/MainAux.cpp.s:
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/MainAux.cpp.s
-.PHONY : ex2/MainAux.cpp.s
-
-ex2/RPSAutomaticPlayerAlgorithm.obj: ex2/RPSAutomaticPlayerAlgorithm.cpp.obj
-
-.PHONY : ex2/RPSAutomaticPlayerAlgorithm.obj
+.PHONY : ex3/AlgorithmRegistration.obj
 
 # target to build an object file
-ex2/RPSAutomaticPlayerAlgorithm.cpp.obj:
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/RPSAutomaticPlayerAlgorithm.cpp.obj
-.PHONY : ex2/RPSAutomaticPlayerAlgorithm.cpp.obj
+ex3/AlgorithmRegistration.cpp.obj:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/AlgorithmRegistration.cpp.obj
+.PHONY : ex3/AlgorithmRegistration.cpp.obj
 
-ex2/RPSAutomaticPlayerAlgorithm.i: ex2/RPSAutomaticPlayerAlgorithm.cpp.i
+ex3/AlgorithmRegistration.i: ex3/AlgorithmRegistration.cpp.i
 
-.PHONY : ex2/RPSAutomaticPlayerAlgorithm.i
+.PHONY : ex3/AlgorithmRegistration.i
 
 # target to preprocess a source file
-ex2/RPSAutomaticPlayerAlgorithm.cpp.i:
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/RPSAutomaticPlayerAlgorithm.cpp.i
-.PHONY : ex2/RPSAutomaticPlayerAlgorithm.cpp.i
+ex3/AlgorithmRegistration.cpp.i:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/AlgorithmRegistration.cpp.i
+.PHONY : ex3/AlgorithmRegistration.cpp.i
 
-ex2/RPSAutomaticPlayerAlgorithm.s: ex2/RPSAutomaticPlayerAlgorithm.cpp.s
+ex3/AlgorithmRegistration.s: ex3/AlgorithmRegistration.cpp.s
 
-.PHONY : ex2/RPSAutomaticPlayerAlgorithm.s
+.PHONY : ex3/AlgorithmRegistration.s
 
 # target to generate assembly for a file
-ex2/RPSAutomaticPlayerAlgorithm.cpp.s:
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/RPSAutomaticPlayerAlgorithm.cpp.s
-.PHONY : ex2/RPSAutomaticPlayerAlgorithm.cpp.s
+ex3/AlgorithmRegistration.cpp.s:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/AlgorithmRegistration.cpp.s
+.PHONY : ex3/AlgorithmRegistration.cpp.s
 
-ex2/RPSBoard.obj: ex2/RPSBoard.cpp.obj
+ex3/MainAux.obj: ex3/MainAux.cpp.obj
 
-.PHONY : ex2/RPSBoard.obj
+.PHONY : ex3/MainAux.obj
 
 # target to build an object file
-ex2/RPSBoard.cpp.obj:
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/RPSBoard.cpp.obj
-.PHONY : ex2/RPSBoard.cpp.obj
+ex3/MainAux.cpp.obj:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/MainAux.cpp.obj
+.PHONY : ex3/MainAux.cpp.obj
 
-ex2/RPSBoard.i: ex2/RPSBoard.cpp.i
+ex3/MainAux.i: ex3/MainAux.cpp.i
 
-.PHONY : ex2/RPSBoard.i
+.PHONY : ex3/MainAux.i
 
 # target to preprocess a source file
-ex2/RPSBoard.cpp.i:
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/RPSBoard.cpp.i
-.PHONY : ex2/RPSBoard.cpp.i
+ex3/MainAux.cpp.i:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/MainAux.cpp.i
+.PHONY : ex3/MainAux.cpp.i
 
-ex2/RPSBoard.s: ex2/RPSBoard.cpp.s
+ex3/MainAux.s: ex3/MainAux.cpp.s
 
-.PHONY : ex2/RPSBoard.s
+.PHONY : ex3/MainAux.s
 
 # target to generate assembly for a file
-ex2/RPSBoard.cpp.s:
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/RPSBoard.cpp.s
-.PHONY : ex2/RPSBoard.cpp.s
+ex3/MainAux.cpp.s:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/MainAux.cpp.s
+.PHONY : ex3/MainAux.cpp.s
 
-ex2/RPSFilePlayerAlgorithm.obj: ex2/RPSFilePlayerAlgorithm.cpp.obj
+ex3/RPSBoard.obj: ex3/RPSBoard.cpp.obj
 
-.PHONY : ex2/RPSFilePlayerAlgorithm.obj
+.PHONY : ex3/RPSBoard.obj
 
 # target to build an object file
-ex2/RPSFilePlayerAlgorithm.cpp.obj:
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/RPSFilePlayerAlgorithm.cpp.obj
-.PHONY : ex2/RPSFilePlayerAlgorithm.cpp.obj
+ex3/RPSBoard.cpp.obj:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RPSBoard.cpp.obj
+.PHONY : ex3/RPSBoard.cpp.obj
 
-ex2/RPSFilePlayerAlgorithm.i: ex2/RPSFilePlayerAlgorithm.cpp.i
+ex3/RPSBoard.i: ex3/RPSBoard.cpp.i
 
-.PHONY : ex2/RPSFilePlayerAlgorithm.i
+.PHONY : ex3/RPSBoard.i
 
 # target to preprocess a source file
-ex2/RPSFilePlayerAlgorithm.cpp.i:
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/RPSFilePlayerAlgorithm.cpp.i
-.PHONY : ex2/RPSFilePlayerAlgorithm.cpp.i
+ex3/RPSBoard.cpp.i:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RPSBoard.cpp.i
+.PHONY : ex3/RPSBoard.cpp.i
 
-ex2/RPSFilePlayerAlgorithm.s: ex2/RPSFilePlayerAlgorithm.cpp.s
+ex3/RPSBoard.s: ex3/RPSBoard.cpp.s
 
-.PHONY : ex2/RPSFilePlayerAlgorithm.s
+.PHONY : ex3/RPSBoard.s
 
 # target to generate assembly for a file
-ex2/RPSFilePlayerAlgorithm.cpp.s:
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/RPSFilePlayerAlgorithm.cpp.s
-.PHONY : ex2/RPSFilePlayerAlgorithm.cpp.s
+ex3/RPSBoard.cpp.s:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RPSBoard.cpp.s
+.PHONY : ex3/RPSBoard.cpp.s
 
-ex2/RPSGame.obj: ex2/RPSGame.cpp.obj
+ex3/RPSFilePlayerAlgorithm.obj: ex3/RPSFilePlayerAlgorithm.cpp.obj
 
-.PHONY : ex2/RPSGame.obj
+.PHONY : ex3/RPSFilePlayerAlgorithm.obj
 
 # target to build an object file
-ex2/RPSGame.cpp.obj:
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/RPSGame.cpp.obj
-.PHONY : ex2/RPSGame.cpp.obj
+ex3/RPSFilePlayerAlgorithm.cpp.obj:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.obj
+.PHONY : ex3/RPSFilePlayerAlgorithm.cpp.obj
 
-ex2/RPSGame.i: ex2/RPSGame.cpp.i
+ex3/RPSFilePlayerAlgorithm.i: ex3/RPSFilePlayerAlgorithm.cpp.i
 
-.PHONY : ex2/RPSGame.i
+.PHONY : ex3/RPSFilePlayerAlgorithm.i
 
 # target to preprocess a source file
-ex2/RPSGame.cpp.i:
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/RPSGame.cpp.i
-.PHONY : ex2/RPSGame.cpp.i
+ex3/RPSFilePlayerAlgorithm.cpp.i:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.i
+.PHONY : ex3/RPSFilePlayerAlgorithm.cpp.i
 
-ex2/RPSGame.s: ex2/RPSGame.cpp.s
+ex3/RPSFilePlayerAlgorithm.s: ex3/RPSFilePlayerAlgorithm.cpp.s
 
-.PHONY : ex2/RPSGame.s
+.PHONY : ex3/RPSFilePlayerAlgorithm.s
 
 # target to generate assembly for a file
-ex2/RPSGame.cpp.s:
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/RPSGame.cpp.s
-.PHONY : ex2/RPSGame.cpp.s
+ex3/RPSFilePlayerAlgorithm.cpp.s:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.s
+.PHONY : ex3/RPSFilePlayerAlgorithm.cpp.s
 
-ex2/RPSPiece.obj: ex2/RPSPiece.cpp.obj
+ex3/RPSGame.obj: ex3/RPSGame.cpp.obj
 
-.PHONY : ex2/RPSPiece.obj
+.PHONY : ex3/RPSGame.obj
 
 # target to build an object file
-ex2/RPSPiece.cpp.obj:
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/RPSPiece.cpp.obj
-.PHONY : ex2/RPSPiece.cpp.obj
+ex3/RPSGame.cpp.obj:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RPSGame.cpp.obj
+.PHONY : ex3/RPSGame.cpp.obj
 
-ex2/RPSPiece.i: ex2/RPSPiece.cpp.i
+ex3/RPSGame.i: ex3/RPSGame.cpp.i
 
-.PHONY : ex2/RPSPiece.i
+.PHONY : ex3/RPSGame.i
 
 # target to preprocess a source file
-ex2/RPSPiece.cpp.i:
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/RPSPiece.cpp.i
-.PHONY : ex2/RPSPiece.cpp.i
+ex3/RPSGame.cpp.i:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RPSGame.cpp.i
+.PHONY : ex3/RPSGame.cpp.i
 
-ex2/RPSPiece.s: ex2/RPSPiece.cpp.s
+ex3/RPSGame.s: ex3/RPSGame.cpp.s
 
-.PHONY : ex2/RPSPiece.s
+.PHONY : ex3/RPSGame.s
 
 # target to generate assembly for a file
-ex2/RPSPiece.cpp.s:
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/RPSPiece.cpp.s
-.PHONY : ex2/RPSPiece.cpp.s
+ex3/RPSGame.cpp.s:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RPSGame.cpp.s
+.PHONY : ex3/RPSGame.cpp.s
 
-ex2/main.obj: ex2/main.cpp.obj
+ex3/RPSPiece.obj: ex3/RPSPiece.cpp.obj
 
-.PHONY : ex2/main.obj
+.PHONY : ex3/RPSPiece.obj
 
 # target to build an object file
-ex2/main.cpp.obj:
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/main.cpp.obj
-.PHONY : ex2/main.cpp.obj
+ex3/RPSPiece.cpp.obj:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RPSPiece.cpp.obj
+.PHONY : ex3/RPSPiece.cpp.obj
 
-ex2/main.i: ex2/main.cpp.i
+ex3/RPSPiece.i: ex3/RPSPiece.cpp.i
 
-.PHONY : ex2/main.i
+.PHONY : ex3/RPSPiece.i
 
 # target to preprocess a source file
-ex2/main.cpp.i:
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/main.cpp.i
-.PHONY : ex2/main.cpp.i
+ex3/RPSPiece.cpp.i:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RPSPiece.cpp.i
+.PHONY : ex3/RPSPiece.cpp.i
 
-ex2/main.s: ex2/main.cpp.s
+ex3/RPSPiece.s: ex3/RPSPiece.cpp.s
 
-.PHONY : ex2/main.s
+.PHONY : ex3/RPSPiece.s
 
 # target to generate assembly for a file
-ex2/main.cpp.s:
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex2/main.cpp.s
-.PHONY : ex2/main.cpp.s
+ex3/RPSPiece.cpp.s:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RPSPiece.cpp.s
+.PHONY : ex3/RPSPiece.cpp.s
+
+ex3/RSPPlayer_204057566.obj: ex3/RSPPlayer_204057566.cpp.obj
+
+.PHONY : ex3/RSPPlayer_204057566.obj
+
+# target to build an object file
+ex3/RSPPlayer_204057566.cpp.obj:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RSPPlayer_204057566.cpp.obj
+.PHONY : ex3/RSPPlayer_204057566.cpp.obj
+
+ex3/RSPPlayer_204057566.i: ex3/RSPPlayer_204057566.cpp.i
+
+.PHONY : ex3/RSPPlayer_204057566.i
+
+# target to preprocess a source file
+ex3/RSPPlayer_204057566.cpp.i:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RSPPlayer_204057566.cpp.i
+.PHONY : ex3/RSPPlayer_204057566.cpp.i
+
+ex3/RSPPlayer_204057566.s: ex3/RSPPlayer_204057566.cpp.s
+
+.PHONY : ex3/RSPPlayer_204057566.s
+
+# target to generate assembly for a file
+ex3/RSPPlayer_204057566.cpp.s:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RSPPlayer_204057566.cpp.s
+.PHONY : ex3/RSPPlayer_204057566.cpp.s
+
+ex3/main.obj: ex3/main.cpp.obj
+
+.PHONY : ex3/main.obj
+
+# target to build an object file
+ex3/main.cpp.obj:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/main.cpp.obj
+.PHONY : ex3/main.cpp.obj
+
+ex3/main.i: ex3/main.cpp.i
+
+.PHONY : ex3/main.i
+
+# target to preprocess a source file
+ex3/main.cpp.i:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/main.cpp.i
+.PHONY : ex3/main.cpp.i
+
+ex3/main.s: ex3/main.cpp.s
+
+.PHONY : ex3/main.s
+
+# target to generate assembly for a file
+ex3/main.cpp.s:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/main.cpp.s
+.PHONY : ex3/main.cpp.s
 
 # Help Target
 help:
@@ -320,27 +347,30 @@ help:
 	@echo ... rebuild_cache
 	@echo ... dbsg
 	@echo ... edit_cache
-	@echo ... ex2/MainAux.obj
-	@echo ... ex2/MainAux.i
-	@echo ... ex2/MainAux.s
-	@echo ... ex2/RPSAutomaticPlayerAlgorithm.obj
-	@echo ... ex2/RPSAutomaticPlayerAlgorithm.i
-	@echo ... ex2/RPSAutomaticPlayerAlgorithm.s
-	@echo ... ex2/RPSBoard.obj
-	@echo ... ex2/RPSBoard.i
-	@echo ... ex2/RPSBoard.s
-	@echo ... ex2/RPSFilePlayerAlgorithm.obj
-	@echo ... ex2/RPSFilePlayerAlgorithm.i
-	@echo ... ex2/RPSFilePlayerAlgorithm.s
-	@echo ... ex2/RPSGame.obj
-	@echo ... ex2/RPSGame.i
-	@echo ... ex2/RPSGame.s
-	@echo ... ex2/RPSPiece.obj
-	@echo ... ex2/RPSPiece.i
-	@echo ... ex2/RPSPiece.s
-	@echo ... ex2/main.obj
-	@echo ... ex2/main.i
-	@echo ... ex2/main.s
+	@echo ... ex3/AlgorithmRegistration.obj
+	@echo ... ex3/AlgorithmRegistration.i
+	@echo ... ex3/AlgorithmRegistration.s
+	@echo ... ex3/MainAux.obj
+	@echo ... ex3/MainAux.i
+	@echo ... ex3/MainAux.s
+	@echo ... ex3/RPSBoard.obj
+	@echo ... ex3/RPSBoard.i
+	@echo ... ex3/RPSBoard.s
+	@echo ... ex3/RPSFilePlayerAlgorithm.obj
+	@echo ... ex3/RPSFilePlayerAlgorithm.i
+	@echo ... ex3/RPSFilePlayerAlgorithm.s
+	@echo ... ex3/RPSGame.obj
+	@echo ... ex3/RPSGame.i
+	@echo ... ex3/RPSGame.s
+	@echo ... ex3/RPSPiece.obj
+	@echo ... ex3/RPSPiece.i
+	@echo ... ex3/RPSPiece.s
+	@echo ... ex3/RSPPlayer_204057566.obj
+	@echo ... ex3/RSPPlayer_204057566.i
+	@echo ... ex3/RSPPlayer_204057566.s
+	@echo ... ex3/main.obj
+	@echo ... ex3/main.i
+	@echo ... ex3/main.s
 .PHONY : help
 
 

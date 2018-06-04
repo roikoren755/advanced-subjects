@@ -5,6 +5,7 @@
 
 
 #include <fstream>
+#include <string.h>
 #include "RSPPlayer_204057566.h"
 #include "RPSFilePlayerAlgorithm.h"
 #include "MainAux.h"
