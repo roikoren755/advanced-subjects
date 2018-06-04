@@ -13,6 +13,8 @@ C:/Users/user/CLionProjects/advanced-subjects/ex2/FightInfo.h
 C:/Users/user/CLionProjects/advanced-subjects/ex2/JokerChange.h
 
 C:/Users/user/CLionProjects/advanced-subjects/ex2/MainAux.cpp
+string.h
+-
 fstream
 -
 RPSAutomaticPlayerAlgorithm.h
@@ -95,10 +97,10 @@ iostream
 -
 fstream
 -
-
-C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSFilePlayerAlgorithm.h
 string.h
 -
+
+C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSFilePlayerAlgorithm.h
 PlayerAlgorithm.h
 C:/Users/user/CLionProjects/advanced-subjects/ex2/PlayerAlgorithm.h
 RPSPiecePosition.h
@@ -139,14 +141,14 @@ C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSFightInfo.h
 C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSJokerChange.h
 JokerChange.h
 C:/Users/user/CLionProjects/advanced-subjects/ex2/JokerChange.h
-Point.h
-C:/Users/user/CLionProjects/advanced-subjects/ex2/Point.h
+RPSPoint.h
+C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSPoint.h
 
 C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSMove.h
 Move.h
 C:/Users/user/CLionProjects/advanced-subjects/ex2/Move.h
-Point.h
-C:/Users/user/CLionProjects/advanced-subjects/ex2/Point.h
+RPSPoint.h
+C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSPoint.h
 
 C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSPiece.cpp
 RPSPiece.h
@@ -157,12 +159,8 @@ iostream
 -
 
 C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSPiecePosition.h
-string
--
 PiecePosition.h
 C:/Users/user/CLionProjects/advanced-subjects/ex2/PiecePosition.h
-Point.h
-C:/Users/user/CLionProjects/advanced-subjects/ex2/Point.h
 RPSPoint.h
 C:/Users/user/CLionProjects/advanced-subjects/ex2/RPSPoint.h
 
