@@ -6,18 +6,10 @@
 
 #include <fstream>
 #include "RSPPlayer_204057566.h"
-#include "RPSFilePlayerAlgorithm.h"
 #include "MainAux.h"
 #include "RPSGame.h"
+#include "RPSMove.h"
 
-
-#define AUTO "auto"
-#define FILE "file"
-#define TOKENS "-vs"
-#define PLAYER1_POSITION_FILE "player1.rps_board"
-#define PLAYER2_POSITION_FILE "player2.rps_board"
-#define PLAYER1_MOVES_FILE "player1.rps_moves"
-#define PLAYER2_MOVES_FILE "player2.rps_moves"
 #define MAX_NO_FIGHT_MOVES_ALLOWED 100
 #define ALL_FLAGS_CAPTURED (-2)
 #define ALL_MOVING_PIECES_CAPTURED (-3)
@@ -26,6 +18,18 @@
 
 
 #define BOTH_PLAYERS_LOST 3
+
+int MainAux::GetPositiveInt(const char *const integer) {
+    int result = 0;
+    int i = 0;
+    while (integer && integer[i] >= '0' && integer[i] <= '9') {
+    result *= 10;
+    result += integer[i] - '0';
+    i++;
+}
+
+return result;
+}
 
 int MainAux::RPSPerformPositioning(RPSGame& game ,std::vector<unique_ptr<PlayerAlgorithm>>& algorithms) {
     std::vector<unique_ptr<PiecePosition>> playerPos;

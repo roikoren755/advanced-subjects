@@ -1,32 +1,47 @@
 //
 // Created by user on 01/05/2018.
 //
+
 #include <iostream>
-#include <algorithm>
 #include "MainAux.h"
-#include "RPSGame.h"
 
-int main() {
-    std::vector<unique_ptr<PlayerAlgorithm>> algorithms;// =  std::vector<unique_ptr<PlayerAlgorithm>>(2);;
+#define THREADS_OPTION "-threads"
+#define PATH_OPTION "-path"
 
-    RPSGame game = RPSGame();
-    int feedback = MainAux::RPSPerformPositioning(game,algorithms);
-    if(feedback>0){
-        return MainAux::RPSPrintGamePositionErrorResult(game, feedback);
+int main(int argc, char* argv[]) {
+    if (argc > 5 || !(argc % 2)) {
+        std::cout << "USAGE: ./ex3 [-threads <num_of_threads>] [-path <location_of_algorithms>]" << std::endl;
+        return 0;
     }
 
-    std::vector<unique_ptr<FightInfo>> fights;
+    int threads = 0;
+    std::string path;
+    if (argc > 1) {
+        for (int i = 1; i < argc; i += 2) {
+            if (!strcmp(argv[i], THREADS_OPTION)) {
+                if (!threads) {
+                    threads = MainAux::GetPositiveInt(argv[i + 1]);
+                    if (!threads) {
+                        std::cout << "USAGE: ./ex3 [-threads <num_of_threads>] [-path <location_of_algorithms>]" << std::endl;
+                        return 0;
+                    }
+                }
+                else {
+                    std::cout << "USAGE: ./ex3 [-threads <num_of_threads>] [-path <location_of_algorithms>]" << std::endl;
+                    return 0;
+                }
+            }
 
-    int reason = game.finishPositioningStage(fights);
-    if (reason) { // game is done
-        return MainAux::RPSPrintGameResult(game, reason);
+            else if (!strcmp(argv[i], PATH_OPTION)) {
+                if (path.empty()) {
+                    path = argv[i + 1];
+                }
+
+                else {
+                    std::cout << "USAGE: ./ex3 [-threads <num_of_threads>] [-path <location_of_algorithms>]" << std::endl;
+                    return 0;
+                }
+            }
+        }
     }
-
-    algorithms[PLAYER(1)]->notifyOnInitialBoard(game.getBoard(),fights);
-    algorithms[PLAYER(2)]->notifyOnInitialBoard(game.getBoard(),fights);
-
-    reason = MainAux::RPSPlayTwoPlayersMoves(game, algorithms);
-
-    return MainAux::RPSPrintGameResult(game, reason);
 }
-
