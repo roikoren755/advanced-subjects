@@ -6,15 +6,11 @@
 #include "MainAux.h"
 #include "RPSGame.h"
 
-int main(int argc, char* argv[]) {
+int main() {
     std::vector<unique_ptr<PlayerAlgorithm>> algorithms;// =  std::vector<unique_ptr<PlayerAlgorithm>>(2);;
-    int feedback = MainAux::RPSMakePlayerAlgorithm(argc,argv[1], algorithms);
 
-    if(feedback!=SUCCESS){
-        return 0;
-    }
     RPSGame game = RPSGame();
-    feedback = MainAux::RPSPerformPositioning(game,algorithms);
+    int feedback = MainAux::RPSPerformPositioning(game,algorithms);
     if(feedback>0){
         return MainAux::RPSPrintGamePositionErrorResult(game, feedback);
     }

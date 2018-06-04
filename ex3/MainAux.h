@@ -13,7 +13,6 @@
 
 class MainAux {
 public:
-    static int RPSMakePlayerAlgorithm(int argc, char arg[], std::vector<unique_ptr<PlayerAlgorithm>>& algorithms);
     static int RPSPerformPositioning(RPSGame& game ,std::vector<unique_ptr<PlayerAlgorithm>>& algorithms);
     static int RPSPrintGamePositionErrorResult(RPSGame& game, int feedback);
     static int RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<PlayerAlgorithm>>& algorithms);

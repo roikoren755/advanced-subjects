@@ -7,14 +7,19 @@
 
 #include <string>
 #include <functional>
+#include <map>
 #include "PlayerAlgorithm.h"
 
 class TournamentManager {
+	static TournamentManager tournamentManager;
+	std::map<std::string, std::function<std::unique_ptr<PlayerAlgorithm>()>> id2factory;
+
+	TournamentManager() = default;
 public:
-	static TournamentManager getTournamentManager() {
-		return TournamentManager();
-	}
-	void registerAlgorithm(std::string id, std::function<std::unique_ptr<PlayerAlgorithm>()> factoryMethod) {}
+	TournamentManager(const TournamentManager& tournamentManager) = delete;
+	TournamentManager operator=(const TournamentManager& tournamentManager) = delete;
+	static TournamentManager& getTournamentManager();
+	void registerAlgorithm(std::string id, std::function<std::unique_ptr<PlayerAlgorithm>()> factoryMethod);
 };
 
 #endif //ADVANCED_SUBJECTS_TOURNAMENTMANAGER_H
