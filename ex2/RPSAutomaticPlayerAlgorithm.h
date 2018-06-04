@@ -7,6 +7,7 @@
 
 #include "PlayerAlgorithm.h"
 #include "RPSBoard.h"
+#include "RPSPoint.h"
 
 
 class RPSAutomaticPlayerAlgorithm: public PlayerAlgorithm {
@@ -19,6 +20,9 @@ class RPSAutomaticPlayerAlgorithm: public PlayerAlgorithm {
 	int opponentRocks = 0;
 	int opponentPapers = 0;
 	int opponentScissors = 0;
+
+	//RPSPoint opponentFlag = RPSPoint();
+
 public:
     RPSAutomaticPlayerAlgorithm();
 	RPSAutomaticPlayerAlgorithm(int flags, int bombs, int jokers, int rocks, int papers, int scissors):

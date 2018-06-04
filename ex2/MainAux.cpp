@@ -2,10 +2,8 @@
 // Created by user on 21/05/2018.
 //
 
-
-
+#include <string.h>
 #include <fstream>
-//#include <memory>
 #include "RPSAutomaticPlayerAlgorithm.h"
 #include "RPSFilePlayerAlgorithm.h"
 #include "MainAux.h"
@@ -188,6 +186,7 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
             RPSMove move = *movePtr;
             int toX = movePtr->getTo().getX();
             int toY = movePtr->getTo().getY();
+
             message = game.setMove(move, i + 1);
             if (message == Battle_Required || message == Success) {
 				algorithms[1 - i]->notifyOnOpponentMove(move);

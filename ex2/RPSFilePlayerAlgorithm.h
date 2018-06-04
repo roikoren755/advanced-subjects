@@ -6,6 +6,7 @@
 #ifndef ADVANCED_SUBJECTS_RPSFILEPLAYERALGORITHM_H
 #define ADVANCED_SUBJECTS_RPSFILEPLAYERALGORITHM_H
 
+
 #include "PlayerAlgorithm.h"
 #include "RPSPiecePosition.h"
 #include "RPSMove.h"
