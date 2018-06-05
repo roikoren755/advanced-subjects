@@ -28,6 +28,6 @@ void TournamentManager::printTournamentResult() {
 	}
 
 	for(std::map<int,std::string>::reverse_iterator it = sortedScore. rbegin(); it != sortedScore.rend(); it++)
-		std::cout << it->first << " " << it->second << std::endl;
+		std::cout << it->second << " " << it->first<< std::endl;
 	}
 }
