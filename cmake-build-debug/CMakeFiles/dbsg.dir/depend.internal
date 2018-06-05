@@ -11,6 +11,7 @@ CMakeFiles/dbsg.dir/ex3/AlgorithmRegistration.cpp.obj
  C:/Users/user/CLionProjects/advanced-subjects/ex3/PiecePosition.h
  C:/Users/user/CLionProjects/advanced-subjects/ex3/PlayerAlgorithm.h
  C:/Users/user/CLionProjects/advanced-subjects/ex3/Point.h
+ C:/Users/user/CLionProjects/advanced-subjects/ex3/TournamentManager.h
 CMakeFiles/dbsg.dir/ex3/MainAux.cpp.obj
  C:/Users/user/CLionProjects/advanced-subjects/ex3/Board.h
  C:/Users/user/CLionProjects/advanced-subjects/ex3/FightInfo.h
@@ -23,9 +24,7 @@ CMakeFiles/dbsg.dir/ex3/MainAux.cpp.obj
  C:/Users/user/CLionProjects/advanced-subjects/ex3/Point.h
  C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSBoard.h
  C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSFightInfo.h
- C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSFilePlayerAlgorithm.h
  C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSGame.h
- C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSJokerChange.h
  C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSMove.h
  C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiece.h
  C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiecePosition.h
@@ -37,23 +36,6 @@ CMakeFiles/dbsg.dir/ex3/RPSBoard.cpp.obj
  C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSBoard.cpp
  C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSBoard.h
  C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiece.h
-CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.obj
- C:/Users/user/CLionProjects/advanced-subjects/ex3/Board.h
- C:/Users/user/CLionProjects/advanced-subjects/ex3/FightInfo.h
- C:/Users/user/CLionProjects/advanced-subjects/ex3/JokerChange.h
- C:/Users/user/CLionProjects/advanced-subjects/ex3/Move.h
- C:/Users/user/CLionProjects/advanced-subjects/ex3/PiecePosition.h
- C:/Users/user/CLionProjects/advanced-subjects/ex3/PlayerAlgorithm.h
- C:/Users/user/CLionProjects/advanced-subjects/ex3/Point.h
- C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSBoard.h
- C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSFightInfo.h
- C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSFilePlayerAlgorithm.cpp
- C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSFilePlayerAlgorithm.h
- C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSJokerChange.h
- C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSMove.h
- C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiece.h
- C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiecePosition.h
- C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPoint.h
 CMakeFiles/dbsg.dir/ex3/RPSGame.cpp.obj
  C:/Users/user/CLionProjects/advanced-subjects/ex3/Board.h
  C:/Users/user/CLionProjects/advanced-subjects/ex3/FightInfo.h
@@ -89,6 +71,16 @@ CMakeFiles/dbsg.dir/ex3/RSPPlayer_204057566.cpp.obj
  C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPoint.h
  C:/Users/user/CLionProjects/advanced-subjects/ex3/RSPPlayer_204057566.cpp
  C:/Users/user/CLionProjects/advanced-subjects/ex3/RSPPlayer_204057566.h
+CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.obj
+ C:/Users/user/CLionProjects/advanced-subjects/ex3/Board.h
+ C:/Users/user/CLionProjects/advanced-subjects/ex3/FightInfo.h
+ C:/Users/user/CLionProjects/advanced-subjects/ex3/JokerChange.h
+ C:/Users/user/CLionProjects/advanced-subjects/ex3/Move.h
+ C:/Users/user/CLionProjects/advanced-subjects/ex3/PiecePosition.h
+ C:/Users/user/CLionProjects/advanced-subjects/ex3/PlayerAlgorithm.h
+ C:/Users/user/CLionProjects/advanced-subjects/ex3/Point.h
+ C:/Users/user/CLionProjects/advanced-subjects/ex3/TournamentManager.cpp
+ C:/Users/user/CLionProjects/advanced-subjects/ex3/TournamentManager.h
 CMakeFiles/dbsg.dir/ex3/main.cpp.obj
  C:/Users/user/CLionProjects/advanced-subjects/ex3/Board.h
  C:/Users/user/CLionProjects/advanced-subjects/ex3/FightInfo.h

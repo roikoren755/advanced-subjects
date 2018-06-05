@@ -35,12 +35,12 @@ string.h
 -
 RSPPlayer_204057566.h
 C:/Users/user/CLionProjects/advanced-subjects/ex3/RSPPlayer_204057566.h
-RPSFilePlayerAlgorithm.h
-C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSFilePlayerAlgorithm.h
 MainAux.h
 C:/Users/user/CLionProjects/advanced-subjects/ex3/MainAux.h
 RPSGame.h
 C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSGame.h
+RPSMove.h
+C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSMove.h
 
 C:/Users/user/CLionProjects/advanced-subjects/ex3/MainAux.h
 RPSGame.h
@@ -87,30 +87,6 @@ FightInfo.h
 C:/Users/user/CLionProjects/advanced-subjects/ex3/FightInfo.h
 RPSPoint.h
 C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPoint.h
-
-C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSFilePlayerAlgorithm.cpp
-RPSFilePlayerAlgorithm.h
-C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSFilePlayerAlgorithm.h
-iostream
--
-fstream
--
-string.h
--
-
-C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSFilePlayerAlgorithm.h
-PlayerAlgorithm.h
-C:/Users/user/CLionProjects/advanced-subjects/ex3/PlayerAlgorithm.h
-RPSPiecePosition.h
-C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiecePosition.h
-RPSMove.h
-C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSMove.h
-RPSJokerChange.h
-C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSJokerChange.h
-RPSFightInfo.h
-C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSFightInfo.h
-RPSBoard.h
-C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSBoard.h
 
 C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSGame.cpp
 RPSGame.h
@@ -196,13 +172,27 @@ C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSMove.h
 RPSPiecePosition.h
 C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiecePosition.h
 
+C:/Users/user/CLionProjects/advanced-subjects/ex3/TournamentManager.cpp
+iostream
+-
+TournamentManager.h
+C:/Users/user/CLionProjects/advanced-subjects/ex3/TournamentManager.h
+
+C:/Users/user/CLionProjects/advanced-subjects/ex3/TournamentManager.h
+string
+-
+functional
+-
+map
+-
+PlayerAlgorithm.h
+C:/Users/user/CLionProjects/advanced-subjects/ex3/PlayerAlgorithm.h
+
 C:/Users/user/CLionProjects/advanced-subjects/ex3/main.cpp
 iostream
 -
-algorithm
+string.h
 -
 MainAux.h
 C:/Users/user/CLionProjects/advanced-subjects/ex3/MainAux.h
-RPSGame.h
-C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSGame.h
 

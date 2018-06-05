@@ -176,33 +176,9 @@ CMakeFiles/dbsg.dir/ex3/RPSBoard.cpp.obj.provides: CMakeFiles/dbsg.dir/ex3/RPSBo
 CMakeFiles/dbsg.dir/ex3/RPSBoard.cpp.obj.provides.build: CMakeFiles/dbsg.dir/ex3/RPSBoard.cpp.obj
 
 
-CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.obj: CMakeFiles/dbsg.dir/flags.make
-CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.obj: ../ex3/RPSFilePlayerAlgorithm.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\user\CLionProjects\advanced-subjects\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.obj"
-	C:\TDM-GCC-32\bin\c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\dbsg.dir\ex3\RPSFilePlayerAlgorithm.cpp.obj -c C:\Users\user\CLionProjects\advanced-subjects\ex3\RPSFilePlayerAlgorithm.cpp
-
-CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.i"
-	C:\TDM-GCC-32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\user\CLionProjects\advanced-subjects\ex3\RPSFilePlayerAlgorithm.cpp > CMakeFiles\dbsg.dir\ex3\RPSFilePlayerAlgorithm.cpp.i
-
-CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.s"
-	C:\TDM-GCC-32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\user\CLionProjects\advanced-subjects\ex3\RPSFilePlayerAlgorithm.cpp -o CMakeFiles\dbsg.dir\ex3\RPSFilePlayerAlgorithm.cpp.s
-
-CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.obj.requires:
-
-.PHONY : CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.obj.requires
-
-CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.obj.provides: CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.obj.requires
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.obj.provides.build
-.PHONY : CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.obj.provides
-
-CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.obj.provides.build: CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.obj
-
-
 CMakeFiles/dbsg.dir/ex3/RSPPlayer_204057566.cpp.obj: CMakeFiles/dbsg.dir/flags.make
 CMakeFiles/dbsg.dir/ex3/RSPPlayer_204057566.cpp.obj: ../ex3/RSPPlayer_204057566.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\user\CLionProjects\advanced-subjects\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/dbsg.dir/ex3/RSPPlayer_204057566.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\user\CLionProjects\advanced-subjects\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/dbsg.dir/ex3/RSPPlayer_204057566.cpp.obj"
 	C:\TDM-GCC-32\bin\c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\dbsg.dir\ex3\RSPPlayer_204057566.cpp.obj -c C:\Users\user\CLionProjects\advanced-subjects\ex3\RSPPlayer_204057566.cpp
 
 CMakeFiles/dbsg.dir/ex3/RSPPlayer_204057566.cpp.i: cmake_force
@@ -226,7 +202,7 @@ CMakeFiles/dbsg.dir/ex3/RSPPlayer_204057566.cpp.obj.provides.build: CMakeFiles/d
 
 CMakeFiles/dbsg.dir/ex3/AlgorithmRegistration.cpp.obj: CMakeFiles/dbsg.dir/flags.make
 CMakeFiles/dbsg.dir/ex3/AlgorithmRegistration.cpp.obj: ../ex3/AlgorithmRegistration.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\user\CLionProjects\advanced-subjects\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/dbsg.dir/ex3/AlgorithmRegistration.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\user\CLionProjects\advanced-subjects\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/dbsg.dir/ex3/AlgorithmRegistration.cpp.obj"
 	C:\TDM-GCC-32\bin\c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\dbsg.dir\ex3\AlgorithmRegistration.cpp.obj -c C:\Users\user\CLionProjects\advanced-subjects\ex3\AlgorithmRegistration.cpp
 
 CMakeFiles/dbsg.dir/ex3/AlgorithmRegistration.cpp.i: cmake_force
@@ -248,6 +224,30 @@ CMakeFiles/dbsg.dir/ex3/AlgorithmRegistration.cpp.obj.provides: CMakeFiles/dbsg.
 CMakeFiles/dbsg.dir/ex3/AlgorithmRegistration.cpp.obj.provides.build: CMakeFiles/dbsg.dir/ex3/AlgorithmRegistration.cpp.obj
 
 
+CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.obj: CMakeFiles/dbsg.dir/flags.make
+CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.obj: ../ex3/TournamentManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\user\CLionProjects\advanced-subjects\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.obj"
+	C:\TDM-GCC-32\bin\c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\dbsg.dir\ex3\TournamentManager.cpp.obj -c C:\Users\user\CLionProjects\advanced-subjects\ex3\TournamentManager.cpp
+
+CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.i"
+	C:\TDM-GCC-32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\user\CLionProjects\advanced-subjects\ex3\TournamentManager.cpp > CMakeFiles\dbsg.dir\ex3\TournamentManager.cpp.i
+
+CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.s"
+	C:\TDM-GCC-32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\user\CLionProjects\advanced-subjects\ex3\TournamentManager.cpp -o CMakeFiles\dbsg.dir\ex3\TournamentManager.cpp.s
+
+CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.obj.requires:
+
+.PHONY : CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.obj.requires
+
+CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.obj.provides: CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.obj.requires
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.obj.provides.build
+.PHONY : CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.obj.provides
+
+CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.obj.provides.build: CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.obj
+
+
 # Object files for target dbsg
 dbsg_OBJECTS = \
 "CMakeFiles/dbsg.dir/ex3/main.cpp.obj" \
@@ -255,9 +255,9 @@ dbsg_OBJECTS = \
 "CMakeFiles/dbsg.dir/ex3/RPSGame.cpp.obj" \
 "CMakeFiles/dbsg.dir/ex3/RPSPiece.cpp.obj" \
 "CMakeFiles/dbsg.dir/ex3/RPSBoard.cpp.obj" \
-"CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.obj" \
 "CMakeFiles/dbsg.dir/ex3/RSPPlayer_204057566.cpp.obj" \
-"CMakeFiles/dbsg.dir/ex3/AlgorithmRegistration.cpp.obj"
+"CMakeFiles/dbsg.dir/ex3/AlgorithmRegistration.cpp.obj" \
+"CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.obj"
 
 # External object files for target dbsg
 dbsg_EXTERNAL_OBJECTS =
@@ -267,9 +267,9 @@ dbsg.exe: CMakeFiles/dbsg.dir/ex3/MainAux.cpp.obj
 dbsg.exe: CMakeFiles/dbsg.dir/ex3/RPSGame.cpp.obj
 dbsg.exe: CMakeFiles/dbsg.dir/ex3/RPSPiece.cpp.obj
 dbsg.exe: CMakeFiles/dbsg.dir/ex3/RPSBoard.cpp.obj
-dbsg.exe: CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.obj
 dbsg.exe: CMakeFiles/dbsg.dir/ex3/RSPPlayer_204057566.cpp.obj
 dbsg.exe: CMakeFiles/dbsg.dir/ex3/AlgorithmRegistration.cpp.obj
+dbsg.exe: CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.obj
 dbsg.exe: CMakeFiles/dbsg.dir/build.make
 dbsg.exe: CMakeFiles/dbsg.dir/linklibs.rsp
 dbsg.exe: CMakeFiles/dbsg.dir/objects1.rsp
@@ -287,9 +287,9 @@ CMakeFiles/dbsg.dir/requires: CMakeFiles/dbsg.dir/ex3/MainAux.cpp.obj.requires
 CMakeFiles/dbsg.dir/requires: CMakeFiles/dbsg.dir/ex3/RPSGame.cpp.obj.requires
 CMakeFiles/dbsg.dir/requires: CMakeFiles/dbsg.dir/ex3/RPSPiece.cpp.obj.requires
 CMakeFiles/dbsg.dir/requires: CMakeFiles/dbsg.dir/ex3/RPSBoard.cpp.obj.requires
-CMakeFiles/dbsg.dir/requires: CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.obj.requires
 CMakeFiles/dbsg.dir/requires: CMakeFiles/dbsg.dir/ex3/RSPPlayer_204057566.cpp.obj.requires
 CMakeFiles/dbsg.dir/requires: CMakeFiles/dbsg.dir/ex3/AlgorithmRegistration.cpp.obj.requires
+CMakeFiles/dbsg.dir/requires: CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.obj.requires
 
 .PHONY : CMakeFiles/dbsg.dir/requires
 

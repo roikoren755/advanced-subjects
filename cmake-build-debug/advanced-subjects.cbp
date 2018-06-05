@@ -119,12 +119,6 @@
 		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSFightInfo.h">
 			<Option target="dbsg"/>
 		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSFilePlayerAlgorithm.cpp">
-			<Option target="dbsg"/>
-		</Unit>
-		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSFilePlayerAlgorithm.h">
-			<Option target="dbsg"/>
-		</Unit>
 		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSGame.cpp">
 			<Option target="dbsg"/>
 		</Unit>
@@ -153,6 +147,12 @@
 			<Option target="dbsg"/>
 		</Unit>
 		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/RSPPlayer_204057566.h">
+			<Option target="dbsg"/>
+		</Unit>
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/TournamentManager.cpp">
+			<Option target="dbsg"/>
+		</Unit>
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/TournamentManager.h">
 			<Option target="dbsg"/>
 		</Unit>
 		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/main.cpp">

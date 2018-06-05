@@ -8,9 +8,11 @@
 #include "PlayerAlgorithm.h"
 #include "RPSBoard.h"
 #include "RPSPoint.h"
+#include "RPSMove.h"
+#include "RPSPiecePosition.h"
 
 
-class RPSAutomaticPlayerAlgorithm: public PlayerAlgorithm {
+class RSPPlayer_204057566: public PlayerAlgorithm {
 	RPSBoard board;
 	int player = 0;
 	int opponent = 0;
@@ -21,11 +23,14 @@ class RPSAutomaticPlayerAlgorithm: public PlayerAlgorithm {
 	int opponentPapers = 0;
 	int opponentScissors = 0;
 
-	//RPSPoint opponentFlag = RPSPoint();
+	std::vector<std::pair<RPSPiecePosition,bool>> opponentPieces; //bool says if there is a possibility this is a joker
+	int movesCounter = 0;
+	std::tuple<int,int,int,int> prevMove =  std::make_tuple(-1,-1,-1,-1);
+//	RPSMove prevMove = RPSMove(-1,-1,-1,-1);
 
 public:
-    RPSAutomaticPlayerAlgorithm();
-	RPSAutomaticPlayerAlgorithm(int flags, int bombs, int jokers, int rocks, int papers, int scissors):
+	RSPPlayer_204057566();
+	RSPPlayer_204057566(int flags, int bombs, int jokers, int rocks, int papers, int scissors):
 			opponentFlags(flags), opponentBombs(bombs), opponentJokers(jokers), opponentRocks(rocks),
 			opponentPapers(papers), opponentScissors(scissors) {}
 	void getInitialPositions(int player, std::vector<unique_ptr<PiecePosition>>& vectorToFill) override;
@@ -34,8 +39,11 @@ public:
 	void notifyFightResult(const FightInfo& fightInfo) override; // called only if there was a fight
 	unique_ptr<Move> getMove() override;
 	unique_ptr<JokerChange> getJokerChange() override; // nullptr if no change is requested
-	~RPSAutomaticPlayerAlgorithm() override = default;
+	~RSPPlayer_204057566() override = default;
 private:
+	void updateOpponentPieces(char piece,int x,int y,int newX,int newY);
+	double findMinDisFromOpponent(int x,int y);
+	double evaluateMove(char piece,int x,int y);
 	void updateBoardByBattle(const FightInfo& fightInfo);
 };
 

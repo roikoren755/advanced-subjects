@@ -20,6 +20,34 @@
 
 #define BOTH_PLAYERS_LOST 3
 
+int MainAux::runGame(unique_ptr<PlayerAlgorithm> player1 , unique_ptr<PlayerAlgorithm> player2){
+    std::vector<unique_ptr<PlayerAlgorithm>> algorithms;
+    algorithms.push_back(player1);
+    algorithms.push_back(player2);
+
+    RPSGame game = RPSGame();
+    int feedback = MainAux::RPSPerformPositioning(game,algorithms);
+    if (feedback == BOTH_PLAYERS_LOST) {
+        return  0;
+    }
+    else if(feedback>0) { //if feedback==0 game not done
+        return (feedback == 1 ) ? 2 : 1;
+    }
+
+    std::vector<unique_ptr<FightInfo>> fights;
+
+    feedback = game.finishPositioningStage(fights);
+    if (feedback) { // game is done
+        return game.getWinner();
+    }
+
+    algorithms[PLAYER(1)]->notifyOnInitialBoard(game.getBoard(),fights);
+    algorithms[PLAYER(2)]->notifyOnInitialBoard(game.getBoard(),fights);
+
+    RPSPlayTwoPlayersMoves(game, algorithms);
+    return game.getWinner();
+}
+
 int MainAux::GetPositiveInt(const char *const integer) {
     int result = 0;
     int i = 0;
@@ -47,35 +75,9 @@ int MainAux::RPSPerformPositioning(RPSGame& game ,std::vector<unique_ptr<PlayerA
                 break;
             }
             message = game.setPosition(*ptr, i + 1);
-            switch (message) {
-                case Destination_Out_Of_Range:
-                    std::cout << "ERROR: player  " << i + 1 << "'s positioning:"
-                                                               " Destination is out of range." << std::endl;
+            if(message != Success) {
                     ret += (i + 1);
-                    break;
-                case Bad_Position:
-                    std::cout << "ERROR: player " << i + 1 << "'s positioning:"
-                                                              " Destination already contains a player piece."
-                              << std::endl;
-                    ret += (i + 1);
-                    break;
-                case Too_Many_Pieces:
-                    std::cout << "ERROR: player " << i + 1 << "'s positioning:"
-                                                              " Illegal number of pieces of type " <<
-                              (*ptr).getPiece() << std::endl;
-                    ret += (i + 1);
-                    break;
-                case Invalid_Argument:
-                    std::cout << "ERROR: player " << i + 1 << "'s positioning:"
-                                                              "An invalid position command" << std::endl;
-                    ret += (i + 1);
-                    break;
-                case Success:
-                    break;
-                default:
-                    std::cout << "ERROR: player " << i + 1 << "'s positioning:"
-                                                              " An unknown error has occurred." << std::endl;
-                    break;
+
             }
 
             if(ret>0){
@@ -86,7 +88,6 @@ int MainAux::RPSPerformPositioning(RPSGame& game ,std::vector<unique_ptr<PlayerA
         }
 
         if (valid && !game.validateNumberOfFlags(i + 1)) {
-            std::cout << "ERROR: Player " << i + 1 << " hadn't placed all of his flags." << std::endl;
             ret += (i + 1);
         }
 
@@ -99,7 +100,7 @@ int MainAux::RPSPerformPositioning(RPSGame& game ,std::vector<unique_ptr<PlayerA
 
 //==================================================================================
 
-
+//TODO do we need that?
 int MainAux::RPSPrintGamePositionErrorResult(RPSGame& game, int feedback){
 
     std::ofstream fout("rps.output");
@@ -226,7 +227,7 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
 
 
 //==========================================================================
-
+//TODO do we need that?
 int MainAux::RPSPrintGameResult(RPSGame& game, int reason) {
     std::ofstream fout("rps.output");
     if (!fout.is_open()) {

@@ -203,33 +203,6 @@ ex3/RPSBoard.cpp.s:
 	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RPSBoard.cpp.s
 .PHONY : ex3/RPSBoard.cpp.s
 
-ex3/RPSFilePlayerAlgorithm.obj: ex3/RPSFilePlayerAlgorithm.cpp.obj
-
-.PHONY : ex3/RPSFilePlayerAlgorithm.obj
-
-# target to build an object file
-ex3/RPSFilePlayerAlgorithm.cpp.obj:
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.obj
-.PHONY : ex3/RPSFilePlayerAlgorithm.cpp.obj
-
-ex3/RPSFilePlayerAlgorithm.i: ex3/RPSFilePlayerAlgorithm.cpp.i
-
-.PHONY : ex3/RPSFilePlayerAlgorithm.i
-
-# target to preprocess a source file
-ex3/RPSFilePlayerAlgorithm.cpp.i:
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.i
-.PHONY : ex3/RPSFilePlayerAlgorithm.cpp.i
-
-ex3/RPSFilePlayerAlgorithm.s: ex3/RPSFilePlayerAlgorithm.cpp.s
-
-.PHONY : ex3/RPSFilePlayerAlgorithm.s
-
-# target to generate assembly for a file
-ex3/RPSFilePlayerAlgorithm.cpp.s:
-	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RPSFilePlayerAlgorithm.cpp.s
-.PHONY : ex3/RPSFilePlayerAlgorithm.cpp.s
-
 ex3/RPSGame.obj: ex3/RPSGame.cpp.obj
 
 .PHONY : ex3/RPSGame.obj
@@ -311,6 +284,33 @@ ex3/RSPPlayer_204057566.cpp.s:
 	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RSPPlayer_204057566.cpp.s
 .PHONY : ex3/RSPPlayer_204057566.cpp.s
 
+ex3/TournamentManager.obj: ex3/TournamentManager.cpp.obj
+
+.PHONY : ex3/TournamentManager.obj
+
+# target to build an object file
+ex3/TournamentManager.cpp.obj:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.obj
+.PHONY : ex3/TournamentManager.cpp.obj
+
+ex3/TournamentManager.i: ex3/TournamentManager.cpp.i
+
+.PHONY : ex3/TournamentManager.i
+
+# target to preprocess a source file
+ex3/TournamentManager.cpp.i:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.i
+.PHONY : ex3/TournamentManager.cpp.i
+
+ex3/TournamentManager.s: ex3/TournamentManager.cpp.s
+
+.PHONY : ex3/TournamentManager.s
+
+# target to generate assembly for a file
+ex3/TournamentManager.cpp.s:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.s
+.PHONY : ex3/TournamentManager.cpp.s
+
 ex3/main.obj: ex3/main.cpp.obj
 
 .PHONY : ex3/main.obj
@@ -356,9 +356,6 @@ help:
 	@echo ... ex3/RPSBoard.obj
 	@echo ... ex3/RPSBoard.i
 	@echo ... ex3/RPSBoard.s
-	@echo ... ex3/RPSFilePlayerAlgorithm.obj
-	@echo ... ex3/RPSFilePlayerAlgorithm.i
-	@echo ... ex3/RPSFilePlayerAlgorithm.s
 	@echo ... ex3/RPSGame.obj
 	@echo ... ex3/RPSGame.i
 	@echo ... ex3/RPSGame.s
@@ -368,6 +365,9 @@ help:
 	@echo ... ex3/RSPPlayer_204057566.obj
 	@echo ... ex3/RSPPlayer_204057566.i
 	@echo ... ex3/RSPPlayer_204057566.s
+	@echo ... ex3/TournamentManager.obj
+	@echo ... ex3/TournamentManager.i
+	@echo ... ex3/TournamentManager.s
 	@echo ... ex3/main.obj
 	@echo ... ex3/main.i
 	@echo ... ex3/main.s

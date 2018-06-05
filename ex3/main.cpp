@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <string.h>
 #include "MainAux.h"
 
 #define THREADS_OPTION "-threads"
