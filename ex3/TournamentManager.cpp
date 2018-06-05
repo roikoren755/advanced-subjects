@@ -19,3 +19,15 @@ void TournamentManager::registerAlgorithm(std::string id,
 	}
 	id2factory[id] = factoryMethod;
 }
+
+void TournamentManager::printTournamentResult() {
+	std::map<int, std::string> sortedScore;
+
+	for (std::map<std::string, int>::iterator it = score.begin(); it != score.end(); it++) {
+		sortedScore[it->second] = it->first;
+	}
+
+	for (std::map<int, std::string>::iterator it = sortedScore.begin(); it != sortedScore.end(); it++){
+		std::cout << it->first << " " << it->second << std::endl;
+	}
+}

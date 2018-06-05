@@ -13,6 +13,7 @@
 class TournamentManager {
 	static TournamentManager tournamentManager;
 	std::map<std::string, std::function<std::unique_ptr<PlayerAlgorithm>()>> id2factory;
+	std::map<std::string,int> score;
 
 	TournamentManager() = default;
 public:
@@ -20,6 +21,7 @@ public:
 	TournamentManager operator=(const TournamentManager& tournamentManager) = delete;
 	static TournamentManager& getTournamentManager();
 	void registerAlgorithm(std::string id, std::function<std::unique_ptr<PlayerAlgorithm>()> factoryMethod);
+	void printTournamentResult();
 };
 
 #endif //ADVANCED_SUBJECTS_TOURNAMENTMANAGER_H
