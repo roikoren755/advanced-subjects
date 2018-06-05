@@ -27,7 +27,7 @@ void TournamentManager::printTournamentResult() {
 		sortedScore[it->second] = it->first;
 	}
 
-	for (std::map<int, std::string>::iterator it = sortedScore.begin(); it != sortedScore.end(); it++){
+	for(std::map<int,std::string>::reverse_iterator it = sortedScore. rbegin(); it != sortedScore.rend(); it++)
 		std::cout << it->first << " " << it->second << std::endl;
 	}
 }
