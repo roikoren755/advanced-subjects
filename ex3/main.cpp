@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include <string.h>
+#include <cstring>
 #include "MainAux.h"
 
 #define THREADS_OPTION "-threads"
@@ -16,7 +16,7 @@ int main(int argc, char* argv[]) {
     }
 
     int threads = 0;
-    std::string path;
+    std::string path = "./";
     if (argc > 1) {
         for (int i = 1; i < argc; i += 2) {
             if (!strcmp(argv[i], THREADS_OPTION)) {
@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
             }
 
             else if (!strcmp(argv[i], PATH_OPTION)) {
-                if (path.empty()) {
+                if (path == "./") {
                     path = argv[i + 1];
                 }
 
@@ -44,6 +44,10 @@ int main(int argc, char* argv[]) {
                 }
             }
         }
+    }
+
+    if (path.back() != '/') {
+        path.append("/");
     }
 
     return 0;
