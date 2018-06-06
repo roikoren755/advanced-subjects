@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <random>
 #include "TournamentManager.h"
 
 TournamentManager TournamentManager::tournamentManager;
@@ -23,11 +24,43 @@ void TournamentManager::registerAlgorithm(std::string id,
 void TournamentManager::printTournamentResult() {
 	std::map<int, std::string> sortedScore;
 
-	for (std::map<std::string, int>::iterator it = score.begin(); it != score.end(); it++) {
+	for (auto it = score.begin(); it != score.end(); it++) {
 		sortedScore[it->second] = it->first;
 	}
 
-	for(std::map<int,std::string>::reverse_iterator it = sortedScore. rbegin(); it != sortedScore.rend(); it++)
+	for (auto it = sortedScore.rbegin(); it != sortedScore.rend(); it++) {
 		std::cout << it->second << " " << it->first<< std::endl;
+	}
+}
+
+void TournamentManager::initializeGamesList() {
+	unsigned long numberOfPlayers = this->id2factory.size();
+	std::vector<std::string> players;
+	for (auto it = this->id2factory.begin(); it != this->id2factory.end(); it++) {
+		players.push_back((*it).first);
+	}
+
+	std::vector<int> gamesLeftToPlay(numberOfPlayers);
+	for (unsigned long i = 0; i < numberOfPlayers; i++) {
+		gamesLeftToPlay.at(i) = 30;
+	}
+
+	std::random_device rd;
+	std::mt19937 mt(rd());
+	std::uniform_int_distribution<int> dist(0, 30);
+
+	for (int i=0; i<16; ++i)
+		std::cout << dist(mt) << "\n";
+
+	unsigned long opponent;
+	for (unsigned long i = 0; i < numberOfPlayers; i++) {
+		while (gamesLeftToPlay.at(i) > 0) {
+			opponent = (unsigned long) dist(mt);
+			if (opponent != i) {
+				gamesLeftToPlay.at(i)--;
+				gamesLeftToPlay.at(opponent)--;
+				this->gamesToPlay.emplace_back(std::make_tuple(players.at(i), players.at(opponent)));
+			}
+		}
 	}
 }

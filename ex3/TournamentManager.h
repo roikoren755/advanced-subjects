@@ -8,12 +8,14 @@
 #include <string>
 #include <functional>
 #include <map>
+#include <vector>
 #include "PlayerAlgorithm.h"
 
 class TournamentManager {
 	static TournamentManager tournamentManager;
 	std::map<std::string, std::function<std::unique_ptr<PlayerAlgorithm>()>> id2factory;
 	std::map<std::string,int> score;
+	std::vector<std::tuple<std::string, std::string>> gamesToPlay;
 
 	TournamentManager() = default;
 public:
@@ -22,6 +24,7 @@ public:
 	static TournamentManager& getTournamentManager();
 	void registerAlgorithm(std::string id, std::function<std::unique_ptr<PlayerAlgorithm>()> factoryMethod);
 	void printTournamentResult();
+	void initializeGamesList();
 };
 
 #endif //ADVANCED_SUBJECTS_TOURNAMENTMANAGER_H

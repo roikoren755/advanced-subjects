@@ -5,7 +5,6 @@
 #define NONE '0'
 #define NOT_JOKER '#'
 
-
 class RPSPiece {
 	char pieceType;
 	char jokerRepresentation;
