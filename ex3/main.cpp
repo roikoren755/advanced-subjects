@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cstring>
 #include "MainAux.h"
+#include "TournamentManager.h"
 
 #define THREADS_OPTION "-threads"
 #define PATH_OPTION "-path"
@@ -48,6 +49,15 @@ int main(int argc, char* argv[]) {
 
     if (path.back() != '/') {
         path.append("/");
+    }
+
+    int numOfPlayers = TournamentManager::getTournamentManager().loadAlgorithms(path);
+    if (numOfPlayers < 0) {
+        return numOfPlayers;
+    }
+    else if (numOfPlayers < 2) {
+        std::cout << "USAGE: location of algorithms does not contain enough players" << std::endl;
+        return 0;
     }
 
     return 0;
