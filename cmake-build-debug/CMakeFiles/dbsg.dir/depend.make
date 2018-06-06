@@ -95,5 +95,6 @@ CMakeFiles/dbsg.dir/ex3/main.cpp.obj: ../ex3/RPSGame.h
 CMakeFiles/dbsg.dir/ex3/main.cpp.obj: ../ex3/RPSPiece.h
 CMakeFiles/dbsg.dir/ex3/main.cpp.obj: ../ex3/RPSPiecePosition.h
 CMakeFiles/dbsg.dir/ex3/main.cpp.obj: ../ex3/RPSPoint.h
+CMakeFiles/dbsg.dir/ex3/main.cpp.obj: ../ex3/TournamentManager.h
 CMakeFiles/dbsg.dir/ex3/main.cpp.obj: ../ex3/main.cpp
 

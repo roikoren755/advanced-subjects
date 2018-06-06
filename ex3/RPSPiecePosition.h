@@ -27,6 +27,19 @@ public:
 	const Point& getPosition() const override { return this->position; }
 	char getPiece() const override { return this->piece; }
 	char getJokerRep() const override { return this->jokerRepresentation; }
+
+	RPSPiecePosition& operator=(const RPSPiecePosition& other){
+		if(this == &other){
+			return *this;
+		}
+
+		this->position.setX(other.getPosition().getX());
+		this->position.setY(other.getPosition().getY());
+		this->piece = other.getPiece();
+		this->jokerRepresentation = other.getJokerRep();
+
+		return *this;
+	}
 	~RPSPiecePosition() override = default;
 };
 

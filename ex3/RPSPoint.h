@@ -7,8 +7,8 @@
 #include "Point.h"
 
 class RPSPoint : public Point {
-	const int x;
-	const int y;
+	 int x;
+	 int y;
 public:
 	RPSPoint(): x(-1),y(-1) {}
 	RPSPoint(int x, int y): x(x), y(y) {}
@@ -16,6 +16,9 @@ public:
 	explicit RPSPoint(const Point& point): x(point.getX()), y(point.getY()) {}
 	int getX() const override { return this->x; }
 	int getY() const override { return this->y; }
+	void setX(int x)   { this->x = x; }
+	void setY(int y)   { this->y = y; }
+
 	~RPSPoint() override = default;
 };
 
