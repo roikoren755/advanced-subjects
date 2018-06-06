@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <random>
+#include <dirent.h>
+#include <dlfcn.h>
 #include "TournamentManager.h"
 
 TournamentManager TournamentManager::tournamentManager;
@@ -36,8 +38,8 @@ void TournamentManager::printTournamentResult() {
 void TournamentManager::initializeGamesList() {
 	unsigned long numberOfPlayers = this->id2factory.size();
 	std::vector<std::string> players;
-	for (auto it = this->id2factory.begin(); it != this->id2factory.end(); it++) {
-		players.push_back((*it).first);
+	for (const auto& item: this->id2factory) {
+		players.push_back(item.first);
 	}
 
 	std::vector<int> gamesLeftToPlay(numberOfPlayers);
@@ -57,7 +59,7 @@ void TournamentManager::initializeGamesList() {
 			if (opponent != i && gamesLeftToPlay.at(opponent) > 0) {
 				gamesLeftToPlay.at(i)--;
 				gamesLeftToPlay.at(opponent)--;
-				this->gamesToPlay.emplace_back(std::make_tuple(players.at(i), players.at(opponent)));
+				this->gamesToPlay.emplace_back(std::make_tuple(players.at(i), std::make_tuple(players.at(opponent), true)));
 				tries = 0;
 			}
 			else {
@@ -68,8 +70,34 @@ void TournamentManager::initializeGamesList() {
 				tries = 0;
 				gamesLeftToPlay.at(i)--;
 				gamesLeftToPlay.at(opponent)--;
-				this->gamesToPlay.emplace_back(std::make_tuple(players.at(i), players.at(opponent)));
+				this->gamesToPlay.emplace_back(std::make_tuple(players.at(i), std::make_tuple(players.at(opponent), false)));
 			}
 		}
+	}
+}
+
+int TournamentManager::loadAlgorithms(const std::string& pathToDir) {
+	DIR *dir;
+	struct dirent *ent;
+	if ((dir = opendir(pathToDir.c_str())) != nullptr) {
+		while ((ent = readdir(dir)) != nullptr) {
+			if (ent->d_namlen > 3 && ent->d_name[ent->d_namlen - 1] == 'o' && ent->d_name[ent->d_namlen - 2] == 's' &&
+				ent->d_name[ent->d_namlen - 3] == '.') {
+				this->soHandles.emplace_back(dlopen((pathToDir + ent->d_name).c_str(), RTLD_LAZY));
+			}
+		}
+		closedir(dir);
+	}
+	else {
+		std::cout << "ERROR: Could not open algorithms directory" << std::endl;
+		return -1;
+	}
+
+	return (int) this->soHandles.size();
+}
+
+TournamentManager::~TournamentManager() {
+	for (auto handle: this->soHandles) {
+		dlclose(handle);
 	}
 }

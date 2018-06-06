@@ -15,9 +15,11 @@ class TournamentManager {
 	static TournamentManager tournamentManager;
 	std::map<std::string, std::function<std::unique_ptr<PlayerAlgorithm>()>> id2factory;
 	std::map<std::string,int> score;
-	std::vector<std::tuple<std::string, std::string>> gamesToPlay;
+	std::vector<std::tuple<std::string, std::tuple<std::string, bool>>> gamesToPlay;
+	std::vector<void*> soHandles;
 
 	TournamentManager() = default;
+	~TournamentManager();
 public:
 	TournamentManager(const TournamentManager& tournamentManager) = delete;
 	TournamentManager operator=(const TournamentManager& tournamentManager) = delete;
@@ -25,6 +27,7 @@ public:
 	void registerAlgorithm(std::string id, std::function<std::unique_ptr<PlayerAlgorithm>()> factoryMethod);
 	void printTournamentResult();
 	void initializeGamesList();
+	int loadAlgorithms(const std::string& pathToDir);
 };
 
 #endif //ADVANCED_SUBJECTS_TOURNAMENTMANAGER_H
