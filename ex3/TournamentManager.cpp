@@ -47,13 +47,25 @@ void TournamentManager::initializeGamesList() {
 
 	std::random_device rd;
 	std::mt19937 mt(rd());
-	std::uniform_int_distribution<int> dist(0, 29);
+	std::uniform_int_distribution<int> dist(0, (int) numberOfPlayers - 1);
 
 	unsigned long opponent;
+	int tries = 0;
 	for (unsigned long i = 0; i < numberOfPlayers; i++) {
 		while (gamesLeftToPlay.at(i) > 0) {
 			opponent = (unsigned long) dist(mt);
-			if (opponent != i) {
+			if (opponent != i && gamesLeftToPlay.at(opponent) > 0) {
+				gamesLeftToPlay.at(i)--;
+				gamesLeftToPlay.at(opponent)--;
+				this->gamesToPlay.emplace_back(std::make_tuple(players.at(i), players.at(opponent)));
+				tries = 0;
+			}
+			else {
+				tries++;
+			}
+
+			if (tries > 10 && opponent != i) {
+				tries = 0;
 				gamesLeftToPlay.at(i)--;
 				gamesLeftToPlay.at(opponent)--;
 				this->gamesToPlay.emplace_back(std::make_tuple(players.at(i), players.at(opponent)));
