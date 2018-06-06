@@ -1,6 +1,5 @@
 // Created by Roi Koren on 30/04/2018.
 //
-
 #include "RPSBoard.h"
 
 RPSBoard::RPSBoard() {

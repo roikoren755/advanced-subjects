@@ -1,7 +1,6 @@
 //
 // Created by Roi Koren on 20/05/2018.
 //
-
 #ifndef ADVANCED_SUBJECTS_RPSAUTOMATICPLAYERALGORITHM_H
 #define ADVANCED_SUBJECTS_RPSAUTOMATICPLAYERALGORITHM_H
 
@@ -10,7 +9,6 @@
 #include "RPSPoint.h"
 #include "RPSMove.h"
 #include "RPSPiecePosition.h"
-
 
 class RSPPlayer_204057566: public PlayerAlgorithm {
 	RPSBoard board;
@@ -23,11 +21,9 @@ class RSPPlayer_204057566: public PlayerAlgorithm {
 	int opponentPapers = 0;
 	int opponentScissors = 0;
 
-	std::vector<std::pair<RPSPiecePosition,bool>> opponentPieces; //bool says if there is a possibility this is a joker
+	std::vector<std::pair<RPSPiecePosition,bool>> opponentPieces; // bool says if there is a possibility this is a joker
 	int movesCounter = 0;
 	std::tuple<int,int,int,int> prevMove =  std::make_tuple(-1,-1,-1,-1);
-//	RPSMove prevMove = RPSMove(-1,-1,-1,-1);
-
 public:
     RSPPlayer_204057566();
 	RSPPlayer_204057566(int flags, int bombs, int jokers, int rocks, int papers, int scissors):
@@ -42,7 +38,6 @@ public:
 	~RSPPlayer_204057566() override = default;
 private:
 	void updateOpponentPieces(char piece,int x,int y,int newX,int newY);
-	double findMinDisFromOpponent(int x,int y);
 	double evaluateMove(char piece,int x,int y);
 	void updateBoardByBattle(const FightInfo& fightInfo);
 };

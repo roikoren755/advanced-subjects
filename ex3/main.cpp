@@ -56,6 +56,7 @@ int main(int argc, char* argv[]) {
         return numOfPlayers;
     }
     else if (numOfPlayers < 2) {
+        std::cout << numOfPlayers << std::endl;
         std::cout << "USAGE: location of algorithms does not contain enough players" << std::endl;
         return 0;
     }

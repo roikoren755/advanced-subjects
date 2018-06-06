@@ -11,9 +11,9 @@
 #define INVALID_PIECE '#'
 
 class RPSPiecePosition: public PiecePosition {
-	const RPSPoint position;
-	const char piece;
-	const char jokerRepresentation;
+	RPSPoint position;
+	char piece;
+	char jokerRepresentation;
 public:
 	RPSPiecePosition(int x, int y, char piece, char jokerRepresentation): position(RPSPoint(x, y)), piece(piece),
 																		  jokerRepresentation(jokerRepresentation) {}

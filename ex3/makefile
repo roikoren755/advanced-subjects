@@ -1,6 +1,6 @@
-COMP = g++-5.3.0
+COMP = g++
 #put all your object files here
-OBJS = main.o MainAux.o RPSBoard.o RPSFilePlayerAlgorithm.o RPSGame.o RPSPiece.o TournamentManager.o #objects should be placed here!
+OBJS = main.o MainAux.o RPSBoard.o RPSGame.o RPSPiece.o TournamentManager.o #objects should be placed here!
 SO_OBJS = RSPPlayer_204057566.o RPSBoard.o RPSPiece.o
 #The executable filename DON'T CHANGE
 EXEC = ex3
@@ -18,9 +18,7 @@ AlgorithmRegistration.o: AlgorithmRegistration.cpp AlgorithmRegistration.h Playe
 	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
 main.o: main.cpp MainAux.h RPSGame.h RPSPiece.h PlayerAlgorithm.h Point.h PiecePosition.h Board.h FightInfo.h Move.h JokerChange.h RPSBoard.h RPSPiecePosition.h RPSPoint.h RPSFightInfo.h #put dependencies here!
 	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
-MainAux.o: MainAux.cpp RSPPlayer_204057566.h PlayerAlgorithm.h Point.h PiecePosition.h Board.h FightInfo.h Move.h JokerChange.h RPSBoard.h RPSPiece.h RPSFilePlayerAlgorithm.h RPSPiecePosition.h RPSPoint.h RPSMove.h RPSJokerChange.h RPSFightInfo.h MainAux.h RPSGame.h
-	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
-RPSFilePlayerAlgorithm.o: RPSFilePlayerAlgorithm.cpp RPSFilePlayerAlgorithm.h PlayerAlgorithm.h Point.h PiecePosition.h Board.h FightInfo.h Move.h JokerChange.h RPSPiecePosition.h RPSPoint.h RPSMove.h RPSJokerChange.h RPSFightInfo.h RPSBoard.h RPSPiece.h
+MainAux.o: MainAux.cpp RSPPlayer_204057566.h PlayerAlgorithm.h Point.h PiecePosition.h Board.h FightInfo.h Move.h JokerChange.h RPSBoard.h RPSPiece.h RPSPiecePosition.h RPSPoint.h RPSMove.h RPSJokerChange.h RPSFightInfo.h MainAux.h RPSGame.h
 	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
 RPSGame.o: RPSGame.cpp RPSGame.h RPSPiece.h PlayerAlgorithm.h Point.h PiecePosition.h Board.h FightInfo.h Move.h JokerChange.h RPSBoard.h RPSPiecePosition.h RPSPoint.h RPSFightInfo.h
 	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp

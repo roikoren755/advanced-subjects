@@ -1,7 +1,6 @@
 //
 // Created by Roi Koren on 30/04/2018.
 //
-
 #ifndef ADVANCED_SUBJECTS_RPSJOKERCHANGE_H
 #define ADVANCED_SUBJECTS_RPSJOKERCHANGE_H
 

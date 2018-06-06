@@ -4,13 +4,8 @@
  *  Created on: 8 April 2018
  *      Author: user
  */
-
 #include "RPSGame.h"
-#include "RPSBoard.h"
-#include "RPSFightInfo.h"
 #include <vector>
-
-
 
 #define ALL_FLAGS_CAPTURED (-2)
 #define ALL_MOVING_PIECES_CAPTURED (-3)

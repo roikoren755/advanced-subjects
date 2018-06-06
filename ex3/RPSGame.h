@@ -33,7 +33,6 @@
  * - The amounts of pieces of any type for both users
 */
 
-
 enum RPS_Message {
 	Success,
 	Invalid_Argument,
@@ -111,9 +110,6 @@ public:
 	int getWinner() { return this->winner; }
 	void setWinner(int winner) { this->winner = winner; }
 	RPSBoard getBoard() { return this->board; }
-
 };
 
 #endif
-
-

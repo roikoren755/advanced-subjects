@@ -1,11 +1,8 @@
 //
 // Created by user on 21/05/2018.
 //
-
-
-
 #include <fstream>
-#include <string.h>
+#include <cstring>
 #include "RSPPlayer_204057566.h"
 #include "MainAux.h"
 #include "RPSGame.h"
@@ -16,22 +13,21 @@
 #define ALL_MOVING_PIECES_CAPTURED (-3)
 #define LEGAL_TIE 0
 #define ILLEGAL_MOVE 1
-
-
 #define BOTH_PLAYERS_LOST 3
+#define PLAYER(i) ((i) - 1)
 
-int MainAux::runGame(unique_ptr<PlayerAlgorithm> player1 , unique_ptr<PlayerAlgorithm> player2){
+int MainAux::runGame(unique_ptr<PlayerAlgorithm> player1, unique_ptr<PlayerAlgorithm> player2) {
     std::vector<unique_ptr<PlayerAlgorithm>> algorithms;
-    algorithms.push_back(player1);
-    algorithms.push_back(player2);
+    algorithms.push_back(std::move(player1));
+    algorithms.push_back(std::move(player2));
 
     RPSGame game = RPSGame();
-    int feedback = MainAux::RPSPerformPositioning(game,algorithms);
+    int feedback = MainAux::RPSPerformPositioning(game, algorithms);
     if (feedback == BOTH_PLAYERS_LOST) {
-        return  0;
+        return 0;
     }
-    else if(feedback>0) { //if feedback==0 game not done
-        return (feedback == 1 ) ? 2 : 1;
+    else if (feedback > 0) { // if feedback == 0 game not done
+        return feedback == 1 ? 2 : 1;
     }
 
     std::vector<unique_ptr<FightInfo>> fights;
@@ -41,8 +37,8 @@ int MainAux::runGame(unique_ptr<PlayerAlgorithm> player1 , unique_ptr<PlayerAlgo
         return game.getWinner();
     }
 
-    algorithms[PLAYER(1)]->notifyOnInitialBoard(game.getBoard(),fights);
-    algorithms[PLAYER(2)]->notifyOnInitialBoard(game.getBoard(),fights);
+    algorithms[PLAYER(1)]->notifyOnInitialBoard(game.getBoard(), fights);
+    algorithms[PLAYER(2)]->notifyOnInitialBoard(game.getBoard(), fights);
 
     RPSPlayTwoPlayersMoves(game, algorithms);
     return game.getWinner();
@@ -52,12 +48,12 @@ int MainAux::GetPositiveInt(const char *const integer) {
     int result = 0;
     int i = 0;
     while (integer && integer[i] >= '0' && integer[i] <= '9') {
-    result *= 10;
-    result += integer[i] - '0';
-    i++;
-}
+        result *= 10;
+        result += integer[i] - '0';
+        i++;
+    }
 
-return result;
+    return result;
 }
 
 int MainAux::RPSPerformPositioning(RPSGame& game ,std::vector<unique_ptr<PlayerAlgorithm>>& algorithms) {
@@ -75,12 +71,11 @@ int MainAux::RPSPerformPositioning(RPSGame& game ,std::vector<unique_ptr<PlayerA
                 break;
             }
             message = game.setPosition(*ptr, i + 1);
-            if(message != Success) {
-                    ret += (i + 1);
-
+            if (message != Success) {
+                ret += (i + 1);
             }
 
-            if(ret>0){
+            if (ret > 0) {
                 valid = 0;
                 break;
             }
@@ -94,14 +89,13 @@ int MainAux::RPSPerformPositioning(RPSGame& game ,std::vector<unique_ptr<PlayerA
         playerPos.clear();
 
     }
+
     return ret;
 }
 
-
 //==================================================================================
-
-//TODO do we need that?
-int MainAux::RPSPrintGamePositionErrorResult(RPSGame& game, int feedback){
+// TODO - do we need that?
+int MainAux::RPSPrintGamePositionErrorResult(RPSGame& game, int feedback) {
 
     std::ofstream fout("rps.output");
     if (!fout.is_open()) {
@@ -114,7 +108,7 @@ int MainAux::RPSPrintGamePositionErrorResult(RPSGame& game, int feedback){
         winner = 0;
     }
     else {
-        winner = (feedback == 1 ) ? 2 : 1;
+        winner = feedback == 1 ? 2 : 1;
     }
 
     fout << "Winner: " << winner << std::endl;
@@ -135,9 +129,6 @@ int MainAux::RPSPrintGamePositionErrorResult(RPSGame& game, int feedback){
 }
 
 //==========================================================================
-
-
-
 int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<PlayerAlgorithm>>& algorithms) {
     //int winner;
     RPS_Message message;
@@ -151,7 +142,7 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
                 continue;
             }
             auto movePtr = algorithms[i]->getMove();
-            if(movePtr == nullptr){
+            if (movePtr == nullptr) {
                 i == 1 ? (player1Finished = true) : (player2Finished = true);
 
                 moveCounter++;
@@ -162,6 +153,7 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
 
                 break;
             }
+
             RPSMove move = *movePtr;
             int toX = movePtr->getTo().getX();
             int toY = movePtr->getTo().getY();
@@ -182,7 +174,7 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
 							return ALL_MOVING_PIECES_CAPTURED;
 						case All_Flags_Captured:
 							return ALL_FLAGS_CAPTURED;
-						default: //should'nt happen
+						default: // shouldn't happen
 							break;
 					}
 				}
@@ -195,12 +187,12 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
 				}
 
 				if (game.changeJokerRepresentation(algorithms[i]->getJokerChange()) != Success) {
-					game.setWinner((i + 1 == 1) ? 2 : 1);
+					game.setWinner(i + 1 == 1 ? 2 : 1);
 					return ILLEGAL_MOVE;
 				}
             }
-            else {  //in this case illegal move was done
-				game.setWinner((i + 1 == 1) ? 2 : 1);
+            else {  // in this case illegal move was done
+				game.setWinner(i + 1 == 1 ? 2 : 1);
 				return ILLEGAL_MOVE;
 			}
 
@@ -212,19 +204,14 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
                     return ALL_MOVING_PIECES_CAPTURED;
                 case All_Flags_Captured:
                     return ALL_FLAGS_CAPTURED;
-                default: //should'nt happen
+                default: // shouldn't happen
                     break;
             }
-
         }
     }
 
     return LEGAL_TIE;
 }
-
-
-
-
 
 //==========================================================================
 //TODO do we need that?
@@ -236,7 +223,7 @@ int MainAux::RPSPrintGameResult(RPSGame& game, int reason) {
     }
 
     int winner = game.getWinner();
-    int loser = (winner == 1)? 2 : 1;
+    int loser = winner == 1 ? 2 : 1;
 
     fout << "Winner: " << winner << std::endl;
     fout << "Reason: ";
@@ -254,19 +241,19 @@ int MainAux::RPSPrintGameResult(RPSGame& game, int reason) {
                     fout << "All moving PIECEs of the opponent are eaten" << std::endl;
                 }
                 else {
-                    fout << "A tie - All moving PIECEs of the opponent are eaten" << std::endl; // TODO - Both players have no moving pieces after positioning tie message
+                    // TODO - Both players have no moving pieces after positioning tie message
+                    fout << "A tie - All moving PIECEs of the opponent are eaten" << std::endl;
                 }
                 break;
             case LEGAL_TIE:
                 fout << "A tie - max no-fight moves allowed performed " << std::endl;
                 break;
             case ILLEGAL_MOVE:
-                fout << "Bad Move for player " << loser <<std::endl;
+                fout << "Bad Move for player " << loser << std::endl;
                 break;
             default:
                 break;
         }
-
 
     fout << std::endl;
     fout << game;
