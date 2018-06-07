@@ -17,69 +17,55 @@ TournamentManager& TournamentManager::getTournamentManager() {
 
 //============================================================
 
-void TournamentManager::tournamentRunGame(std::string plr1, std::pair<std::string,bool> plr2){
-    unique_ptr<PlayerAlgorithm> player1 = this->id2factory[plr1]();
-    unique_ptr<PlayerAlgorithm> player2 = this->id2factory[plr2.first]();
-
-    int winner = MainAux::runGame(std::move(player1),std::move(player2));
-    switch (winner){
-        case  1:
-			score_mutex.lock();
-			score[plr1]+=3;
-			score_mutex.unlock();
+void TournamentManager::tournamentRunGame(std::string player1Name, std::pair<std::string,bool> player2Name) {
+    int winner = MainAux::runGame(this->id2factory[player1Name](), this->id2factory[player2Name.first]());
+    switch (winner) {
+        case 1:
+			scoreMutex.lock();
+			score[player1Name] += 3;
+			scoreMutex.unlock();
             break;
         case 2:
-			score_mutex.lock();
-			if(plr2.second){
-                score[plr2.first]+=3;
+			if (player2Name.second) {
+				scoreMutex.lock();
+                score[player2Name.first] += 3;
+				scoreMutex.unlock();
             }
-			score_mutex.unlock();
 			break;
         case 0:
-			score_mutex.lock();
-			score[plr1]+=1;
-			if(plr2.second){
-				score[plr2.first]+=1;
+			scoreMutex.lock();
+			score[player1Name] += 1;
+			if (player2Name.second) {
+				score[player2Name.first] += 1;
 			}
-			score_mutex.unlock();
-		default:
+			scoreMutex.unlock();
+		default: // Shouldn't get here
 			break;
 	}
 }
 
-void TournamentManager::managerThreadWork(){
-
-	while (true){
-
-		games_list_mutex.lock();
-		if(gamesToPlay.empty()){
-			games_list_mutex.unlock();
-			break;
-		}
-		else{
-			auto curGame = gamesToPlay.back();
-			gamesToPlay.pop_back();
-			games_list_mutex.unlock();
-
-			tournamentRunGame(curGame.first, curGame.second );
-		}
-
+void TournamentManager::managerThreadWork() {
+	while (!this->gamesToPlay.empty()) {
+		this->gamesListMutex.lock();
+		auto curGame = this->gamesToPlay.back();
+		this->gamesToPlay.pop_back();
+		this->gamesListMutex.unlock();
+		this->tournamentRunGame(curGame.first, curGame.second);
 	}
 }
 
-void TournamentManager::runTournament(int n_threads) {
-	std::vector<std::thread> threads(n_threads - 1);
+void TournamentManager::runTournament(int numberOfThreads) {
+	std::vector<std::thread> threads((unsigned long) numberOfThreads - 1);
 	for (auto it = threads.begin(); it != threads.end(); it++) {
 		*it = std::thread(managerThreadWork);
 	}
-	managerThreadWork(); //main thread also has to do work
+	managerThreadWork(); // main thread also has to do work
 
-	for (auto it = threads.begin(); it != threads.end(); it++) {
-		(*it).join();  //safety, threads should be done by here
+	for (auto& it: threads) {
+		it.join();  // safety, threads should be done by here
 	}
 }
-void TournamentManager::registerAlgorithm(std::string id,
-										  std::function<std::unique_ptr<PlayerAlgorithm>()> factoryMethod) {
+void TournamentManager::registerAlgorithm(std::string id, std::function<std::unique_ptr<PlayerAlgorithm>()> factoryMethod) {
 	auto iterator = this->id2factory.find(id);
 	if (iterator != this->id2factory.end()) {
 		std::cout << "WARNING: tried loading " << id << " more than once. Only the last version will be saved." << std::endl;
@@ -90,8 +76,8 @@ void TournamentManager::registerAlgorithm(std::string id,
 void TournamentManager::printTournamentResult() {
 	std::map<int, std::string> sortedScore;
 
-	for (auto it = score.begin(); it != score.end(); it++) {
-		sortedScore[it->second] = it->first;
+	for (const auto& it: score) {
+		sortedScore[it.second] = it.first;
 	}
 
 	for (auto it = sortedScore.rbegin(); it != sortedScore.rend(); it++) {

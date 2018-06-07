@@ -17,10 +17,8 @@ class TournamentManager {
 	std::map<std::string,int> score;
 	std::vector<std::pair<std::string, std::pair<std::string, bool>>> gamesToPlay;
 	std::vector<void*> soHandles;
-
-	std::mutex score_mutex;
-	std::mutex games_list_mutex;
-
+	std::mutex scoreMutex;
+	std::mutex gamesListMutex;
 
 	TournamentManager() = default;
 	~TournamentManager();
@@ -28,9 +26,9 @@ public:
 	TournamentManager(const TournamentManager& tournamentManager) = delete;
 	TournamentManager operator=(const TournamentManager& tournamentManager) = delete;
 	static TournamentManager& getTournamentManager();
-	void tournamentRunGame(std::string, std::pair<std::string, bool>);
+	void tournamentRunGame(std::string player1Name, std::pair<std::string, bool> player2Name);
 	void managerThreadWork();
-	void runTournament(int n_threads);
+	void runTournament(int numberOfThreads);
 	void registerAlgorithm(std::string id, std::function<std::unique_ptr<PlayerAlgorithm>()> factoryMethod);
 	void printTournamentResult();
 	void initializeGamesList();

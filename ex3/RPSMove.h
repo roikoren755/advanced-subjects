@@ -14,7 +14,6 @@ public:
 	RPSMove(int fromX, int fromY, int toX, int toY): from(RPSPoint(fromX, fromY)), to(RPSPoint(toX, toY)) {}
 	RPSMove(const Point& from, const Point& to): from(from), to(to) {}
 	RPSMove(const Move& move): from(move.getFrom()), to(move.getTo()) {}
-
 	const Point& getFrom() const override { return this->from; }
 	const Point& getTo() const override { return this->to; }
 	~RPSMove() override = default;

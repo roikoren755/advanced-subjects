@@ -18,7 +18,6 @@ public:
 	int getY() const override { return this->y; }
 	void setX(int x)   { this->x = x; }
 	void setY(int y)   { this->y = y; }
-
 	~RPSPoint() override = default;
 };
 
