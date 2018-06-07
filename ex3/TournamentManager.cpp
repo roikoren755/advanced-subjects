@@ -16,7 +16,6 @@ TournamentManager& TournamentManager::getTournamentManager() {
 }
 
 //============================================================
-
 void TournamentManager::tournamentRunGame(std::string player1Name, std::pair<std::string,bool> player2Name) {
     int winner = MainAux::runGame(this->id2factory[player1Name](), this->id2factory[player2Name.first]());
     switch (winner) {
@@ -55,6 +54,10 @@ void TournamentManager::managerThreadWork() {
 }
 
 void TournamentManager::runTournament(int numberOfThreads) {
+	if (numberOfThreads == 1) {
+		return this->managerThreadWork();
+	}
+
 	std::vector<std::thread> threads((unsigned long) numberOfThreads - 1);
 	for (auto it = threads.begin(); it != threads.end(); it++) {
 		*it = std::thread(managerThreadWork);

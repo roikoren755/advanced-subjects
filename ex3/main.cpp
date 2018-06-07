@@ -1,7 +1,6 @@
 //
 // Created by user on 01/05/2018.
 //
-
 #include <iostream>
 #include <cstring>
 #include "MainAux.h"
@@ -16,15 +15,15 @@ int main(int argc, char* argv[]) {
         return 0;
     }
 
-    int threads = 0;
+    int threads = -1;
     std::string path = "./";
     if (argc > 1) {
         for (int i = 1; i < argc; i += 2) {
             if (!strcmp(argv[i], THREADS_OPTION)) {
-                if (!threads) {
+                if (threads == -1) {
                     threads = MainAux::GetPositiveInt(argv[i + 1]);
                     if (!threads) {
-                        std::cout << "USAGE: ./ex3 [-threads <num_of_threads>] [-path <location_of_algorithms>]" << std::endl;
+                        std::cout << "USAGE: number of threads must be a positive integer" << std::endl;
                         return 0;
                     }
                 }
@@ -51,6 +50,10 @@ int main(int argc, char* argv[]) {
         path.append("/");
     }
 
+    if (threads == -1) {
+        threads = 4;
+    }
+
     int numOfPlayers = TournamentManager::getTournamentManager().loadAlgorithms(path);
     if (numOfPlayers < 0) {
         return numOfPlayers;
@@ -62,11 +65,8 @@ int main(int argc, char* argv[]) {
     }
 
     TournamentManager::getTournamentManager().initializeGamesList();
-
     TournamentManager::getTournamentManager().runTournament(threads);
-
     TournamentManager::getTournamentManager().printTournamentResult();
-
 
     return 0;
 }
