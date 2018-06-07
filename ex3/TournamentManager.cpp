@@ -150,6 +150,9 @@ int TournamentManager::loadAlgorithms(const std::string& pathToDir) {
 }
 
 TournamentManager::~TournamentManager() {
+	this->score.clear();
+	this->gamesToPlay.clear();
+	this->id2factory.clear();
 	for (auto handle: this->soHandles) {
 		dlclose(handle);
 	}
