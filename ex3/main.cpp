@@ -61,5 +61,12 @@ int main(int argc, char* argv[]) {
         return 0;
     }
 
+    TournamentManager::getTournamentManager().initializeGamesList();
+
+    TournamentManager::getTournamentManager().runTournament(threads);
+
+    TournamentManager::getTournamentManager().printTournamentResult();
+
+
     return 0;
 }

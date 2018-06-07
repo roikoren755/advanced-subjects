@@ -123,7 +123,7 @@ void TournamentManager::initializeGamesList() {
 			if (opponent != i && gamesLeftToPlay.at(opponent) > 0) {
 				gamesLeftToPlay.at(i)--;
 				gamesLeftToPlay.at(opponent)--;
-				this->gamesToPlay.emplace_back(std::make_tuple(players.at(i), std::make_tuple(players.at(opponent), true)));
+				this->gamesToPlay.emplace_back(std::make_pair(players.at(i), std::make_pair(players.at(opponent), true)));
 				tries = 0;
 			}
 			else {
@@ -134,7 +134,7 @@ void TournamentManager::initializeGamesList() {
 				tries = 0;
 				gamesLeftToPlay.at(i)--;
 				gamesLeftToPlay.at(opponent)--;
-				this->gamesToPlay.emplace_back(std::make_tuple(players.at(i), std::make_tuple(players.at(opponent), false)));
+				this->gamesToPlay.emplace_back(std::make_pair(players.at(i), std::make_pair(players.at(opponent), false)));
 			}
 		}
 	}
