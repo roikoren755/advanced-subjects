@@ -144,7 +144,13 @@ int TournamentManager::loadAlgorithms(const std::string& pathToDir) {
 			}
 			if (nameLength > 3 && ent->d_name[nameLength - 1] == 'o' && ent->d_name[nameLength - 2] == 's' &&
 				ent->d_name[nameLength - 3] == '.') {
-				this->soHandles.emplace_back(dlopen((pathToDir + ent->d_name).c_str(), RTLD_LAZY));
+				void* soHandle = dlopen((pathToDir + ent->d_name).c_str(), RTLD_LAZY);
+				if (!soHandle) {
+					std::cout << "ERROR: Could not open " << dlerror() << std::endl;
+					closedir(dir);
+					return -1;
+				}
+				this->soHandles.push_back(soHandle);
 			}
 		}
 		closedir(dir);
@@ -161,7 +167,9 @@ TournamentManager::~TournamentManager() {
 	this->score.clear();
 	this->gamesToPlay.clear();
 	this->id2factory.clear();
-	for (auto handle: this->soHandles) {
-		dlclose(handle);
+	if (!this->soHandles.empty()) {
+		for (auto handle: this->soHandles) {
+			dlclose(handle);
+		}
 	}
 }

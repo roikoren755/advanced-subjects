@@ -1,6 +1,6 @@
 COMP = g++-5.3.0
 #put all your object files here
-OBJS = main.o MainAux.o RPSBoard.o RPSGame.o RPSPiece.o TournamentManager.o #objects should be placed here!
+OBJS = main.o MainAux.o RPSBoard.o RPSGame.o RPSPiece.o TournamentManager.o AlgorithmRegistration.o #objects should be placed here!
 SO_OBJS = RSPPlayer_204057566.o RPSBoard.o RPSPiece.o
 #The executable filename DON'T CHANGE
 EXEC = ex3
