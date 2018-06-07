@@ -29,7 +29,7 @@ public:
 	void tournamentRunGame(std::string player1Name, std::pair<std::string, bool> player2Name);
 	void managerThreadWork();
 	void runTournament(int numberOfThreads);
-	void registerAlgorithm(std::string id, std::function<std::unique_ptr<PlayerAlgorithm>()> factoryMethod);
+	void registerAlgorithm(std::string id, std::function<std::unique_ptr<PlayerAlgorithm>()>& factoryMethod);
 	void printTournamentResult();
 	void initializeGamesList();
 	int loadAlgorithms(const std::string& pathToDir);

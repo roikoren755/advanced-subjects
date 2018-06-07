@@ -68,12 +68,12 @@ void TournamentManager::runTournament(int numberOfThreads) {
 		it.join();  // safety, threads should be done by here
 	}
 }
-void TournamentManager::registerAlgorithm(std::string id, std::function<std::unique_ptr<PlayerAlgorithm>()> factoryMethod) {
+void TournamentManager::registerAlgorithm(std::string id, std::function<std::unique_ptr<PlayerAlgorithm>()>& factoryMethod) {
 	auto iterator = this->id2factory.find(id);
 	if (iterator != this->id2factory.end()) {
 		std::cout << "WARNING: tried loading " << id << " more than once. Only the last version will be saved." << std::endl;
 	}
-	id2factory[id] = factoryMethod;
+	id2factory[id] = std::move(factoryMethod);
 }
 
 void TournamentManager::printTournamentResult() {
