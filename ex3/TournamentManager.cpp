@@ -60,8 +60,9 @@ void TournamentManager::runTournament(int numberOfThreads) {
 
 	std::vector<std::thread> threads((unsigned long) numberOfThreads - 1);
 	for (auto it = threads.begin(); it != threads.end(); it++) {
-		*it = std::thread(managerThreadWork);
+		*it = std::thread(&TournamentManager::managerThreadWork);
 	}
+
 	managerThreadWork(); // main thread also has to do work
 
 	for (auto& it: threads) {
