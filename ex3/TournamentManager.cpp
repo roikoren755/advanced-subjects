@@ -59,16 +59,17 @@ void TournamentManager::runTournament(int numberOfThreads) {
 	}
 
 	std::vector<std::thread> threads((unsigned long) numberOfThreads - 1);
-	for (auto it = threads.begin(); it != threads.end(); it++) {
-		*it = std::thread(&TournamentManager::managerThreadWork);
+	for (auto& thread: threads) {
+		thread = std::thread(&TournamentManager::managerThreadWork);
 	}
 
 	managerThreadWork(); // main thread also has to do work
 
-	for (auto& it: threads) {
-		it.join();  // safety, threads should be done by here
+	for (auto& thread: threads) {
+		thread.join(); // safety, threads should be done by here
 	}
 }
+
 void TournamentManager::registerAlgorithm(std::string id, std::function<std::unique_ptr<PlayerAlgorithm>()>& factoryMethod) {
 	auto iterator = this->id2factory.find(id);
 	if (iterator != this->id2factory.end()) {
