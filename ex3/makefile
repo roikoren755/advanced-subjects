@@ -1,4 +1,4 @@
-COMP = g++
+COMP = g++-5.3.0
 #put all your object files here
 OBJS = main.o MainAux.o RPSBoard.o RPSGame.o RPSPiece.o TournamentManager.o #objects should be placed here!
 SO_OBJS = RSPPlayer_204057566.o RPSBoard.o RPSPiece.o
@@ -9,7 +9,7 @@ CPP_COMP_FLAG = -std=c++14 -Wall -Wextra \
 -Werror -pedantic-errors -DNDEBUG
 
 $(EXEC): $(OBJS)
-	$(COMP) $(OBJS) -o $@
+	$(COMP) $(OBJS) -rdynamic -ldl -pthread -o $@
 $(SO): $(SO_OBJS)
 	$(COMP) $(SO_OBJS) -shared -o $@
 #a rule for building a simple c++ source file

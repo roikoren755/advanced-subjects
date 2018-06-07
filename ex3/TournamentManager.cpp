@@ -55,12 +55,13 @@ void TournamentManager::managerThreadWork() {
 
 void TournamentManager::runTournament(int numberOfThreads) {
 	if (numberOfThreads == 1) {
-		return this->managerThreadWork();
+		this->managerThreadWork();
+		return;
 	}
 
 	std::vector<std::thread> threads((unsigned long) numberOfThreads - 1);
 	for (auto& thread: threads) {
-		thread = std::thread(&TournamentManager::managerThreadWork);
+		thread = std::thread(&TournamentManager::managerThreadWork, this);
 	}
 
 	managerThreadWork(); // main thread also has to do work
@@ -134,10 +135,15 @@ void TournamentManager::initializeGamesList() {
 int TournamentManager::loadAlgorithms(const std::string& pathToDir) {
 	DIR *dir;
 	struct dirent *ent;
+	int nameLength;
 	if ((dir = opendir(pathToDir.c_str())) != nullptr) {
 		while ((ent = readdir(dir)) != nullptr) {
-			if (ent->d_namlen > 3 && ent->d_name[ent->d_namlen - 1] == 'o' && ent->d_name[ent->d_namlen - 2] == 's' &&
-				ent->d_name[ent->d_namlen - 3] == '.') {
+			nameLength = 0;
+			while (ent->d_name[nameLength]) {
+				nameLength++;
+			}
+			if (nameLength > 3 && ent->d_name[nameLength - 1] == 'o' && ent->d_name[nameLength - 2] == 's' &&
+				ent->d_name[nameLength - 3] == '.') {
 				this->soHandles.emplace_back(dlopen((pathToDir + ent->d_name).c_str(), RTLD_LAZY));
 			}
 		}
