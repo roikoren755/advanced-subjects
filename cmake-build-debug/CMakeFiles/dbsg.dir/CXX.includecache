@@ -173,10 +173,14 @@ random
 -
 dirent.h
 -
+thread
+-
 dlfcn.h
 -
 TournamentManager.h
 C:/Users/user/CLionProjects/advanced-subjects/ex3/TournamentManager.h
+MainAux.h
+C:/Users/user/CLionProjects/advanced-subjects/ex3/MainAux.h
 
 C:/Users/user/CLionProjects/advanced-subjects/ex3/TournamentManager.h
 string
@@ -186,6 +190,8 @@ functional
 map
 -
 vector
+-
+mutex
 -
 PlayerAlgorithm.h
 C:/Users/user/CLionProjects/advanced-subjects/ex3/PlayerAlgorithm.h

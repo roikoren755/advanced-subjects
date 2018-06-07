@@ -75,10 +75,17 @@ CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.obj
  C:/Users/user/CLionProjects/advanced-subjects/ex3/Board.h
  C:/Users/user/CLionProjects/advanced-subjects/ex3/FightInfo.h
  C:/Users/user/CLionProjects/advanced-subjects/ex3/JokerChange.h
+ C:/Users/user/CLionProjects/advanced-subjects/ex3/MainAux.h
  C:/Users/user/CLionProjects/advanced-subjects/ex3/Move.h
  C:/Users/user/CLionProjects/advanced-subjects/ex3/PiecePosition.h
  C:/Users/user/CLionProjects/advanced-subjects/ex3/PlayerAlgorithm.h
  C:/Users/user/CLionProjects/advanced-subjects/ex3/Point.h
+ C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSBoard.h
+ C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSFightInfo.h
+ C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSGame.h
+ C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiece.h
+ C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiecePosition.h
+ C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPoint.h
  C:/Users/user/CLionProjects/advanced-subjects/ex3/TournamentManager.cpp
  C:/Users/user/CLionProjects/advanced-subjects/ex3/TournamentManager.h
 CMakeFiles/dbsg.dir/ex3/main.cpp.obj

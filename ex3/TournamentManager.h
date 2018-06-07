@@ -8,14 +8,19 @@
 #include <functional>
 #include <map>
 #include <vector>
+#include <mutex>
 #include "PlayerAlgorithm.h"
 
 class TournamentManager {
 	static TournamentManager tournamentManager;
 	std::map<std::string, std::function<std::unique_ptr<PlayerAlgorithm>()>> id2factory;
 	std::map<std::string,int> score;
-	std::vector<std::tuple<std::string, std::tuple<std::string, bool>>> gamesToPlay;
+	std::vector<std::pair<std::string, std::pair<std::string, bool>>> gamesToPlay;
 	std::vector<void*> soHandles;
+
+	std::mutex score_mutex;
+	std::mutex games_list_mutex;
+
 
 	TournamentManager() = default;
 	~TournamentManager();
@@ -23,6 +28,9 @@ public:
 	TournamentManager(const TournamentManager& tournamentManager) = delete;
 	TournamentManager operator=(const TournamentManager& tournamentManager) = delete;
 	static TournamentManager& getTournamentManager();
+	void tournamentRunGame(std::string, std::pair<std::string, bool>);
+	void managerThreadWork();
+	void runTournament(int n_threads);
 	void registerAlgorithm(std::string id, std::function<std::unique_ptr<PlayerAlgorithm>()> factoryMethod);
 	void printTournamentResult();
 	void initializeGamesList();
