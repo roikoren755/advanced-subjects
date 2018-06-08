@@ -1,6 +1,7 @@
 //
 // Created by Roi Koren on 04/06/2018.
 //
+#include <algorithm>
 #include <iostream>
 #include <random>
 #include <dirent.h>
@@ -80,14 +81,16 @@ void TournamentManager::registerAlgorithm(std::string id, std::function<std::uni
 }
 
 void TournamentManager::printTournamentResult() {
-	std::map<int, std::string> sortedScore;
+	std::vector<std::pair<std::string, int>> sortedScore;
 
-	for (const auto& it: score) {
-		sortedScore[it.second] = it.first;
+	for (const auto& playerAndScore: this->score) {
+		sortedScore.emplace_back(std::make_pair(playerAndScore.first, playerAndScore.second));
 	}
 
-	for (auto it = sortedScore.rbegin(); it != sortedScore.rend(); it++) {
-		std::cout << it->second << " " << it->first<< std::endl;
+	std::sort(sortedScore.begin(), sortedScore.end(), [=](std::pair<std::string, int>& a, std::pair<std::string, int>& b) { return a.second > b.second; });
+
+	for (const auto& playerAndScore: sortedScore) {
+		std::cout << playerAndScore.first << " " << playerAndScore.second << std::endl;
 	}
 }
 
