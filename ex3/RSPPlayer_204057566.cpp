@@ -4,9 +4,6 @@
 #include <cmath>
 #include "AlgorithmRegistration.h"
 #include "RSPPlayer_204057566.h"
-#include "RPSPoint.h"
-#include "RPSPiecePosition.h"
-#include "RPSMove.h"
 #include "RPSJokerChange.h"
 
 #define ROCKS 2
@@ -197,10 +194,10 @@ double RSPPlayer_204057566::evaluateMove(char piece, int x, int y) {
 	double tempScore;
 	int won;
 
-	for (auto it = this->opponentPieces.begin(); it != this->opponentPieces.end(); it++) {
-		tempScore = N - posDistance(it->first.getPosition().getX(), it->first.getPosition().getY(), x, y);
-		if (it->first.getPiece() != INVALID_PIECE) {
-			won = checkIfFightWinner(piece, it->first.getPiece());
+	for (const auto& opponentPiece: this->opponentPieces) {
+		tempScore = N - posDistance(opponentPiece.first.getPosition().getX(), opponentPiece.first.getPosition().getY(), x, y);
+		if (opponentPiece.first.getPiece() != INVALID_PIECE) {
+			won = checkIfFightWinner(piece, opponentPiece.first.getPiece());
 			if (won > 0) {
 				tempScore += CAPTURE_BONUS;
 			} else if (won < 0) {
@@ -208,7 +205,7 @@ double RSPPlayer_204057566::evaluateMove(char piece, int x, int y) {
 				tempScore -= CAPTURE_BONUS;
 			}
 		}
-		if (!it->second) {  // if might be flag
+		if (!opponentPiece.second) {  // if might be flag
 			tempScore += this->movesCounter;
 		}
 
@@ -238,8 +235,8 @@ std::unique_ptr<Move> RSPPlayer_204057566::getMove() {
 			}
 			if (i - 1 > 0 && this->board.getPlayer(RPSPoint(i - 1, j)) != this->player) {
 				tempScore = this->evaluateMove(piece, i - 1, j);
-				if (prevMove.first.getX() == i && prevMove.first.getY() == j && prevMove.second.getX() == i - 1 &&
-					prevMove.second.getY() == j) {
+				if (this->prevMove.getFrom().getX() == i && this->prevMove.getFrom().getY() == j &&
+					this->prevMove.getTo().getX() == i - 1 && this->prevMove.getTo().getY() == j) {
 					tempScore = 0;
 				}
 
@@ -253,8 +250,8 @@ std::unique_ptr<Move> RSPPlayer_204057566::getMove() {
 			}
 			if (i + 1 <= M && this->board.getPlayer(RPSPoint(i + 1, j)) != this->player) {
 				tempScore = this->evaluateMove(piece, i + 1, j);
-				if (prevMove.first.getX() == i && prevMove.first.getY() == j && prevMove.second.getX() == i + 1 &&
-					prevMove.second.getY() == j) {
+				if (this->prevMove.getFrom().getX() == i && this->prevMove.getFrom().getY() == j &&
+					this->prevMove.getTo().getX() == i + 1 && this->prevMove.getTo().getY() == j) {
 					tempScore = 0;
 				}
 				if (tempScore > score) {
@@ -267,8 +264,8 @@ std::unique_ptr<Move> RSPPlayer_204057566::getMove() {
 			}
 			if (j - 1 > 0 && this->board.getPlayer(RPSPoint(i, j - 1)) != this->player) {
 				tempScore = this->evaluateMove(piece, i, j - 1);
-				if (prevMove.first.getX() == i && prevMove.first.getY() == j && prevMove.second.getX() == i &&
-					prevMove.second.getY() == j - 1) {
+				if (this->prevMove.getFrom().getX() == i && this->prevMove.getFrom().getY() == j &&
+					this->prevMove.getTo().getX() == i && this->prevMove.getTo().getY() == j - 1) {
 					tempScore = 0;
 				}
 				if (tempScore > score) {
@@ -281,8 +278,8 @@ std::unique_ptr<Move> RSPPlayer_204057566::getMove() {
 			}
 			if (j + 1 <= N && this->board.getPlayer(RPSPoint(i, j + 1)) != this->player) {
 				tempScore = this->evaluateMove(piece, i, j + 1);
-				if (prevMove.first.getX() == i && prevMove.first.getY() == j && prevMove.second.getX() == i &&
-					prevMove.second.getY() == j + 1) {
+				if (this->prevMove.getFrom().getX() == i && this->prevMove.getFrom().getY() == j &&
+					this->prevMove.getTo().getX() == i && this->prevMove.getTo().getY() == j + 1) {
 					tempScore = 0;
 				}
 				if (tempScore > score) {
@@ -296,14 +293,14 @@ std::unique_ptr<Move> RSPPlayer_204057566::getMove() {
 		}
 	}
 
-    if (fromX == -1 && fromY == -1 && toX == -1 && toY == -1){ // no legal move found
+    if (fromX == -1 && fromY == -1 && toX == -1 && toY == -1) { // no legal move found
 	    return nullptr;
 	}
 
 	this->board.setPiece(this->player, this->board.getPiece(this->player, fromX, fromY), toX, toY);
 	this->board.setPiece(this->player, RPSPiece(), fromX, fromY);
 
-	this->prevMove = std::make_pair(RPSPoint(fromX, fromY), RPSPoint(toX, toY));
+	this->prevMove = RPSMove(RPSPoint(fromX, fromY), RPSPoint(toX, toY));
 	return std::make_unique<RPSMove>(RPSPoint(fromX, fromY), RPSPoint(toX, toY));
 }
 
