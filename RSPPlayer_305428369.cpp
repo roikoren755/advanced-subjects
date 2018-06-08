@@ -122,32 +122,32 @@ void RSPPlayer_305428369::getInitialPositions(int player, std::vector<std::uniqu
 	// Two clusters, one surrounding a flag, one a bomb, with 3 movable pieces spread about
 	this->player = player;
 	this->opponent = player == 1 ? 2 : 1;
-	this->board.setPiece(player, RPSPiece('F', player), 8, 8);
-	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(8, 8, 'F', NOT_JOKER));
-	this->board.setPiece(player, RPSPiece('P', player), 5, 3);
-	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(5, 3, 'P', NOT_JOKER));
-	this->board.setPiece(player, RPSPiece('P', player), 5, 5);
-	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(5, 5, 'P', NOT_JOKER));
-	this->board.setPiece(player, RPSPiece('P', player), 5, 7);
-	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(5, 7, 'P', NOT_JOKER));
-	this->board.setPiece(player, RPSPiece('P', player), 8, 7);
-	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(8, 7, 'P', NOT_JOKER));
-	this->board.setPiece(player, RPSPiece('P', player), 8, 9);
-	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(8, 9, 'P', NOT_JOKER));
-	this->board.setPiece(player, RPSPiece('R', player), 4, 6);
-	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(4, 6, 'R', NOT_JOKER));
-	this->board.setPiece(player, RPSPiece('R', player), 7, 5);
-	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(7, 5, 'R', NOT_JOKER));
-	this->board.setPiece(player, RPSPiece('B', player), 4, 5);
-	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(4, 5, 'B', NOT_JOKER));
-	this->board.setPiece(player, RPSPiece('B', player), 9, 8);
-	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(9, 8, 'B', NOT_JOKER));
-	this->board.setPiece(player, RPSPiece('J', 'R', player), 3, 5);
-	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(3, 5, 'J', 'R'));
-	this->board.setPiece(player, RPSPiece('J', 'S', player), 7, 8);
-	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(7, 8, 'J', 'S'));
-	this->board.setPiece(player, RPSPiece('S', player), 4, 4);
-	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(4, 4, 'S', NOT_JOKER));
+	this->board.setPiece(player, RPSPiece('F', player), 1, 1);
+	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(1, 1, 'F', NOT_JOKER));
+	this->board.setPiece(player, RPSPiece('P', player), 2, 2);
+	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(2, 2, 'P', NOT_JOKER));
+	this->board.setPiece(player, RPSPiece('P', player), 6, 6);
+	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(6, 6, 'P', NOT_JOKER));
+	this->board.setPiece(player, RPSPiece('P', player), 2, 4);
+	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(2, 4, 'P', NOT_JOKER));
+	this->board.setPiece(player, RPSPiece('P', player), 1, 3);
+	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(1, 3, 'P', NOT_JOKER));
+	this->board.setPiece(player, RPSPiece('P', player), 9, 9);
+	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(9, 9, 'P', NOT_JOKER));
+	this->board.setPiece(player, RPSPiece('R', player), 4, 7);
+	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(4, 7, 'R', NOT_JOKER));
+	this->board.setPiece(player, RPSPiece('R', player), 7, 1);
+	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(7, 1, 'R', NOT_JOKER));
+	this->board.setPiece(player, RPSPiece('B', player), 9, 5);
+	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(9, 5, 'B', NOT_JOKER));
+	this->board.setPiece(player, RPSPiece('B', player), 7, 7);
+	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(7, 7, 'B', NOT_JOKER));
+	this->board.setPiece(player, RPSPiece('J', 'R', player), 4, 9);
+	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(4, 9, 'J', 'R'));
+	this->board.setPiece(player, RPSPiece('J', 'S', player), 2, 8);
+	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(2, 8, 'J', 'S'));
+	this->board.setPiece(player, RPSPiece('S', player), 3, 4);
+	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(3, 4, 'S', NOT_JOKER));
 }
 
 // return  1 if piece wins
