@@ -55,6 +55,11 @@ void TournamentManager::managerThreadWork() {
 }
 
 void TournamentManager::runTournament(int numberOfThreads) {
+	//initialize score to 0
+	for(auto player : this->id2factory){
+		this->score[player.first] = 0;
+	}
+
 	if (numberOfThreads == 1) {
 		this->managerThreadWork();
 		return;
@@ -65,7 +70,7 @@ void TournamentManager::runTournament(int numberOfThreads) {
 		thread = std::thread(&TournamentManager::managerThreadWork, this);
 	}
 
-	managerThreadWork(); // main thread also has to do work
+	managerThreadWork(); // main thread can also do work
 
 	for (auto& thread: threads) {
 		thread.join(); // safety, threads should be done by here
@@ -87,7 +92,8 @@ void TournamentManager::printTournamentResult() {
 		sortedScore.emplace_back(std::make_pair(playerAndScore.first, playerAndScore.second));
 	}
 
-	std::sort(sortedScore.begin(), sortedScore.end(), [=](std::pair<std::string, int>& a, std::pair<std::string, int>& b) { return a.second > b.second; });
+	std::sort(sortedScore.begin(), sortedScore.end(), [=](std::pair<std::string, int>& a, std::pair<std::string, int>& b) {
+	                                                    return a.second > b.second; });
 
 	for (const auto& playerAndScore: sortedScore) {
 		std::cout << playerAndScore.first << " " << playerAndScore.second << std::endl;

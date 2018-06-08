@@ -54,6 +54,12 @@ CMakeFiles/dbsg.dir/ex3/RPSGame.cpp.obj: ../ex3/RPSPoint.h
 CMakeFiles/dbsg.dir/ex3/RPSPiece.cpp.obj: ../ex3/RPSPiece.cpp
 CMakeFiles/dbsg.dir/ex3/RPSPiece.cpp.obj: ../ex3/RPSPiece.h
 
+CMakeFiles/dbsg.dir/ex3/RPSPiecePosition.cpp.obj: ../ex3/PiecePosition.h
+CMakeFiles/dbsg.dir/ex3/RPSPiecePosition.cpp.obj: ../ex3/Point.h
+CMakeFiles/dbsg.dir/ex3/RPSPiecePosition.cpp.obj: ../ex3/RPSPiecePosition.cpp
+CMakeFiles/dbsg.dir/ex3/RPSPiecePosition.cpp.obj: ../ex3/RPSPiecePosition.h
+CMakeFiles/dbsg.dir/ex3/RPSPiecePosition.cpp.obj: ../ex3/RPSPoint.h
+
 CMakeFiles/dbsg.dir/ex3/RSPPlayer_204057566.cpp.obj: ../ex3/AlgorithmRegistration.h
 CMakeFiles/dbsg.dir/ex3/RSPPlayer_204057566.cpp.obj: ../ex3/Board.h
 CMakeFiles/dbsg.dir/ex3/RSPPlayer_204057566.cpp.obj: ../ex3/FightInfo.h

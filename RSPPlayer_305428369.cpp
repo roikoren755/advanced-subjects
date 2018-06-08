@@ -122,8 +122,8 @@ void RSPPlayer_305428369::getInitialPositions(int player, std::vector<std::uniqu
 	// Two clusters, one surrounding a flag, one a bomb, with 3 movable pieces spread about
 	this->player = player;
 	this->opponent = player == 1 ? 2 : 1;
-	this->board.setPiece(player, RPSPiece('F', player), 1, 1);
-	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(1, 1, 'F', NOT_JOKER));
+	this->board.setPiece(player, RPSPiece('F', player), 5, 6);
+	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(5, 6, 'F', NOT_JOKER));
 	this->board.setPiece(player, RPSPiece('P', player), 2, 2);
 	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(2, 2, 'P', NOT_JOKER));
 	this->board.setPiece(player, RPSPiece('P', player), 6, 6);
@@ -213,11 +213,11 @@ double RSPPlayer_305428369::evaluateMove(char piece, int x, int y) {
 		}
 	}
 
-	return score;
+	return -score+500;
 }
 
 std::unique_ptr<Move> RSPPlayer_305428369::getMove() {
-	int fromX, fromY, toX, toY;
+    int fromX = -1, fromY = -1, toX = -1, toY = -1;
 	double score = 0;
 	double tempScore = 0;
 
@@ -289,7 +289,12 @@ std::unique_ptr<Move> RSPPlayer_305428369::getMove() {
 		}
 	}
 
-	this->board.setPiece(this->player, this->board.getPiece(this->player, fromX, fromY), toX, toY);
+    if(	 (fromX = -1) && (fromY == -1) && (toX == -1) && (toY == -1)){ //no illegal move found
+        return nullptr;
+    }
+
+
+    this->board.setPiece(this->player, this->board.getPiece(this->player, fromX, fromY), toX, toY);
 	this->board.setPiece(this->player, RPSPiece(), fromX, fromY);
 
 	this->prevMove = std::make_tuple(fromX, fromY, toX, toY);

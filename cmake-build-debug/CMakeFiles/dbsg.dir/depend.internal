@@ -54,6 +54,12 @@ CMakeFiles/dbsg.dir/ex3/RPSGame.cpp.obj
 CMakeFiles/dbsg.dir/ex3/RPSPiece.cpp.obj
  C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiece.cpp
  C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiece.h
+CMakeFiles/dbsg.dir/ex3/RPSPiecePosition.cpp.obj
+ C:/Users/user/CLionProjects/advanced-subjects/ex3/PiecePosition.h
+ C:/Users/user/CLionProjects/advanced-subjects/ex3/Point.h
+ C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiecePosition.cpp
+ C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiecePosition.h
+ C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPoint.h
 CMakeFiles/dbsg.dir/ex3/RSPPlayer_204057566.cpp.obj
  C:/Users/user/CLionProjects/advanced-subjects/ex3/AlgorithmRegistration.h
  C:/Users/user/CLionProjects/advanced-subjects/ex3/Board.h

@@ -128,6 +128,10 @@ C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiece.h
 iostream
 -
 
+C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiecePosition.cpp
+RPSPiecePosition.h
+C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiecePosition.h
+
 C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiecePosition.h
 PiecePosition.h
 C:/Users/user/CLionProjects/advanced-subjects/ex3/PiecePosition.h
@@ -167,6 +171,8 @@ RPSPiecePosition.h
 C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiecePosition.h
 
 C:/Users/user/CLionProjects/advanced-subjects/ex3/TournamentManager.cpp
+algorithm
+-
 iostream
 -
 random

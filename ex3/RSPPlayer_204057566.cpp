@@ -217,7 +217,7 @@ double RSPPlayer_204057566::evaluateMove(char piece, int x, int y) {
 }
 
 std::unique_ptr<Move> RSPPlayer_204057566::getMove() {
-	int fromX, fromY, toX, toY;
+	int fromX = -1, fromY = -1, toX = -1, toY = -1;
 	double score = 0;
 	double tempScore = 0;
 
@@ -287,6 +287,10 @@ std::unique_ptr<Move> RSPPlayer_204057566::getMove() {
 				}
 			}
 		}
+	}
+
+    if(	 (fromX = -1) && (fromY == -1) && (toX == -1) && (toY == -1) ){ //no illegal move found
+	    return nullptr;
 	}
 
 	this->board.setPiece(this->player, this->board.getPiece(this->player, fromX, fromY), toX, toY);
