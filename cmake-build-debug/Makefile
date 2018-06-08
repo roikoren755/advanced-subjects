@@ -257,6 +257,33 @@ ex3/RPSPiece.cpp.s:
 	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RPSPiece.cpp.s
 .PHONY : ex3/RPSPiece.cpp.s
 
+ex3/RPSPiecePosition.obj: ex3/RPSPiecePosition.cpp.obj
+
+.PHONY : ex3/RPSPiecePosition.obj
+
+# target to build an object file
+ex3/RPSPiecePosition.cpp.obj:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RPSPiecePosition.cpp.obj
+.PHONY : ex3/RPSPiecePosition.cpp.obj
+
+ex3/RPSPiecePosition.i: ex3/RPSPiecePosition.cpp.i
+
+.PHONY : ex3/RPSPiecePosition.i
+
+# target to preprocess a source file
+ex3/RPSPiecePosition.cpp.i:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RPSPiecePosition.cpp.i
+.PHONY : ex3/RPSPiecePosition.cpp.i
+
+ex3/RPSPiecePosition.s: ex3/RPSPiecePosition.cpp.s
+
+.PHONY : ex3/RPSPiecePosition.s
+
+# target to generate assembly for a file
+ex3/RPSPiecePosition.cpp.s:
+	$(MAKE) -f CMakeFiles\dbsg.dir\build.make CMakeFiles/dbsg.dir/ex3/RPSPiecePosition.cpp.s
+.PHONY : ex3/RPSPiecePosition.cpp.s
+
 ex3/RSPPlayer_204057566.obj: ex3/RSPPlayer_204057566.cpp.obj
 
 .PHONY : ex3/RSPPlayer_204057566.obj
@@ -362,6 +389,9 @@ help:
 	@echo ... ex3/RPSPiece.obj
 	@echo ... ex3/RPSPiece.i
 	@echo ... ex3/RPSPiece.s
+	@echo ... ex3/RPSPiecePosition.obj
+	@echo ... ex3/RPSPiecePosition.i
+	@echo ... ex3/RPSPiecePosition.s
 	@echo ... ex3/RSPPlayer_204057566.obj
 	@echo ... ex3/RSPPlayer_204057566.i
 	@echo ... ex3/RSPPlayer_204057566.s

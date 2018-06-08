@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSBoard.cpp" "C:/Users/user/CLionProjects/advanced-subjects/cmake-build-debug/CMakeFiles/dbsg.dir/ex3/RPSBoard.cpp.obj"
   "C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSGame.cpp" "C:/Users/user/CLionProjects/advanced-subjects/cmake-build-debug/CMakeFiles/dbsg.dir/ex3/RPSGame.cpp.obj"
   "C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiece.cpp" "C:/Users/user/CLionProjects/advanced-subjects/cmake-build-debug/CMakeFiles/dbsg.dir/ex3/RPSPiece.cpp.obj"
+  "C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiecePosition.cpp" "C:/Users/user/CLionProjects/advanced-subjects/cmake-build-debug/CMakeFiles/dbsg.dir/ex3/RPSPiecePosition.cpp.obj"
   "C:/Users/user/CLionProjects/advanced-subjects/ex3/RSPPlayer_204057566.cpp" "C:/Users/user/CLionProjects/advanced-subjects/cmake-build-debug/CMakeFiles/dbsg.dir/ex3/RSPPlayer_204057566.cpp.obj"
   "C:/Users/user/CLionProjects/advanced-subjects/ex3/TournamentManager.cpp" "C:/Users/user/CLionProjects/advanced-subjects/cmake-build-debug/CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.obj"
   "C:/Users/user/CLionProjects/advanced-subjects/ex3/main.cpp" "C:/Users/user/CLionProjects/advanced-subjects/cmake-build-debug/CMakeFiles/dbsg.dir/ex3/main.cpp.obj"

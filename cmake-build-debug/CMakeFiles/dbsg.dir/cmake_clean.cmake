@@ -7,6 +7,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/dbsg.dir/ex3/RSPPlayer_204057566.cpp.obj"
   "CMakeFiles/dbsg.dir/ex3/AlgorithmRegistration.cpp.obj"
   "CMakeFiles/dbsg.dir/ex3/TournamentManager.cpp.obj"
+  "CMakeFiles/dbsg.dir/ex3/RPSPiecePosition.cpp.obj"
   "dbsg.pdb"
   "dbsg.exe"
   "dbsg.exe.manifest"

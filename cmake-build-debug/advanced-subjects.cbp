@@ -137,6 +137,9 @@
 		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiece.h">
 			<Option target="dbsg"/>
 		</Unit>
+		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiecePosition.cpp">
+			<Option target="dbsg"/>
+		</Unit>
 		<Unit filename="C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiecePosition.h">
 			<Option target="dbsg"/>
 		</Unit>

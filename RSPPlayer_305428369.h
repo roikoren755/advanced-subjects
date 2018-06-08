@@ -10,7 +10,7 @@
 #include "RPSMove.h"
 #include "RPSPiecePosition.h"
 
-class RSPPlayer_204057566: public PlayerAlgorithm {
+class RSPPlayer_305428369: public PlayerAlgorithm {
 	RPSBoard board;
 	int player = 0;
 	int opponent = 0;
@@ -25,8 +25,8 @@ class RSPPlayer_204057566: public PlayerAlgorithm {
 	int movesCounter = 0;
 	std::tuple<int,int,int,int> prevMove =  std::make_tuple(-1,-1,-1,-1);
 public:
-    RSPPlayer_204057566();
-	RSPPlayer_204057566(int flags, int bombs, int jokers, int rocks, int papers, int scissors):
+    RSPPlayer_305428369();
+	RSPPlayer_305428369(int flags, int bombs, int jokers, int rocks, int papers, int scissors):
 			opponentFlags(flags), opponentBombs(bombs), opponentJokers(jokers), opponentRocks(rocks),
 			opponentPapers(papers), opponentScissors(scissors) {}
 	void getInitialPositions(int player, std::vector<unique_ptr<PiecePosition>>& vectorToFill) override;
@@ -35,7 +35,7 @@ public:
 	void notifyFightResult(const FightInfo& fightInfo) override; // called only if there was a fight
 	unique_ptr<Move> getMove() override;
 	unique_ptr<JokerChange> getJokerChange() override; // nullptr if no change is requested
-	~RSPPlayer_204057566() override = default;
+	~RSPPlayer_305428369() override = default;
 private:
 	void updateOpponentPieces(char piece,int x,int y,int newX,int newY);
 	double evaluateMove(char piece,int x,int y);
