@@ -1,7 +1,7 @@
 COMP = g++-5.3.0
 #put all your object files here
-OBJS = main.o MainAux.o RPSBoard.o RPSGame.o RPSPiece.o TournamentManager.o AlgorithmRegistration.o #objects should be placed here!
-SO_OBJS = RSPPlayer_204057566.o RPSBoard.o RPSPiece.o
+OBJS = main.o MainAux.o RPSBoard.o RPSGame.o RPSPiece.o TournamentManager.o AlgorithmRegistration.o RPSPiecePosition.o #objects should be placed here!
+SO_OBJS = RSPPlayer_204057566.o RPSBoard.o RPSPiece.o RPSPiecePosition.o
 #The executable filename DON'T CHANGE
 EXEC = ex3
 SO = RSPPlayer_204057566.so
@@ -30,11 +30,12 @@ RPSBoard.o: RPSBoard.cpp RPSBoard.h Board.h Point.h RPSPiece.h
 	$(COMP) -fPIC $(CPP_COMP_FLAG) -c $*.cpp
 RPSPiece.o: RPSPiece.cpp RPSPiece.h
 	$(COMP) -fPIC $(CPP_COMP_FLAG) -c $*.cpp
-
+RPSPiecePosition.o: RPSPiecePosition.cpp RPSPiecePosition.h PiecePosition.h RPSPoint.h Point.h
+	$(COMP) -fPIC $(CPP_COMP_FLAG) -c $*.cpp
 .PHONY: all rps_tournament rps_lib
 all: $(EXEC) $(SO)
 rps_tournament: $(EXEC)
 rps_lib: $(SO)
 
 clean:
-	rm -f $(OBJS) $(EXEC) *Test *.o
+	rm -f $(OBJS) $(EXEC) *.o
