@@ -35,10 +35,9 @@ RSPPlayer_204057566::RSPPlayer_204057566() {
 void RSPPlayer_204057566::updateOpponentPieces(char piece, int x, int y, int newX, int newY) {
 	for (auto it = this->opponentPieces.begin(); it != this->opponentPieces.end(); it++) {
 		if (it->first.getPosition().getX() == x && it->first.getPosition().getY() == y) {
-			this->opponentPieces.erase(it);
-			if (newX != -1 && newY != -1) {
-				this->opponentPieces.emplace_back(std::make_pair(RPSPiecePosition(newX, newY, piece, INVALID_PIECE), true));
-			}
+			it->first = RPSPiecePosition(newX, newY, piece, INVALID_PIECE);
+			it->second = true;
+			break;
 		}
 	}
 }
@@ -189,11 +188,14 @@ int checkIfFightWinner(char piece, char enemy) {
 }
 
 double RSPPlayer_204057566::evaluateMove(char piece, int x, int y) {
-	double score = INT32_MIN;
-	double tempScore;
+    double score = INT32_MIN;
+	double tempScore = 0;
 	int won;
 
 	for (auto it = this->opponentPieces.begin(); it != this->opponentPieces.end(); it++) {
+	    if((it->first.getPosition().getX() == -1)&&(it->first.getPosition().getY() == -1)){
+            continue;
+	    }
 		tempScore = N - posDistance(it->first.getPosition().getX(), it->first.getPosition().getY(), x, y);
 		if (it->first.getPiece() != INVALID_PIECE) {
 			won = checkIfFightWinner(piece, it->first.getPiece());
@@ -204,7 +206,7 @@ double RSPPlayer_204057566::evaluateMove(char piece, int x, int y) {
 				tempScore -= CAPTURE_BONUS;
 			}
 		}
-		if (!it->second) {  // if might be flag
+		if (!(it->second)) {  // if might be flag
 			tempScore += this->movesCounter;
 		}
 
@@ -218,8 +220,8 @@ double RSPPlayer_204057566::evaluateMove(char piece, int x, int y) {
 
 std::unique_ptr<Move> RSPPlayer_204057566::getMove() {
 	int fromX = -1, fromY = -1, toX = -1, toY = -1;
-	double score = 0;
-	double tempScore = 0;
+	double score = INT32_MIN;
+	double tempScore;
 
 	for (int i = 1; i <= M; i++) {
 		for (int j = 1; j <= N; j++) {
@@ -289,7 +291,7 @@ std::unique_ptr<Move> RSPPlayer_204057566::getMove() {
 		}
 	}
 
-    if(	 (fromX = -1) && (fromY == -1) && (toX == -1) && (toY == -1) ){ //no illegal move found
+    if(	 (fromX == -1) && (fromY == -1) && (toX == -1) && (toY == -1) ){ //no illegal move found
 	    return nullptr;
 	}
 

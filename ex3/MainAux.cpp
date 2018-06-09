@@ -188,6 +188,7 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
 
 				if (game.changeJokerRepresentation(algorithms[i]->getJokerChange()) != Success) {
 					game.setWinner(i + 1 == 1 ? 2 : 1);
+					std::cout<<"illegal move for player "<<i+1<<std::endl;
 					return ILLEGAL_MOVE;
 				}
             }

@@ -10,6 +10,8 @@
 #include "TournamentManager.h"
 #include "MainAux.h"
 
+#define NUM_GAMES 30
+
 TournamentManager TournamentManager::tournamentManager;
 
 TournamentManager& TournamentManager::getTournamentManager() {
@@ -109,7 +111,7 @@ void TournamentManager::initializeGamesList() {
 
 	std::vector<int> gamesLeftToPlay(numberOfPlayers);
 	for (unsigned long i = 0; i < numberOfPlayers; i++) {
-		gamesLeftToPlay.at(i) = 30;
+		gamesLeftToPlay.at(i) = NUM_GAMES;
 	}
 
 	std::random_device rd;
