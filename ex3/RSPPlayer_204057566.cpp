@@ -4,9 +4,6 @@
 #include <cmath>
 #include "AlgorithmRegistration.h"
 #include "RSPPlayer_204057566.h"
-#include "RPSPoint.h"
-#include "RPSPiecePosition.h"
-#include "RPSMove.h"
 #include "RPSJokerChange.h"
 
 #define ROCKS 2
@@ -17,10 +14,6 @@
 #define FLAGS 1
 
 #define CAPTURE_BONUS 20
-#define FROM_X 0
-#define FROM_Y 1
-#define TO_X 2
-#define TO_Y 3
 
 RSPPlayer_204057566::RSPPlayer_204057566() {
 	// Assume opponent put all of his pieces
@@ -56,8 +49,8 @@ void RSPPlayer_204057566::notifyOnInitialBoard(const Board& b, const std::vector
 		}
 	}
 
-	for (auto itr = fights.begin(); itr != fights.end(); itr++) {
-		this->updateBoardByBattle(**itr);
+	for (const auto& fight: fights) {
+		this->updateBoardByBattle(*fight);
 	}
 }
 
@@ -84,6 +77,13 @@ void RSPPlayer_204057566::updateBoardByBattle(const FightInfo &fightInfo) {
 	char opponentPiece = fightInfo.getPiece(this->opponent);
 	int winner = fightInfo.getWinner();
 	if (winner != this->player) { // Got information about opponent's piece
+		if (fightInfo.getPiece(this->player) == 'J' && this->board.getPiece(fightInfo.getPosition()).getJokerRepresentation() != 'B') {
+			this->movingPieces--;
+		}
+		else if (fightInfo.getPiece(this->player) != 'J' && fightInfo.getPiece(this->player) != 'B' &&
+				 fightInfo.getPiece(this->player) != 'F') {
+			this->movingPieces--;
+		}
 		this->board.setPiece(this->player, RPSPiece(), x, y);
 		this->board.setPiece(this->opponent, RPSPiece(opponentPiece, NONE, this->opponent), x, y);
 		updateOpponentPieces(opponentPiece, x, y, x, y); // change piece type
@@ -147,6 +147,7 @@ void RSPPlayer_204057566::getInitialPositions(int player, std::vector<std::uniqu
 	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(7, 8, 'J', 'S'));
 	this->board.setPiece(player, RPSPiece('S', player), 4, 4);
 	vectorToFill.emplace_back(std::make_unique<RPSPiecePosition>(4, 4, 'S', NOT_JOKER));
+	this->movingPieces = 10;
 }
 
 // return  1 if piece wins
@@ -192,6 +193,7 @@ double RSPPlayer_204057566::evaluateMove(char piece, int x, int y) {
 	double tempScore = 0;
 	int won;
 
+<<<<<<< HEAD
 	for (auto it = this->opponentPieces.begin(); it != this->opponentPieces.end(); it++) {
 	    if((it->first.getPosition().getX() == -1)&&(it->first.getPosition().getY() == -1)){
             continue;
@@ -199,6 +201,12 @@ double RSPPlayer_204057566::evaluateMove(char piece, int x, int y) {
 		tempScore = N - posDistance(it->first.getPosition().getX(), it->first.getPosition().getY(), x, y);
 		if (it->first.getPiece() != INVALID_PIECE) {
 			won = checkIfFightWinner(piece, it->first.getPiece());
+=======
+	for (const auto& opponentPiece: this->opponentPieces) {
+		tempScore = N - posDistance(opponentPiece.first.getPosition().getX(), opponentPiece.first.getPosition().getY(), x, y);
+		if (opponentPiece.first.getPiece() != INVALID_PIECE) {
+			won = checkIfFightWinner(piece, opponentPiece.first.getPiece());
+>>>>>>> 87064a49a1d3246ee632c7e2695962d9caecb040
 			if (won > 0) {
 				tempScore += CAPTURE_BONUS;
 			} else if (won < 0) {
@@ -206,7 +214,11 @@ double RSPPlayer_204057566::evaluateMove(char piece, int x, int y) {
 				tempScore -= CAPTURE_BONUS;
 			}
 		}
+<<<<<<< HEAD
 		if (!(it->second)) {  // if might be flag
+=======
+		if (!opponentPiece.second) {  // if might be flag
+>>>>>>> 87064a49a1d3246ee632c7e2695962d9caecb040
 			tempScore += this->movesCounter;
 		}
 
@@ -219,9 +231,18 @@ double RSPPlayer_204057566::evaluateMove(char piece, int x, int y) {
 }
 
 std::unique_ptr<Move> RSPPlayer_204057566::getMove() {
+<<<<<<< HEAD
 	int fromX = -1, fromY = -1, toX = -1, toY = -1;
 	double score = INT32_MIN;
 	double tempScore;
+=======
+	int fromX = -1;
+	int fromY = -1;
+	int toX = -1;
+	int toY = -1;
+	double score = 0;
+	double tempScore = 0;
+>>>>>>> 87064a49a1d3246ee632c7e2695962d9caecb040
 
 	for (int i = 1; i <= M; i++) {
 		for (int j = 1; j <= N; j++) {
@@ -233,8 +254,8 @@ std::unique_ptr<Move> RSPPlayer_204057566::getMove() {
 			}
 			if (i - 1 > 0 && this->board.getPlayer(RPSPoint(i - 1, j)) != this->player) {
 				tempScore = this->evaluateMove(piece, i - 1, j);
-				if (std::get<FROM_X>(prevMove) == i && std::get<FROM_Y>(prevMove) == j &&
-				    std::get<TO_X>(prevMove) == i - 1 && std::get<TO_Y>(prevMove) == j) {
+				if (this->prevMove.getFrom().getX() == i && this->prevMove.getFrom().getY() == j &&
+					this->prevMove.getTo().getX() == i - 1 && this->prevMove.getTo().getY() == j) {
 					tempScore = 0;
 				}
 
@@ -248,8 +269,8 @@ std::unique_ptr<Move> RSPPlayer_204057566::getMove() {
 			}
 			if (i + 1 <= M && this->board.getPlayer(RPSPoint(i + 1, j)) != this->player) {
 				tempScore = this->evaluateMove(piece, i + 1, j);
-				if (std::get<FROM_X>(prevMove) == i && std::get<FROM_Y>(prevMove) == j &&
-				    std::get<TO_X>(prevMove) == i + 1 && std::get<TO_Y>(prevMove) == j) {
+				if (this->prevMove.getFrom().getX() == i && this->prevMove.getFrom().getY() == j &&
+					this->prevMove.getTo().getX() == i + 1 && this->prevMove.getTo().getY() == j) {
 					tempScore = 0;
 				}
 				if (tempScore > score) {
@@ -262,8 +283,8 @@ std::unique_ptr<Move> RSPPlayer_204057566::getMove() {
 			}
 			if (j - 1 > 0 && this->board.getPlayer(RPSPoint(i, j - 1)) != this->player) {
 				tempScore = this->evaluateMove(piece, i, j - 1);
-				if (std::get<FROM_X>(prevMove) == i && std::get<FROM_Y>(prevMove) == j &&
-				    std::get<TO_X>(prevMove) == i && std::get<TO_Y>(prevMove) == j - 1) {
+				if (this->prevMove.getFrom().getX() == i && this->prevMove.getFrom().getY() == j &&
+					this->prevMove.getTo().getX() == i && this->prevMove.getTo().getY() == j - 1) {
 					tempScore = 0;
 				}
 				if (tempScore > score) {
@@ -276,8 +297,8 @@ std::unique_ptr<Move> RSPPlayer_204057566::getMove() {
 			}
 			if (j + 1 <= N && this->board.getPlayer(RPSPoint(i, j + 1)) != this->player) {
 				tempScore = this->evaluateMove(piece, i, j + 1);
-				if (std::get<FROM_X>(prevMove) == i && std::get<FROM_Y>(prevMove) == j &&
-				    std::get<TO_X>(prevMove) == i && std::get<TO_Y>(prevMove) == j + 1){
+				if (this->prevMove.getFrom().getX() == i && this->prevMove.getFrom().getY() == j &&
+					this->prevMove.getTo().getX() == i && this->prevMove.getTo().getY() == j + 1) {
 					tempScore = 0;
 				}
 				if (tempScore > score) {
@@ -291,72 +312,94 @@ std::unique_ptr<Move> RSPPlayer_204057566::getMove() {
 		}
 	}
 
+<<<<<<< HEAD
     if(	 (fromX == -1) && (fromY == -1) && (toX == -1) && (toY == -1) ){ //no illegal move found
+=======
+    if (fromX == -1 && fromY == -1 && toX == -1 && toY == -1) { // no legal move found
+>>>>>>> 87064a49a1d3246ee632c7e2695962d9caecb040
 	    return nullptr;
 	}
 
 	this->board.setPiece(this->player, this->board.getPiece(this->player, fromX, fromY), toX, toY);
 	this->board.setPiece(this->player, RPSPiece(), fromX, fromY);
 
-	this->prevMove = std::make_tuple(fromX, fromY, toX, toY);
+	this->prevMove = RPSMove(RPSPoint(fromX, fromY), RPSPoint(toX, toY));
 	return std::make_unique<RPSMove>(RPSPoint(fromX, fromY), RPSPoint(toX, toY));
 }
 
 std::unique_ptr<JokerChange> RSPPlayer_204057566::getJokerChange() {
-	// Change to bomb if there's a piece threatening
-	for (int i = 1; i <= M; i++) {
-		for (int j = 1; j <= N; j++) {
-			RPSPiece rpsPiece = this->board.getPiece(this->player, i, j);
-			char piece = rpsPiece.getPieceType();
-			if (piece != 'J' || rpsPiece.getPlayer() != this->player || rpsPiece.getJokerRepresentation() == 'B') {
-				continue;
-			}
-			if (this->board.getPlayer(RPSPoint(i - 1, j)) == this->opponent) {
-				this->board.getPiece(this->player, i, j).setJokerRepresentation('B');
-				return std::make_unique<RPSJokerChange>(RPSPoint(i, j), 'B');
-			}
-			if (this->board.getPlayer(RPSPoint(i + 1, j)) == this->opponent) {
-				this->board.getPiece(this->player, i, j).setJokerRepresentation('B');
-				return std::make_unique<RPSJokerChange>(RPSPoint(i, j), 'B');
-			}
-			if (this->board.getPlayer(RPSPoint(i, j - 1)) == this->opponent) {
-				this->board.getPiece(this->player, i, j).setJokerRepresentation('B');
-				return std::make_unique<RPSJokerChange>(RPSPoint(i, j), 'B');
-			}
-			if (this->board.getPlayer(RPSPoint(i, j + 1)) == this->opponent) {
-				this->board.getPiece(this->player, i, j).setJokerRepresentation('B');
-				return std::make_unique<RPSJokerChange>(RPSPoint(i, j), 'B');
+	if (this->movingPieces == 1) {
+		for (int i = 1; i <= M; i++) {
+			for (int j = 1; j <= N; j++) {
+				RPSPiece rpsPiece = this->board.getPiece(this->player, i, j);
+				char piece = rpsPiece.getPieceType();
+				if (piece != 'J' || rpsPiece.getPlayer() != this->player) {
+					continue;
+				}
+				char currentRepresentation = rpsPiece.getJokerRepresentation();
+				if (currentRepresentation == 'B') {
+					return std::make_unique<RPSJokerChange>(RPSPoint(i, j), 'S');
+				}
 			}
 		}
 	}
 
-	// Just switch for the heck of it. Confuse the enemy
-	for (int i = 1; i <= M; i++) {
-		for (int j = 1; j <= N; j++) {
-			RPSPiece rpsPiece = this->board.getPiece(this->player, i, j);
-			char piece = rpsPiece.getPieceType();
-			if (piece != 'J' || rpsPiece.getPlayer() != this->player) {
-				continue;
+	else {
+		// Change to bomb if there's a piece threatening
+		for (int i = 1; i <= M; i++) {
+			for (int j = 1; j <= N; j++) {
+				RPSPiece rpsPiece = this->board.getPiece(this->player, i, j);
+				char piece = rpsPiece.getPieceType();
+				if (piece != 'J' || rpsPiece.getPlayer() != this->player || rpsPiece.getJokerRepresentation() == 'B') {
+					continue;
+				}
+				if (this->board.getPlayer(RPSPoint(i - 1, j)) == this->opponent) {
+					this->board.getPiece(this->player, i, j).setJokerRepresentation('B');
+					return std::make_unique<RPSJokerChange>(RPSPoint(i, j), 'B');
+				}
+				if (this->board.getPlayer(RPSPoint(i + 1, j)) == this->opponent) {
+					this->board.getPiece(this->player, i, j).setJokerRepresentation('B');
+					return std::make_unique<RPSJokerChange>(RPSPoint(i, j), 'B');
+				}
+				if (this->board.getPlayer(RPSPoint(i, j - 1)) == this->opponent) {
+					this->board.getPiece(this->player, i, j).setJokerRepresentation('B');
+					return std::make_unique<RPSJokerChange>(RPSPoint(i, j), 'B');
+				}
+				if (this->board.getPlayer(RPSPoint(i, j + 1)) == this->opponent) {
+					this->board.getPiece(this->player, i, j).setJokerRepresentation('B');
+					return std::make_unique<RPSJokerChange>(RPSPoint(i, j), 'B');
+				}
 			}
-			char currentRepresentation = rpsPiece.getJokerRepresentation();
-			char newRepresentation;
-			switch (currentRepresentation) {
-				case 'B':
-				case 'S':
-					newRepresentation = 'R';
-					break;
-				case 'R':
-					newRepresentation = 'P';
-					break;
-				case 'P':
-					newRepresentation = 'S';
-					break;
-				default:
-					return nullptr;
-			}
+		}
 
-			this->board.getPiece(this->player, i, j).setJokerRepresentation(newRepresentation);
-			return std::make_unique<RPSJokerChange>(i, j, newRepresentation);
+		// Just switch for the heck of it. Confuse the enemy
+		for (int i = 1; i <= M; i++) {
+			for (int j = 1; j <= N; j++) {
+				RPSPiece rpsPiece = this->board.getPiece(this->player, i, j);
+				char piece = rpsPiece.getPieceType();
+				if (piece != 'J' || rpsPiece.getPlayer() != this->player) {
+					continue;
+				}
+				char currentRepresentation = rpsPiece.getJokerRepresentation();
+				char newRepresentation;
+				switch (currentRepresentation) {
+					case 'B':
+					case 'S':
+						newRepresentation = 'R';
+						break;
+					case 'R':
+						newRepresentation = 'P';
+						break;
+					case 'P':
+						newRepresentation = 'S';
+						break;
+					default:
+						return nullptr;
+				}
+
+				this->board.getPiece(this->player, i, j).setJokerRepresentation(newRepresentation);
+				return std::make_unique<RPSJokerChange>(i, j, newRepresentation);
+			}
 		}
 	}
 

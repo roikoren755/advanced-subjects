@@ -7,8 +7,8 @@
 #include "PlayerAlgorithm.h"
 #include "RPSBoard.h"
 #include "RPSPoint.h"
-#include "RPSMove.h"
 #include "RPSPiecePosition.h"
+#include "RPSMove.h"
 
 class RSPPlayer_204057566: public PlayerAlgorithm {
 	RPSBoard board;
@@ -20,10 +20,11 @@ class RSPPlayer_204057566: public PlayerAlgorithm {
 	int opponentRocks = 0;
 	int opponentPapers = 0;
 	int opponentScissors = 0;
+	int movingPieces = 0;
 
 	std::vector<std::pair<RPSPiecePosition,bool>> opponentPieces; // bool says if there is a possibility this is a flag
 	int movesCounter = 0;
-	std::tuple<int,int,int,int> prevMove =  std::make_tuple(-1,-1,-1,-1);
+	RPSMove prevMove = RPSMove(RPSPoint(-1, -1), RPSPoint(-1, -1));
 public:
     RSPPlayer_204057566();
 	RSPPlayer_204057566(int flags, int bombs, int jokers, int rocks, int papers, int scissors):
