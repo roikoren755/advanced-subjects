@@ -193,20 +193,14 @@ double RSPPlayer_204057566::evaluateMove(char piece, int x, int y) {
 	double tempScore = 0;
 	int won;
 
-<<<<<<< HEAD
-	for (auto it = this->opponentPieces.begin(); it != this->opponentPieces.end(); it++) {
-	    if((it->first.getPosition().getX() == -1)&&(it->first.getPosition().getY() == -1)){
-            continue;
-	    }
-		tempScore = N - posDistance(it->first.getPosition().getX(), it->first.getPosition().getY(), x, y);
-		if (it->first.getPiece() != INVALID_PIECE) {
-			won = checkIfFightWinner(piece, it->first.getPiece());
-=======
+
 	for (const auto& opponentPiece: this->opponentPieces) {
-		tempScore = N - posDistance(opponentPiece.first.getPosition().getX(), opponentPiece.first.getPosition().getY(), x, y);
+        if((opponentPiece.first.getPosition().getX() == -1)&&(opponentPiece.first.getPosition().getY() == -1)){
+            continue;
+        }
+	    tempScore = N - posDistance(opponentPiece.first.getPosition().getX(), opponentPiece.first.getPosition().getY(), x, y);
 		if (opponentPiece.first.getPiece() != INVALID_PIECE) {
 			won = checkIfFightWinner(piece, opponentPiece.first.getPiece());
->>>>>>> 87064a49a1d3246ee632c7e2695962d9caecb040
 			if (won > 0) {
 				tempScore += CAPTURE_BONUS;
 			} else if (won < 0) {
@@ -214,11 +208,7 @@ double RSPPlayer_204057566::evaluateMove(char piece, int x, int y) {
 				tempScore -= CAPTURE_BONUS;
 			}
 		}
-<<<<<<< HEAD
-		if (!(it->second)) {  // if might be flag
-=======
 		if (!opponentPiece.second) {  // if might be flag
->>>>>>> 87064a49a1d3246ee632c7e2695962d9caecb040
 			tempScore += this->movesCounter;
 		}
 
@@ -231,18 +221,13 @@ double RSPPlayer_204057566::evaluateMove(char piece, int x, int y) {
 }
 
 std::unique_ptr<Move> RSPPlayer_204057566::getMove() {
-<<<<<<< HEAD
-	int fromX = -1, fromY = -1, toX = -1, toY = -1;
 	double score = INT32_MIN;
 	double tempScore;
-=======
 	int fromX = -1;
 	int fromY = -1;
 	int toX = -1;
 	int toY = -1;
-	double score = 0;
-	double tempScore = 0;
->>>>>>> 87064a49a1d3246ee632c7e2695962d9caecb040
+
 
 	for (int i = 1; i <= M; i++) {
 		for (int j = 1; j <= N; j++) {
@@ -312,11 +297,7 @@ std::unique_ptr<Move> RSPPlayer_204057566::getMove() {
 		}
 	}
 
-<<<<<<< HEAD
     if(	 (fromX == -1) && (fromY == -1) && (toX == -1) && (toY == -1) ){ //no illegal move found
-=======
-    if (fromX == -1 && fromY == -1 && toX == -1 && toY == -1) { // no legal move found
->>>>>>> 87064a49a1d3246ee632c7e2695962d9caecb040
 	    return nullptr;
 	}
 
