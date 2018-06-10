@@ -65,7 +65,7 @@ int MainAux::RPSPerformPositioning(RPSGame& game ,std::vector<unique_ptr<PlayerA
     for (int i = 0; i < NUM_PLAYERS; i++) {
         algorithms[i]->getInitialPositions(i + 1, playerPos);
         for (auto& ptr : playerPos) {
-            if(ptr == nullptr){
+            if (ptr == nullptr) {
                 ret += (i + 1);
                 valid = 0;
                 break;
@@ -79,7 +79,6 @@ int MainAux::RPSPerformPositioning(RPSGame& game ,std::vector<unique_ptr<PlayerA
                 valid = 0;
                 break;
             }
-
         }
 
         if (valid && !game.validateNumberOfFlags(i + 1)) {
@@ -87,50 +86,12 @@ int MainAux::RPSPerformPositioning(RPSGame& game ,std::vector<unique_ptr<PlayerA
         }
 
         playerPos.clear();
-
     }
 
     return ret;
 }
 
-//==================================================================================
-// TODO - do we need that?
-int MainAux::RPSPrintGamePositionErrorResult(RPSGame& game, int feedback) {
-
-    std::ofstream fout("rps.output");
-    if (!fout.is_open()) {
-        std::cout << "ERROR: could'nt open output file" << std::endl;
-        return -1;
-    }
-
-    int winner;
-    if (feedback == BOTH_PLAYERS_LOST) {
-        winner = 0;
-    }
-    else {
-        winner = feedback == 1 ? 2 : 1;
-    }
-
-    fout << "Winner: " << winner << std::endl;
-
-    if (!winner) {
-        fout << "Reason: " << "Bad Positioning for both players" << std::endl;
-    }
-    else {
-        int loser = feedback;
-        fout << "Bad Positioning for player " << loser << std::endl;
-    }
-
-    fout << std::endl;
-    fout << game;
-
-    fout.close();
-    return 1;
-}
-
-//==========================================================================
 int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<PlayerAlgorithm>>& algorithms) {
-    //int winner;
     RPS_Message message;
     int moveCounter = 0;
     bool player1Finished = false;
@@ -188,7 +149,6 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
 
 				if (game.changeJokerRepresentation(algorithms[i]->getJokerChange()) != Success) {
 					game.setWinner(i + 1 == 1 ? 2 : 1);
-					std::cout<<"illegal move for player "<<i+1<<std::endl;
 					return ILLEGAL_MOVE;
 				}
             }
@@ -212,54 +172,4 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
     }
 
     return LEGAL_TIE;
-}
-
-//==========================================================================
-//TODO do we need that?
-int MainAux::RPSPrintGameResult(RPSGame& game, int reason) {
-    std::ofstream fout("rps.output");
-    if (!fout.is_open()) {
-        std::cout << "ERROR: could'nt open output file" << std::endl;
-        return -1;
-    }
-
-    int winner = game.getWinner();
-    int loser = winner == 1 ? 2 : 1;
-
-    fout << "Winner: " << winner << std::endl;
-    fout << "Reason: ";
-    switch (reason) {
-            case ALL_FLAGS_CAPTURED:
-                if (winner) {
-                    fout << "All flags of the opponent are captured" << std::endl;
-                }
-                else {
-                    fout << "A tie - all flags are eaten by both players in the position stage" << std::endl;
-                }
-                break;
-            case ALL_MOVING_PIECES_CAPTURED:
-                if (winner) {
-                    fout << "All moving PIECEs of the opponent are eaten" << std::endl;
-                }
-                else {
-                    // TODO - Both players have no moving pieces after positioning tie message
-                    fout << "A tie - All moving PIECEs of the opponent are eaten" << std::endl;
-                }
-                break;
-            case LEGAL_TIE:
-                fout << "A tie - max no-fight moves allowed performed " << std::endl;
-                break;
-            case ILLEGAL_MOVE:
-                fout << "Bad Move for player " << loser << std::endl;
-                break;
-            default:
-                break;
-        }
-
-    fout << std::endl;
-    fout << game;
-
-    fout.close();
-
-    return 1;
 }
