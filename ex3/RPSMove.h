@@ -14,18 +14,8 @@ public:
 	RPSMove(int fromX, int fromY, int toX, int toY): from(RPSPoint(fromX, fromY)), to(RPSPoint(toX, toY)) {}
 	RPSMove(const Point& from, const Point& to): from(from), to(to) {}
 	RPSMove(const Move& move): from(move.getFrom()), to(move.getTo()) {}
-<<<<<<< HEAD
-	RPSMove& operator=(const RPSMove& other){
-		if(this == &other){
-			return *this;
-		}
-		this->from = other.from;
-		this->to = other.to;
-		return *this;
-	}
-=======
 	RPSMove(const Move&& move): from(move.getFrom()), to(move.getTo()) {}
->>>>>>> 399bb48fcd0da4493bd7299aa3ddea0cb8d95abb
+	RPSMove& operator=(const RPSMove& other);
 	const Point& getFrom() const override { return this->from; }
 	const Point& getTo() const override { return this->to; }
 

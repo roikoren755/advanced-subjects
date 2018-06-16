@@ -18,7 +18,6 @@ TournamentManager& TournamentManager::getTournamentManager() {
 	return TournamentManager::tournamentManager;
 }
 
-//============================================================
 void TournamentManager::tournamentRunGame(std::string player1Name, std::pair<std::string,bool> player2Name) {
     int winner = MainAux::runGame(this->id2factory[player1Name](), this->id2factory[player2Name.first]());
     switch (winner) {
