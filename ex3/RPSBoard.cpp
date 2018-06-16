@@ -16,8 +16,12 @@ int RPSBoard::getPlayer(const Point &pos) const {
 	int x = pos.getX();
 	int y = pos.getY();
 
-	if (this->board[0][y - 1][x - 1].getPieceType() != NONE) return 1;
-	if (this->board[0][y - 1][x - 1].getPieceType() != NONE) return 2;
+	if (this->board[0][y - 1][x - 1].getPieceType() != NONE) {
+		return 1;
+	}
+	if (this->board[0][y - 1][x - 1].getPieceType() != NONE) {
+		return 2;
+	}
 
 	return 0;
 }

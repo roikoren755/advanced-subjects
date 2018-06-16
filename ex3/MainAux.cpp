@@ -40,7 +40,7 @@ int MainAux::runGame(unique_ptr<PlayerAlgorithm> player1, unique_ptr<PlayerAlgor
     algorithms[PLAYER(1)]->notifyOnInitialBoard(game.getBoard(), fights);
     algorithms[PLAYER(2)]->notifyOnInitialBoard(game.getBoard(), fights);
 
-    RPSPlayTwoPlayersMoves(game, algorithms);
+    MainAux::RPSPlayTwoPlayersMoves(game, algorithms);
     return game.getWinner();
 }
 
@@ -99,12 +99,12 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
 
     while (!player1Finished || !player2Finished) {
         for (int i = 0; i < NUM_PLAYERS; i++) {
-            if (i == 1 ? player1Finished : player2Finished) {
+            if (i == 0 ? player1Finished : player2Finished) {
                 continue;
             }
             auto movePtr = algorithms[i]->getMove();
             if (movePtr == nullptr) {
-                i == 1 ? (player1Finished = true) : (player2Finished = true);
+                i == 0 ? (player1Finished = true) : (player2Finished = true);
 
                 moveCounter++;
                 if (moveCounter >= MAX_NO_FIGHT_MOVES_ALLOWED) {
@@ -124,8 +124,8 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
 
 				if (message == Battle_Required) {
 					RPSFightInfo info = game.performBattle(toX, toY);
-					algorithms[1 - 1]->notifyFightResult(info);
-					algorithms[2 - 1]->notifyFightResult(info);
+					algorithms[0]->notifyFightResult(info);
+					algorithms[1]->notifyFightResult(info);
 
 					message = game.checkWinner();
 					switch (message) {
@@ -148,12 +148,12 @@ int MainAux::RPSPlayTwoPlayersMoves(RPSGame& game, std::vector<unique_ptr<Player
 				}
 
 				if (game.changeJokerRepresentation(algorithms[i]->getJokerChange()) != Success) {
-					game.setWinner(i + 1 == 1 ? 2 : 1);
+					game.setWinner(i == 0 ? 2 : 1);
 					return ILLEGAL_MOVE;
 				}
             }
             else {  // in this case illegal move was done
-				game.setWinner(i + 1 == 1 ? 2 : 1);
+				game.setWinner(i == 0 ? 2 : 1);
 				return ILLEGAL_MOVE;
 			}
 

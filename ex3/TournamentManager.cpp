@@ -18,7 +18,6 @@ TournamentManager& TournamentManager::getTournamentManager() {
 	return TournamentManager::tournamentManager;
 }
 
-//============================================================
 void TournamentManager::tournamentRunGame(std::string player1Name, std::pair<std::string,bool> player2Name) {
 
 

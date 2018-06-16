@@ -26,10 +26,10 @@ RSPPlayer_204057566::RSPPlayer_204057566() {
 }
 
 void RSPPlayer_204057566::updateOpponentPieces(char piece, int x, int y, int newX, int newY) {
-	for (auto it = this->opponentPieces.begin(); it != this->opponentPieces.end(); it++) {
-		if (it->first.getPosition().getX() == x && it->first.getPosition().getY() == y) {
-			it->first = RPSPiecePosition(newX, newY, piece, INVALID_PIECE);
-			it->second = true;
+	for (auto opponentPiece: this->opponentPieces) {
+		if (opponentPiece.first.getPosition().getX() == x && opponentPiece.first.getPosition().getY() == y) {
+			opponentPiece.first = RPSPiecePosition(newX, newY, piece, INVALID_PIECE);
+			opponentPiece.second = true;
 			break;
 		}
 	}
@@ -74,7 +74,8 @@ void RSPPlayer_204057566::updateBoardByBattle(const FightInfo &fightInfo) {
 	char opponentPiece = fightInfo.getPiece(this->opponent);
 	int winner = fightInfo.getWinner();
 	if (winner != this->player) { // Got information about opponent's piece
-		if (fightInfo.getPiece(this->player) == 'J' && this->board.getPiece(fightInfo.getPosition()).getJokerRepresentation() != 'B') {
+		if (fightInfo.getPiece(this->player) == 'J' &&
+			this->board.getPiece(fightInfo.getPosition()).getJokerRepresentation() != 'B') {
 			this->movingPieces--;
 		}
 		else if (fightInfo.getPiece(this->player) != 'J' && fightInfo.getPiece(this->player) != 'B' &&
@@ -196,6 +197,7 @@ double RSPPlayer_204057566::evaluateMove(char piece, int x, int y) {
 	double tempScore = 0;
 	int won;
 
+<<<<<<< HEAD
 
 	for (const auto& opponentPiece: this->opponentPieces) {
 		if (opponentPiece.first.getPosition().getX() == -1 || opponentPiece.first.getPosition().getY() == -1) {
@@ -203,6 +205,14 @@ double RSPPlayer_204057566::evaluateMove(char piece, int x, int y) {
 		}
 		//give better score for closer ones
 		tempScore = N - posDistance(opponentPiece.first.getPosition().getX(), opponentPiece.first.getPosition().getY(), x, y);
+=======
+	for (const auto& opponentPiece: this->opponentPieces) {
+        if((opponentPiece.first.getPosition().getX() == -1)&&(opponentPiece.first.getPosition().getY() == -1)){
+            continue;
+        }
+	    tempScore = N - posDistance(opponentPiece.first.getPosition().getX(), opponentPiece.first.getPosition().getY(), x, y);
+
+>>>>>>> 130bc3c5cd744fc710557c3a80db9ef81f36ffc7
 		if (opponentPiece.first.getPiece() != INVALID_PIECE) {
 			won = checkIfFightWinner(piece, opponentPiece.first.getPiece());
 			if (won > 0) {
@@ -213,6 +223,10 @@ double RSPPlayer_204057566::evaluateMove(char piece, int x, int y) {
 				tempScore -= CAPTURE_BONUS;
 			}
 		}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 130bc3c5cd744fc710557c3a80db9ef81f36ffc7
 		if (!opponentPiece.second) {  // if might be flag
 			tempScore += this->movesCounter;
 		}
@@ -233,8 +247,12 @@ std::unique_ptr<Move> RSPPlayer_204057566::getMove() {
 	int toX = -1;
 	int toY = -1;
 
+<<<<<<< HEAD
     //go over all possible moves, pick the best one
     for (int i = 1; i <= M; i++) {
+=======
+	for (int i = 1; i <= M; i++) {
+>>>>>>> 130bc3c5cd744fc710557c3a80db9ef81f36ffc7
 		for (int j = 1; j <= N; j++) {
 			RPSPiece rpsPiece = this->board.getPiece(this->player, i, j);
 			char piece = rpsPiece.getPieceType();
@@ -304,7 +322,11 @@ std::unique_ptr<Move> RSPPlayer_204057566::getMove() {
 		}
 	}
 
+<<<<<<< HEAD
     if(	 fromX == -1 && fromY == -1 && (toX == -1) && (toY == -1) ){ //no illegal move found
+=======
+    if (fromX == -1 || fromY == -1 || toX == -1 || toY == -1) { // no legal move found
+>>>>>>> 130bc3c5cd744fc710557c3a80db9ef81f36ffc7
 	    return nullptr;
 	}
 
