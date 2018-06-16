@@ -35,9 +35,6 @@ void RSPPlayer_204057566::updateOpponentPieces(char piece, int x, int y, int new
 	}
 }
 
-double posDistance(int x0, int y0, int x1, int y1) {
-	return sqrt(pow(x0 - x1, 2) + pow(y0 - y1, 2));
-}
 
 void RSPPlayer_204057566::notifyOnInitialBoard(const Board& b, const std::vector<std::unique_ptr<FightInfo>>& fights) {
 	for (int i = 1; i <= M; i++) {
@@ -188,38 +185,34 @@ int checkIfFightWinner(char piece, char enemy) {
 	return 0; // default
 }
 
+//calculates distance between to positions
+double posDistance(int x0, int y0, int x1, int y1) {
+    return sqrt(pow(x0 - x1, 2) + pow(y0 - y1, 2));
+}
+
+
 double RSPPlayer_204057566::evaluateMove(char piece, int x, int y) {
     double score = INT32_MIN;
 	double tempScore = 0;
 	int won;
 
-<<<<<<< HEAD
 
-	for (const auto& opponentPiece: this->opponentPieces) {
-        if((opponentPiece.first.getPosition().getX() == -1)&&(opponentPiece.first.getPosition().getY() == -1)){
-            continue;
-        }
-	    tempScore = N - posDistance(opponentPiece.first.getPosition().getX(), opponentPiece.first.getPosition().getY(), x, y);
-=======
 	for (const auto& opponentPiece: this->opponentPieces) {
 		if (opponentPiece.first.getPosition().getX() == -1 || opponentPiece.first.getPosition().getY() == -1) {
 			continue;
 		}
+		//give better score for closer ones
 		tempScore = N - posDistance(opponentPiece.first.getPosition().getX(), opponentPiece.first.getPosition().getY(), x, y);
->>>>>>> 399bb48fcd0da4493bd7299aa3ddea0cb8d95abb
 		if (opponentPiece.first.getPiece() != INVALID_PIECE) {
 			won = checkIfFightWinner(piece, opponentPiece.first.getPiece());
 			if (won > 0) {
-				tempScore += CAPTURE_BONUS;
-			} else if (won < 0) {
+				tempScore += CAPTURE_BONUS; //we want food!
+			}
+			else if (won < 0) {
 				tempScore = N - tempScore; //Prefer the distant ones
 				tempScore -= CAPTURE_BONUS;
 			}
 		}
-<<<<<<< HEAD
-=======
-
->>>>>>> 399bb48fcd0da4493bd7299aa3ddea0cb8d95abb
 		if (!opponentPiece.second) {  // if might be flag
 			tempScore += this->movesCounter;
 		}
@@ -233,23 +226,15 @@ double RSPPlayer_204057566::evaluateMove(char piece, int x, int y) {
 }
 
 std::unique_ptr<Move> RSPPlayer_204057566::getMove() {
-<<<<<<< HEAD
 	double score = INT32_MIN;
 	double tempScore;
-=======
->>>>>>> 399bb48fcd0da4493bd7299aa3ddea0cb8d95abb
 	int fromX = -1;
 	int fromY = -1;
 	int toX = -1;
 	int toY = -1;
-<<<<<<< HEAD
 
-=======
-	double score = INT32_MIN;
-	double tempScore;
->>>>>>> 399bb48fcd0da4493bd7299aa3ddea0cb8d95abb
-
-	for (int i = 1; i <= M; i++) {
+    //go over all possible moves, pick the best one
+    for (int i = 1; i <= M; i++) {
 		for (int j = 1; j <= N; j++) {
 			RPSPiece rpsPiece = this->board.getPiece(this->player, i, j);
 			char piece = rpsPiece.getPieceType();
@@ -259,6 +244,8 @@ std::unique_ptr<Move> RSPPlayer_204057566::getMove() {
 			}
 			if (i - 1 > 0 && this->board.getPlayer(RPSPoint(i - 1, j)) != this->player) {
 				tempScore = this->evaluateMove(piece, i - 1, j);
+
+                //checks whether this is the opposite of the previous move. We do not want to run in circles..
 				if (this->prevMove.getFrom().getX() == i && this->prevMove.getFrom().getY() == j &&
 					this->prevMove.getTo().getX() == i - 1 && this->prevMove.getTo().getY() == j) {
 					tempScore = 0;
@@ -317,11 +304,7 @@ std::unique_ptr<Move> RSPPlayer_204057566::getMove() {
 		}
 	}
 
-<<<<<<< HEAD
-    if(	 (fromX == -1) && (fromY == -1) && (toX == -1) && (toY == -1) ){ //no illegal move found
-=======
-    if (fromX == -1 || fromY == -1 || toX == -1 || toY == -1) { // no legal move found
->>>>>>> 399bb48fcd0da4493bd7299aa3ddea0cb8d95abb
+    if(	 fromX == -1 && fromY == -1 && (toX == -1) && (toY == -1) ){ //no illegal move found
 	    return nullptr;
 	}
 
