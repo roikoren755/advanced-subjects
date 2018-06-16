@@ -2,11 +2,9 @@ COMP = g++-5.3.0
 #put all your object files here
 OBJS = main.o MainAux.o RPSBoard.o RPSGame.o RPSPiece.o TournamentManager.o AlgorithmRegistration.o RPSPiecePosition.o #objects should be placed here!
 SO_OBJS = RSPPlayer_204057566.o RPSBoard.o RPSPiece.o RPSPiecePosition.o
-SO_OBJS2 = RSPPlayer_305428369.o RPSBoard.o RPSPiece.o RPSPiecePosition.o
 #The executable filename DON'T CHANGE
 EXEC = ex3
 SO = RSPPlayer_204057566.so
-SO2 = RSPPlayer_305428369.so
 CPP_COMP_FLAG = -std=c++14 -Wall -Wextra \
 -Werror -pedantic-errors -DNDEBUG
 
@@ -14,8 +12,6 @@ $(EXEC): $(OBJS)
 	$(COMP) $(OBJS) -rdynamic -ldl -pthread -o $@
 $(SO): $(SO_OBJS)
 	$(COMP) $(SO_OBJS) -shared -o $@
-$(SO2): $(SO_OBJS2)
-	$(COMP) $(SO_OBJS2) -shared -o $@
 #a rule for building a simple c++ source file
 #use g++ -MM main.cpp to see dependencies
 AlgorithmRegistration.o: AlgorithmRegistration.cpp AlgorithmRegistration.h PlayerAlgorithm.h Point.h PiecePosition.h Board.h FightInfo.h Move.h JokerChange.h TournamentManager.h
@@ -30,8 +26,6 @@ TournamentManager.o: TournamentManager.cpp TournamentManager.h PlayerAlgorithm.h
 	$(COMP) $(CPP_COMP_FLAG) -c $*.cpp
 RSPPlayer_204057566.o: RSPPlayer_204057566.cpp RSPPlayer_204057566.h AlgorithmRegistration.h PlayerAlgorithm.h Point.h PiecePosition.h Board.h FightInfo.h Move.h JokerChange.h RPSBoard.h RPSPiece.h RPSPoint.h RPSPiecePosition.h RPSMove.h RPSJokerChange.h
 	$(COMP) -fPIC $(CPP_COMP_FLAG) -c $*.cpp
-RSPPlayer_305428369.o: RSPPlayer_305428369.cpp RSPPlayer_305428369.h AlgorithmRegistration.h PlayerAlgorithm.h Point.h PiecePosition.h Board.h FightInfo.h Move.h JokerChange.h RPSBoard.h RPSPiece.h RPSPoint.h RPSPiecePosition.h RPSMove.h RPSJokerChange.h
-	$(COMP) -fPIC $(CPP_COMP_FLAG) -c $*.cpp
 RPSBoard.o: RPSBoard.cpp RPSBoard.h Board.h Point.h RPSPiece.h
 	$(COMP) -fPIC $(CPP_COMP_FLAG) -c $*.cpp
 RPSPiece.o: RPSPiece.cpp RPSPiece.h
@@ -39,9 +33,9 @@ RPSPiece.o: RPSPiece.cpp RPSPiece.h
 RPSPiecePosition.o: RPSPiecePosition.cpp RPSPiecePosition.h PiecePosition.h RPSPoint.h Point.h
 	$(COMP) -fPIC $(CPP_COMP_FLAG) -c $*.cpp
 .PHONY: all rps_tournament rps_lib
-all: $(EXEC) $(SO) $(SO2)
+all: $(EXEC) $(SO)
 rps_tournament: $(EXEC)
-rps_lib: $(SO) $(SO2)
+rps_lib: $(SO)
 
 clean:
 	rm -f $(OBJS) $(EXEC) *.o
