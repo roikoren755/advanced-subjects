@@ -149,12 +149,6 @@ AlgorithmRegistration.h
 C:/Users/user/CLionProjects/advanced-subjects/ex3/AlgorithmRegistration.h
 RSPPlayer_204057566.h
 C:/Users/user/CLionProjects/advanced-subjects/ex3/RSPPlayer_204057566.h
-RPSPoint.h
-C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPoint.h
-RPSPiecePosition.h
-C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiecePosition.h
-RPSMove.h
-C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSMove.h
 RPSJokerChange.h
 C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSJokerChange.h
 
@@ -165,10 +159,10 @@ RPSBoard.h
 C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSBoard.h
 RPSPoint.h
 C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPoint.h
-RPSMove.h
-C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSMove.h
 RPSPiecePosition.h
 C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSPiecePosition.h
+RPSMove.h
+C:/Users/user/CLionProjects/advanced-subjects/ex3/RPSMove.h
 
 C:/Users/user/CLionProjects/advanced-subjects/ex3/TournamentManager.cpp
 algorithm
@@ -180,8 +174,6 @@ random
 dirent.h
 -
 thread
--
-dlfcn.h
 -
 TournamentManager.h
 C:/Users/user/CLionProjects/advanced-subjects/ex3/TournamentManager.h

@@ -35,9 +35,6 @@ void RSPPlayer_204057566::updateOpponentPieces(char piece, int x, int y, int new
 	}
 }
 
-double posDistance(int x0, int y0, int x1, int y1) {
-	return sqrt(pow(x0 - x1, 2) + pow(y0 - y1, 2));
-}
 
 void RSPPlayer_204057566::notifyOnInitialBoard(const Board& b, const std::vector<std::unique_ptr<FightInfo>>& fights) {
 	for (int i = 1; i <= M; i++) {
@@ -189,11 +186,20 @@ int checkIfFightWinner(char piece, char enemy) {
 	return 0; // default
 }
 
+//calculates distance between to positions
+double posDistance(int x0, int y0, int x1, int y1) {
+    return sqrt(pow(x0 - x1, 2) + pow(y0 - y1, 2));
+}
+
+
 double RSPPlayer_204057566::evaluateMove(char piece, int x, int y) {
     double score = INT32_MIN;
 	double tempScore = 0;
 	int won;
 
+
+
+		//give better score for closer ones
 	for (const auto& opponentPiece: this->opponentPieces) {
         if((opponentPiece.first.getPosition().getX() == -1)&&(opponentPiece.first.getPosition().getY() == -1)){
             continue;
@@ -203,8 +209,9 @@ double RSPPlayer_204057566::evaluateMove(char piece, int x, int y) {
 		if (opponentPiece.first.getPiece() != INVALID_PIECE) {
 			won = checkIfFightWinner(piece, opponentPiece.first.getPiece());
 			if (won > 0) {
-				tempScore += CAPTURE_BONUS;
-			} else if (won < 0) {
+				tempScore += CAPTURE_BONUS; //we want food!
+			}
+			else if (won < 0) {
 				tempScore = N - tempScore; //Prefer the distant ones
 				tempScore -= CAPTURE_BONUS;
 			}
@@ -230,6 +237,7 @@ std::unique_ptr<Move> RSPPlayer_204057566::getMove() {
 	int toX = -1;
 	int toY = -1;
 
+    //go over all possible moves, pick the best one
 	for (int i = 1; i <= M; i++) {
 		for (int j = 1; j <= N; j++) {
 			RPSPiece rpsPiece = this->board.getPiece(this->player, i, j);
@@ -240,6 +248,8 @@ std::unique_ptr<Move> RSPPlayer_204057566::getMove() {
 			}
 			if (i - 1 > 0 && this->board.getPlayer(RPSPoint(i - 1, j)) != this->player) {
 				tempScore = this->evaluateMove(piece, i - 1, j);
+
+                //checks whether this is the opposite of the previous move. We do not want to run in circles..
 				if (this->prevMove.getFrom().getX() == i && this->prevMove.getFrom().getY() == j &&
 					this->prevMove.getTo().getX() == i - 1 && this->prevMove.getTo().getY() == j) {
 					tempScore = 0;
