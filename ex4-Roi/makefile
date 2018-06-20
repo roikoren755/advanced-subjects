@@ -1,4 +1,4 @@
-COMP = g++
+COMP = g++-5.3.0
 OBJS = main.o
 EXEC = ex4
 CPP_COMP_FLAG = -std=c++14 -Wall -Wextra \
